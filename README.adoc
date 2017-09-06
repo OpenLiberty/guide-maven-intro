@@ -21,12 +21,7 @@ You will work with an application project that is a simple servlet application a
 
 You will learn how to build and test this application project with an Open Liberty server by using Maven and the `liberty-maven-plugin` plug-in.
 
-
-----
 include::common/gitclone.adoc[]
-----
-
-
 
 == Creating a Maven web application project
 
