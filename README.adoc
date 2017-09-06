@@ -11,6 +11,7 @@
 :page-description: This is the short description for the Maven guide
 :page-tags: ['Maven', 'web']
 :page-permalink: /guides/building-web-application-maven
+:projectid: guide-maven
 = Building a web application with Maven
 
 You’ll explore how to build a simple web application and test it by using Maven and Open Liberty.
@@ -41,7 +42,6 @@ The following diagram is an overview of the project directory structure:
         └── test
             └── java
    
-[Tip]   
 Other ways exist to quickly create the project structure by using the https://liberty-app-accelerator.wasdev.developer.ibm.com/start/[Liberty App Accelerator] accelerator or the Maven https://github.com/WASdev/ci.maven#liberty-archetype-webapp[liberty-architect-webapp] archetype.              
 
 == Building the project POM file
@@ -214,11 +214,11 @@ include::finish/src/main/webapp/WEB-INF/web.xml[]
     
 The integration EndpointIT test invokes the HelloServlet class and verifies the return response.
 
-`src/test/java/io/openliberty/guides/hello/it/EndpointTest.java`:
+`finish/src/test/java/io/openliberty/guides/hello/ApplicationTest.java`:
 
 [source,java]
 ----
-include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointTest.java[]
+include::finish/src/test/java/io/openliberty/guides/hello/ApplicationTest.java[]         
 ----
 
 == Creating the Liberty server configuration
