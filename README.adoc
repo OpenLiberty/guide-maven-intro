@@ -43,11 +43,11 @@ The following diagram is an overview of the project directory structure:
         └── test
             └── java
 
-Other ways exist to quickly create the project structure by using the https://liberty-app-accelerator.wasdev.developer.ibm.com/start/[Liberty App Accelerator] accelerator or the Maven https://github.com/WASdev/ci.maven#liberty-archetype-webapp[liberty-architect-webapp] archetype.
+Other ways exist to quickly create the project structure by using the https://liberty-app-accelerator.wasdev.developer.ibm.com/start/[Liberty App Accelerator] accelerator or the Maven https://github.com/WASdev/ci.maven#liberty-archetype-webapp[liberty-archetype-webapp] archetype.
 
 == Building the project POM file
 
-Before you can build the project, you create the `pom.xml` file. The POM file starts with a root `<project>` element that is followed by the POM version, the project coordinate, and the parent POM to this project:
+Before you can build the project, you create the `pom.xml` file. The POM file starts with a root `<project>` element that is followed by the POM version, the project coordinates, and the parent POM to this project:
 
 - The POM model version, which is always 4.0.0:
 
@@ -58,7 +58,7 @@ Before you can build the project, you create the `pom.xml` file. The POM file st
     <modelVersion>4.0.0</modelVersion>
 ----
 
-- The project coordinate, which consists of a group ID ( `groupId`), an artifact ID (`artifactId`), a version (`artifactId`) , and the packaging for the POM (`packaging`). For a web application project, the value of the `packaging` field is `war` so that the project output artifact is a WAR file.
+- The project coordinates, which consists of a group ID ( `groupId`), an artifact ID (`artifactId`), a version (`version`) , and the packaging for the POM (`packaging`). For a web application project, the value of the `packaging` field is `war` so that the project output artifact is a WAR file.
 
 [source, xml]
 ----
