@@ -6,12 +6,13 @@
 // Contributors:
 //     IBM Corporation
 //
+:projectid: guide-maven
 :page-layout: guide
 :page-duration: 15 minutes
 :page-description: This is the short description for the Maven guide
 :page-tags: ['Maven', 'web']
-:page-permalink: /guides/building-web-application-maven
-:projectid: guide-maven
+:page-permalink: /guides/{projectid}
+:common-includes: ../guides-common/
 = Building a web application with Maven
 
 You’ll explore how to build a simple web application and test it by using Maven and Open Liberty.
@@ -22,7 +23,7 @@ You will work with an application project that is a simple servlet application a
 
 You will learn how to build and test this application project with an Open Liberty server by using Maven and the `liberty-maven-plugin` plug-in.
 
-include::common/gitclone.adoc[]
+include::{common-includes}/gitclone.adoc[]
 
 == Creating a Maven web application project
 
@@ -230,9 +231,7 @@ Create the `finish/src/main/liberty/config/server.xml` file to provide the confi
 include::finish/src/main/liberty/config/server.xml[]
 ----
 
-----
-include::common/mvnbuild.adoc[]
-----
+include::{common-includes}/mvnbuild.adoc[]
 
 == Congratulations! You're done!
 
