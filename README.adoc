@@ -192,7 +192,7 @@ When the HelloServer class is called, it responds back with `Hello! How are you 
 
 [source,java]
 ----
-include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
+include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags=**;!comment]
 ----
 
 The welcome page HTML file for the web project contains a link to the Hello servlet.
@@ -219,7 +219,7 @@ The integration EndpointIT test invokes the HelloServlet class and verifies the 
 
 [source,java]
 ----
-include::finish/src/test/java/io/openliberty/guides/hello/ApplicationTest.java[]
+include::finish/src/test/java/io/openliberty/guides/hello/ApplicationTest.java[**;!comment]
 ----
 
 == Creating the Liberty server configuration
