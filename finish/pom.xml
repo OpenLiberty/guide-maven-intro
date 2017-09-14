@@ -1,28 +1,27 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.wasdev.wlp.maven.parent</groupId>
         <artifactId>liberty-maven-app-parent</artifactId>
         <version>2.0</version>
     </parent>
-    
-    # tag::coordinates[]
+    <!-- tag::coordinates[] -->
     <groupId>io.openliberty.guides</groupId>
     <artifactId>ServletSample</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    # end::coordinates[]
-    
-    # tag::properties[]
+    <!-- end::coordinates[] -->
+    <!-- tag::properties[] -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    # end::properties[]
-    
-    # tag::dependencies[]
+    <!-- end::properties[] -->
+    <!-- tag::dependencies[] -->
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -30,7 +29,7 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-        # tag::dependencies_test[]
+        <!-- tag::dependencies_test[] -->
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
@@ -43,14 +42,12 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        # end::dependencies_test[]
+        <!-- end::dependencies_test[] -->
     </dependencies>
-    # end::dependencies[]
-    
-    # tag::build[]
+    <!-- end::dependencies[] -->
+    <!-- tag::build[] -->
     <build>
         <finalName>${project.artifactId}</finalName>
-        # tag::plugins[]
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -87,7 +84,7 @@
                     </execution>
                 </executions>
             </plugin>
-            # tag::build_test[]
+            <!-- tag::build_test[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -101,9 +98,8 @@
                     </execution>
                 </executions>
             </plugin>
-            # end::build_test[]
+            <!-- end::build_test[] -->
         </plugins>
-        # end::plugins[]
     </build>
-    # end::build[]
+    <!-- end::build[] -->
 </project>
