@@ -22,17 +22,19 @@ import org.apache.commons.httpclient.methods.GetMethod;
 public class EndpointIT {
     private static String URL;
 
+    // tag::URL[]
     @BeforeClass
     public static void init() {
         URL = "http://localhost:9080/ServletSample/servlet";
     }
+    // end::URL[]
 
     @Test
     public void testServlet() throws Exception {
         HttpClient client = new HttpClient();
 
         GetMethod method = new GetMethod(URL);
-
+        // tag::clicklink[]
         try {
             int statusCode = client.executeMethod(method);
 
@@ -44,5 +46,6 @@ public class EndpointIT {
         } finally {
             method.releaseConnection();
         }
+        // end::clicklink[]
     }
 }
