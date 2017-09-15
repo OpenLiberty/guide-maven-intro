@@ -9,7 +9,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
- // end::comment[]
+// end::comment[]
 package io.openliberty.guides.hello.it;
 
 import static org.junit.Assert.*;
@@ -22,12 +22,15 @@ import org.apache.commons.httpclient.methods.GetMethod;
 public class EndpointIT {
     private static String URL;
 
-    // tag::URL[]
+ 
     @BeforeClass
     public static void init() {
-        URL = "http://localhost:9080/ServletSample/servlet";
+
+        String port = System.getProperty("liberty.test.port");
+        String war = System.getProperty("war.name");
+        URL = "http://localhost:" + port + "/" + war + "/" + "servlet";
+        
     }
-    // end::URL[]
 
     @Test
     public void testServlet() throws Exception {
