@@ -26,9 +26,11 @@ public class EndpointIT {
     @BeforeClass
     public static void init() {
 
+        // tag::URL[]
         String port = System.getProperty("liberty.test.port");
         String war = System.getProperty("war.name");
         URL = "http://localhost:" + port + "/" + war + "/" + "servlet";
+        // end::URL[]
         
     }
 

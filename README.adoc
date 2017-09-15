@@ -9,7 +9,7 @@
 :projectid: maven-intro
 :page-layout: guide
 :page-duration: 20 minutes
-:page-description: Building and testing a simple web application using Maven and Open Liberty
+:page-description: Learn how to build and test a simple web application using Maven and Open Liberty
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: ../guides-common/
@@ -33,7 +33,7 @@ include::{common-includes}/gitclone.adoc[]
 
 The simple web application that we will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. The application uses the standard Maven directory structure. Using the standard directory structure saves you from customizing the `pom.xml` file later. 
 
-All the application source code, including the Open Liberty server configuration (`server.xml`), is in the `src/main` directory:
+All the application source code, including the Open Liberty server configuration (`server.xml`), is in the `src/main/liberty/config` directory:
 
     └── src
         └── main
@@ -116,7 +116,6 @@ Maven is very modular and extensible. Each capability is contained in a separate
 
 Although the `<build />` section looks more complicated, it actually only gives details of three things:
 
-* Tne `<finalName/>` element removes the version string from the output file names. This name is used as part of the URL to access the application. If you do not specify this value, Maven appends the project version to the file name.
 * The first plugin is the Maven plugin for generating a WAR file as one of the output files.
 * The second plugin is the Liberty Maven plugin which gives details of the name, version, and file type of Open Liberty runtime package which it will download from the public Maven repository.
 ** The `<include>usr</include>` line instructs Maven to create a Liberty `usr` type server package for this project.
@@ -141,7 +140,21 @@ include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tag
 
 The test class name ends in `IT` to indicate that it contains an integration test. (Test classes with a name that ends in TEST are unit test classes.) 
 
-The test code needs to know the location of the running application in order to make requests.
+The test code needs to know some information about the application in order to make requests. The server port and the application context root are key, and are dictated by the server configuration. While this information can be hardcoded, it is better to specify it in a single place like the Maven pom.xml file:
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=serverProperties]
+----
+
+These Maven properties can then be passed to the Java test program as a series of system properties through the `maven-failsafe-plugin` plug-in.
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=systemProperties]
+----
+
+Getting the values to create a representation of the URL is then simple:
 
 [source,xml,indent=0]
 ----

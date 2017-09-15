@@ -21,9 +21,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <app.name>${project.artifactId}</app.name>
+        <!-- tag::serverProperties[] -->
         <testServerHttpPort>9080</testServerHttpPort>
         <testServerHttpsPort>9443</testServerHttpsPort>
         <warContext>${app.name}</warContext>
+        <!-- end::serverProperties[] -->
         <package.file>${project.build.directory}/${app.name}.zip</package.file>
         <packaging.type>usr</packaging.type>
     </properties>
@@ -54,7 +56,6 @@
     <!-- end::dependencies[] -->
     <!-- tag::build[] -->
     <build>
-        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +77,7 @@
                         <type>zip</type>
                     </assemblyArtifact>
                     <serverName>${project.artifactId}Server</serverName>
-                    <!--<include>usr</include>-->
+                    <stripVersion>true</stripVersion>
                     <packageFile>${package.file}</packageFile>
                     <include>${packaging.type}</include>
                     <!-- tag::build_bootstrapproperties -->
@@ -111,17 +112,17 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
-                        <!-- tag::systemProperties[] -->
                         <configuration>
                             <includes>
                                 <include>**/it/**</include>
                             </includes>
+                            <!-- tag::systemProperties[] -->
                             <systemPropertyVariables>
                                 <liberty.test.port>${testServerHttpPort}</liberty.test.port>
                                 <war.name>${warContext}</war.name>
                             </systemPropertyVariables>
+                            <!-- end::systemProperties[] -->
                         </configuration>
-                        <!-- tag::systemProperties[] -->
                     </execution>
                 </executions>
             </plugin>
