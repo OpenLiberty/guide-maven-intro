@@ -5,7 +5,7 @@
         <artifactId>liberty-maven-app-parent</artifactId>
         <version>2.0</version>
     </parent>
-    
+
     <groupId>io.openliberty.guides</groupId>
     <artifactId>ServletSample</artifactId>
     <packaging>war</packaging>
@@ -18,14 +18,14 @@
             <url>http://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/wasliberty-open-liberty/</url>
         </repository>
     </repositories>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -46,58 +46,9 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
+
     <build>
         <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <packagingExcludes>pom.xml</packagingExcludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>net.wasdev.wlp.maven.plugins</groupId>
-                <artifactId>liberty-maven-plugin</artifactId>
-                <version>2.0</version>
-                <configuration>
-                    <assemblyArtifact>
-                        <groupId>io.openliberty</groupId>
-                        <artifactId>openliberty-runtime</artifactId>
-                        <version>0.0.1-preview</version>
-                        <type>zip</type>
-                    </assemblyArtifact>
-                    <serverName>${project.artifactId}Server</serverName>
-                    <include>usr</include>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>package-server</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>package-server</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>target/wlp-package</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <!-- Adding the project build plug-ins configuration here -->
     </build>
 </project>
