@@ -39,7 +39,7 @@
             <url>http://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/wasliberty-open-liberty/</url>
         </repository>
     </repositories>
-    <!-- end:repo[] -->
+    <!-- end::repo[] -->
     <!-- tag::dependencies[] -->
     <dependencies>
         <dependency>
