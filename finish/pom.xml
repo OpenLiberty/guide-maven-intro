@@ -8,6 +8,7 @@
         <artifactId>liberty-maven-app-parent</artifactId>
         <version>2.0</version>
     </parent>
+    <!-- Add the rest of the POM below here. -->
     <!-- tag::coordinates[] -->
     <groupId>io.openliberty.guides</groupId>
     <artifactId>ServletSample</artifactId>
@@ -80,13 +81,11 @@
                     <stripVersion>true</stripVersion>
                     <packageFile>${package.file}</packageFile>
                     <include>${packaging.type}</include>
-                    <!-- tag::build_bootstrapproperties -->
                     <bootstrapProperties>
                         <default.http.port>${testServerHttpPort}</default.http.port>
                         <default.https.port>${testServerHttpsPort}</default.https.port>
                         <app.context.root>${warContext}</app.context.root>
                     </bootstrapProperties>
-                    <!-- end::build_bootstrapproperties -->
                 </configuration>
                 <executions>
                     <execution>
@@ -116,12 +115,10 @@
                             <includes>
                                 <include>**/it/**</include>
                             </includes>
-                            <!-- tag::systemProperties[] -->
                             <systemPropertyVariables>
                                 <liberty.test.port>${testServerHttpPort}</liberty.test.port>
                                 <war.name>${warContext}</war.name>
                             </systemPropertyVariables>
-                            <!-- end::systemProperties[] -->
                         </configuration>
                     </execution>
                 </executions>
@@ -130,5 +127,8 @@
         </plugins>
     </build>
     <!-- end::build[] -->
+
+
+
 </project>
 <!-- end::whole[] -->
