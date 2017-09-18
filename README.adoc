@@ -8,30 +8,187 @@
 //
 :projectid: maven-intro
 :page-layout: guide
-:page-duration: 20 minutes
-:page-description: Building and testing a simple web application using Maven and Open Liberty
+:page-duration: 15 minutes
+:page-description: Learn how to build and test a simple web application using Maven and Open Liberty
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: ../guides-common/
 = Building a web application with Maven
 
-You’ll explore how to build a simple web application and test it by using Maven and Open Liberty.
+Learn how to build and test a simple web application using Maven and Open Liberty.
 
 == What you'll learn
 
-You will work with an application project that is a simple servlet application and returns a simple response of `Hello! How are you today?`.
+You will learn how to configure a simple web servlet application using Maven and the Liberty Maven plugin. When you compile and build the application code, Maven downloads and installs Open Liberty. When you run the application, Maven creates an Open Liberty server and runs the application on it. The application displays a simple web page with a link; when you click the link, the servlet returns a simple response of `Hello! How are you today?`.
 
-You will learn how to build and test this application project with an Open Liberty server by using Maven and the `liberty-maven-plugin` plug-in.
+One benefit of using Maven (or a similar build system like Gradle) is that, once you have defined the details of the project and any dependencies it has, Maven automatically handles downloading and installing any and all of the dependencies. You will create a Maven build definition file (`pom.xml`) for the web application project and use it to build the web application.
+
+Another benefit of using Maven is that it can run automated tests on the application after building it. You could, of course, test your application manually by starting a server and pointing a web browser at the application URL. Automated tests are a much better approach though because Maven can easily re-run the same tests each time it builds the application and never gets bored. If the tests don't pass after you've made a change to the application, the build fails so you know that you need to fix your code.
+
+When you have checked that the `pom.xml` builds the web application, you will then create a simple, automated test and configure Maven to run it after building the application.
 
 include::{common-includes}/gitclone.adoc[]
 
-== Creating a Maven web application project
+== Creating a simple application
 
-You first create the web project structure by following the Maven standard directory structure. Using the standard directory structure saves you from customizing the Maven Project Object Model (POM) build definition file later.
+The simple web application that we will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. The application uses the standard Maven directory structure. Using the standard directory structure saves you from customizing the `pom.xml` file later. 
 
-The current directory of the project has a POM file of `pom.xml` that describes the project build definition. All application source goes in the `src/main` directory. The test source goes in the `src/test` directory. The Open Liberty server configuration file of `server.xml` goes in the `src/main/liberty/config` directory.
+All the application source code, including the Open Liberty server configuration (`server.xml`), is in the `src/main/liberty/config` directory:
 
-The following diagram is an overview of the project directory structure:
+    └── src
+        └── main
+           └── java
+           └── resources
+           └── webapp
+           └── liberty
+                  └── config
+
+== Installing Maven
+
+Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file] and then follow the https://maven.apache.org/install.html[installation instructions for your operating system] to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) to the `PATH` on your computer.
+
+Test that Maven is installed by running the following command in a terminal:
+
+----
+mvn -v
+----
+
+If Maven is installed properly, you should see information about the Maven installation similar to this:
+
+----
+Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T20:39:06+01:00)
+Maven home: /Applications/Maven/apache-maven-3.5.0
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
+----
+
+
+== Creating the project POM file
+
+Before you can build the project you define the Maven Project Object Model (POM) file, the `pom.xml`. Because the POM can look a bit daunting in full, we'll create it a section at a time.
+
+Create the `pom.xml` file in the current directory (at the same level as the `src` directory):
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=whole;!*]
+----
+
+The `pom.xml` file starts with a root `<project />` element and `<modelversion />`, which is always set to `4.0.0`. The `<parent />` section of the POM specifies that Maven will use the Liberty Maven plugin (`liberty-maven-plugin`) to build the Liberty-specific parts of this application. This is the minimum you technically need for the POM to be valid. But it won't do much with your project unless you give it more information about your application.
+
+We'll now build up the `pom.xml` file, a section at a time in the space between the `</parent>` and `</project>` tags. Unless specified otherwise, add each of the sections of XML code beneath the previous one. The `</project>` tag must be the last thing in the `pom.xml` file.
+
+There are four main other sections in a typical POM for a Liberty application:
+
+* **Project coordinates**: The identifier for this application.
+* **Properties** (`<properties />`): Any properties for the project go here, including compilation details and any values that are referenced during compilation of the Java source code.
+* **Dependencies** (`<dependencies />`): Any Java dependencies that are required for compiling, testing, and running the application are listed here.
+* **Build plugins** (`<build />`): Maven is modular and each of its capabilities is provided by a separate plugin. This is where you specify which Maven plugins should be used to build this project and any configuration information needed by those plugins.
+
+We'll start by adding the project coordinates of the sample application after the closing `</parent>` tag:
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=coordinates]
+----
+
+The project coordinates describe the name and version of the application. The `artifactId` gives a name to the web application project, which is used to name the output files that are generated by the build (e.g. the WAR file) and the Open Liberty server that is created. You'll notice that other fields in the `pom.xml` file use variables that are resolved by the `artifactId` field. This is so that you can update the name of the sample application, including files generated by Maven, in a single place in the `pom.xml` file. The value of the `packaging` field is `war` so that the project output artifact is a WAR file.
+
+Add the properties of the project:
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=properties]
+----
+
+The first four properties in this section just define the encoding (`UTF-8`) and version of Java (`Java 8`) that Maven uses to compile the application source code.
+
+The next four properties provide a single place to specify values that are used in multiple places throughout the application. For example, the `testServerHttpPort` value is used in both the server configuration (`server.xml`) file and will be used in the test class that you will add (`EndpointIT.java`) in the application itself. This means that you can easily change the port number that the server will run on without having to update the application code in multiple places.
+
+The final two properties define the name and type of server package Maven uses to package the application with a Liberty server.
+
+Add details of the dependency that the web application needs in order to compile:
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=dependencies;!dependencies_test]
+----
+
+The `HelloServlet.java` class depends on `javax.servlet-api` to compile. Maven will download this dependency from the Maven Central repository using the `groupId`, `artifactId`, and `version` details that you provide here. The dependency is set to `provided`, which means that the API is in the server runtime and doesn't need to be packaged by the application.
+
+Configure the Maven plugins that build this project:
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=build;!build_test;]
+----
+
+The `<build />` section gives details of the two plugins that Maven uses to build this 
+
+* The first plugin is the Maven plugin for generating a WAR file as one of the output files.
+* The second plugin is the Liberty Maven plugin which gives details of the name, version, and file type of Open Liberty runtime package which it will download from the public Maven repository.
+
+In the `liberty-maven-plugin` section, the `<serverName />` field defines the name of the Liberty server that Maven creates. The `<bootstrapProperties />` section provides the set of variables that the `server.xml` references. The `<stripVersion />` field removes the version number from the name of the application (by default the version number of the application (`1.0-SNAPSHOT`) is appended to the application name). This means that the application URL remains the same even when the version number changes.
+
+include::{common-includes}/mvnbuild.adoc[]
+
+
+== Testing the web application
+
+One of the benefits of building an application with Maven is that Maven can be configured to run a set of tests. You can write tests for the individual units of code outside of a running application server (unit tests), or you can write them to call the application server directly (integration tests). In this example you will create a simple integration tests that checks that the web page opens and that the correct response is returned when the link is clicked.
+
+When Maven runs the test, it starts a test server, runs the application, runs the test, and then stops the server.
+
+Create the test class `src/test/java/io/openliberty/guides/hello/it/EndpointIT.java`:
+
+[source,java,indent=0]
+----
+include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tags=**;!comment]
+----
+
+The test class name ends in `IT` to indicate that it contains an integration test. (Test classes with a name that ends in TEST are unit test classes.) 
+
+Configure Maven to run the integration test using the `maven-failsafe-plugin` by adding another `<plugin />` section just before the closing `</plugins>` tag:
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=build_test]
+----
+
+The test code needs to know where to find the application that it is testing. Look at the Java code in the `Endpoint.java` class. The following lines in the class build up the URL of the application based on the server port number and the context root of the application (which is specified in the `server.xml`):
+
+[source,xml,indent=0]
+----
+include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tags=URL]
+----
+
+While the port number and context root information can be hardcoded in the test class, it is better to specify it in a single place like the Maven `pom.xml` file because this information is also used by other files in the project. The `<systemPropertyVariables />` section in the code that you just added to the `pom.xml` passes these details to the Java test program as a series of system properties, resolving the `liberty.text.port` and `war.name` variables.
+
+In the test class, after defining how to build the application URL, the `@Test` annotation indicates the start of the test method.
+
+In the `try` block of the test method, an HTTP `GET` request to the URL of the application returns a status code. If the response to the request includes the string `Hello! How are you today?`, the test passes. If that string is not in the response, the test fails.  The HTTP client then disconnects from the application.
+
+[source,xml,indent=0]
+----
+include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tags=clicklink]
+----
+
+In the `import` statements of this test class, you'll notice that the test has some new dependencies. Before the test can be compiled by Maven, you need to update the `pom.xml` to include these dependencies.
+
+Add the following two `<dependency />` elements after the existing dependency in the `<dependencies />` section of the `pom.xml`:
+
+[source,xml,indent=0]
+----
+include::finish/pom.xml[tags=dependencies_test]
+----
+
+The Apache `commons-httpclient` and `junit` dependencies are needed to compile and run the integration test `EndpointIT` class. The scope for each of the dependencies is set to `test` because the libraries are needed only during the Maven build and do not needed to be packaged with the application.
+
+Now, during the Maven build, Maven creates the WAR file that contains the web application and then runs any integration test classes (classes with names that end in `IT`) that it finds.
+
+The directory structure of the project should now look like this:
 
     └── src
         ├── main
@@ -43,170 +200,35 @@ The following diagram is an overview of the project directory structure:
         └── test
             └── java
 
-Other ways exist to quickly create the project structure by using the https://liberty-app-accelerator.wasdev.developer.ibm.com/start/[Liberty App Accelerator] accelerator or the Maven https://github.com/WASdev/ci.maven#liberty-archetype-webapp[liberty-archetype-webapp] archetype.
+You can now run the command `mvn install` to rebuild the application, including the test you've added, run the test, and see that the test passes. The Maven build takes a little longer than before the test existed, but expect to see the following information in the output:
 
-== Building the project POM file
-
-Before you can build the project, you create the `pom.xml` file. The POM file starts with a root `<project>` element that is followed by the POM version, which is always 4.0.0; the project coordinates; the project dependencies; and the build plug-in configuration.
-
-The project coordinates consist of a group ID (`groupId`), an artifact ID (`artifactId`), a version (`version`), and the packaging for the POM (`packaging`). For a web application project, the value of the `packaging` field is `war` so that the project output artifact is a WAR file.
-
-In the `<properties/>` element, the project compile level is set to `1.8` and the project source file encoding is set to `UTF-8`.
-
-In the `<dependencies/>` element, include the `javax.servlet-api` dependency for compiling the HelloServlet class. Also, include the Apache `commons-httpclient` and `junit` dependencies for compiling and running the integration test EndpointIT class. 
-
-By default, all dependencies are scoped to `compile` and bundled in the `WEB-INF/lib` path inside the WAR file. If the dependencies are provided by the server runtime, set the scope to `provided`. Similarly, set the scope for the test dependencies to `test`.
-
-The `<finalName/>` element can be used to strip the version string from the project output artifact file name. The default is `${project.artifactId}-${project.version}` if the `<finalName>` element is not specified.
-
-[source, xml]
+[source,xml,indent=0]
 ----
-include::start/pom.xml[]
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running io.openliberty.guides.hello.it.EndpointIT
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.255 sec - in io.openliberty.guides.hello.it.EndpointIT
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-=== Configuring the plug-ins for your Maven web application project
-In the `<build/>` element, you are going to configure the plug-ins that build this project.
+To see whether the test detects a failure, change the response string in the servlet `src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match the string that the test is looking for. Then re-run the Maven build and check that the test fails.
 
-The `liberty-maven-plugin` plug-in installs the Liberty runtime, creates the server, and copies the project WAR file to the server apps directory as a loose application configuration file. During the integration-test phase of the Maven build, the plug-in starts the server before any integration test is run and stops the server after all the integration tests are completed. The plug-in execution configuration is inherited from the parent https://github.com/WASdev/ci.maven/blob/master/docs/parent-pom.md[liberty-maven-app-parent] POM file. This file defines the plug-in management for the liberty-maven-plugin goal execution bindings to the Maven build lifecycle in the `<pluginManagement/>` element. These configuration settings can be overridden in the project POM file if needed. Add the following `<parent/>` element to the project POM file:
+The complete `pom.xml` should now look like this:
 
-[source, xml]
+[source,xml,indent=0]
 ----
-    <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>net.wasdev.wlp.maven.parent</groupId>
-        <artifactId>liberty-maven-app-parent</artifactId>
-        <version>2.0</version>
-    </parent>
+include::finish/pom.xml[tags=whole]
 ----
-
-In this project, you will provide the `<assemblyArtifact/>` configuration element to install the  17.0.0.2 Liberty webProfile7 runtime from Maven Central. You will also provide the `<include/>` configuration element to create a Liberty `usr` type server package for this project. You will override the package-server execution to use a different output directory so that you can run the `mvn package` command with a running Liberty test server. For more information about the plug-in, see http://github.com/WASdev/ci.maven#liberty-maven-plugin.
-
-[source, xml]
-----
-   <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            ...
-            <plugin>
-                <groupId>net.wasdev.wlp.maven.plugins</groupId>
-                <artifactId>liberty-maven-plugin</artifactId>
-                <version>2.0</version>
-                <configuration>
-                    <assemblyArtifact>
-                        <groupId>com.ibm.websphere.appserver.runtime</groupId>
-                        <artifactId>wlp-webProfile7</artifactId>
-                        <version>17.0.0.2</version>
-                        <type>zip</type>
-                    </assemblyArtifact>
-                    <serverName>${project.artifactId}Server</serverName>
-                    <include>usr</include>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>package-server</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>package-server</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>target/wlp-package</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            ...
-        </plugins>
-	</build>  
-----             
-
-The maven-failsafe-plugin plug-in runs any integration test classes when the class name ends with IT. These integration test classes are run during the integration-test phase of the build after the WAR file is created. Test classes with a name that ends in TEST are unit test classes. The maven-surefire-plugin plug-in runs these test classes during the test phase of the build. If your test classes don’t follow the naming convention, configure both the Maven failsafe plug-in (maven-failsafe-plugin) and the Maven surefire plug-in (maven-surefire-plugin).
-
-The version of the maven-war-plugin plug-in is overridden to 3.1.0 and the project `pom.xml` file is excluded in the WAR file output. Starting in 3.0.0 the default value has changed the failOnMissingWebXml configuration parameter for this plug-in was changed from `true` to `false` to allow a WAR project without a web.xml metadata file.
-
-[source, xml]
-----
-   <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <packagingExcludes>pom.xml</packagingExcludes>
-                </configuration>
-            </plugin>
-            ...
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-----
-
-== Creating the application
-
-When the HelloServlet class is called, it responds back with `Hello! How are you today?`. The servlet URL pattern configuration is injected through the `@WebServlet` annotation in the class:
-
-`src/main/java/sample/hello/HelloServlet.java`:
-
-[source,java]
-----
-include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags=**;!comment]
-----
-
-The welcome page HTML file for the web project contains a link to the Hello servlet.
-
-`src/main/webapp/index.html`:
-
-[source,html]
-----
-include::finish/src/main/webapp/index.html[tags=**;!comment]
-----
-
-The deployment descriptor for the web application defines the list of welcome page files.
-
-`src/main/webapp/WEB-INF/web.xml`:
-
-[source,xml]
-----
-include::finish/src/main/webapp/WEB-INF/web.xml[]
-----
-
-The integration EndpointIT test invokes the HelloServlet class and verifies the return response.
-
-`src/test/java/io/openliberty/guides/hello/it/EndpointIT.java`:
-
-[source,java]
-----
-include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tags=**;!comment]
-----
-
-== Creating the Liberty server configuration
-
-Create the `src/main/liberty/config/server.xml` file to provide the configuration to the Liberty server. The server is configured to run the `servlet-3.1` runtime. The server HttpEndpoint class and the servlet web application are also configured.
-
-[source,xml]
-----
-include::finish/src/main/liberty/config/server.xml[]
-----
-
-include::{common-includes}/mvnbuild.adoc[]
 
 == Congratulations! You're done!
 
-You built and tested a web application project with an Open Liberty server by using Maven.
+You built and tested a web application project with an Open Liberty server using Maven.
+
+You can quickly create this project structure by using the https://liberty-app-accelerator.wasdev.developer.ibm.com/start/[Liberty App Accelerator] accelerator or the Maven https://github.com/WASdev/ci.maven#liberty-archetype-webapp[liberty-archetype-webapp] archetype.
+
 
 include::{common-includes}/finish.adoc[]
