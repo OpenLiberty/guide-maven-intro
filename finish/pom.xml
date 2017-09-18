@@ -15,6 +15,15 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <!-- end::coordinates[] -->
+    <!-- tag::repo[] -->
+    <repositories>
+        <repository>
+            <id>openliberty-repo</id>
+            <name>openliberty-repo</name>
+            <url>http://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/wasliberty-open-liberty/</url>
+        </repository>
+    </repositories>
+    <!-- end::repo[] -->
     <!-- tag::properties[] -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,15 +40,6 @@
         <packaging.type>usr</packaging.type>
     </properties>
     <!-- end::properties[] -->
-    <!-- tag::repo[] -->
-    <repositories>
-        <repository>
-            <id>openliberty-repo</id>
-            <name>openliberty-repo</name>
-            <url>http://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/wasliberty-open-liberty/</url>
-        </repository>
-    </repositories>
-    <!-- end::repo[] -->
     <!-- tag::dependencies[] -->
     <dependencies>
         <dependency>
