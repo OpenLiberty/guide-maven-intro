@@ -1,16 +1,37 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- tag::whole[] -->
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.wasdev.wlp.maven.parent</groupId>
         <artifactId>liberty-maven-app-parent</artifactId>
         <version>2.0</version>
     </parent>
-    
+    <!-- Add the rest of the POM below here. -->
+    <!-- tag::coordinates[] -->
     <groupId>io.openliberty.guides</groupId>
     <artifactId>ServletSample</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-
+    <!-- end::coordinates[] -->
+    <!-- tag::properties[] -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <app.name>${project.artifactId}</app.name>
+        <!-- tag::serverProperties[] -->
+        <testServerHttpPort>9080</testServerHttpPort>
+        <testServerHttpsPort>9443</testServerHttpsPort>
+        <warContext>${app.name}</warContext>
+        <!-- end::serverProperties[] -->
+        <package.file>${project.build.directory}/${app.name}.zip</package.file>
+        <packaging.type>usr</packaging.type>
+    </properties>
+    <!-- end::properties[] -->
+    <!-- tag::repo[] -->
     <repositories>
         <repository>
             <id>openliberty-repo</id>
@@ -18,14 +39,8 @@
             <url>http://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/wasliberty-open-liberty/</url>
         </repository>
     </repositories>
-    
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-    
+    <!-- end:repo[] -->
+    <!-- tag::dependencies[] -->
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -33,6 +48,7 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+        <!-- tag::dependencies_test[] -->
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
@@ -45,10 +61,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <!-- end::dependencies_test[] -->
     </dependencies>
-    
+    <!-- end::dependencies[] -->
+    <!-- tag::build[] -->
     <build>
-        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -70,7 +87,14 @@
                         <type>zip</type>
                     </assemblyArtifact>
                     <serverName>${project.artifactId}Server</serverName>
-                    <include>usr</include>
+                    <stripVersion>true</stripVersion>
+                    <packageFile>${package.file}</packageFile>
+                    <include>${packaging.type}</include>
+                    <bootstrapProperties>
+                        <default.http.port>${testServerHttpPort}</default.http.port>
+                        <default.https.port>${testServerHttpsPort}</default.https.port>
+                        <app.context.root>${warContext}</app.context.root>
+                    </bootstrapProperties>
                 </configuration>
                 <executions>
                     <execution>
@@ -85,6 +109,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- tag::build_test[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -95,9 +120,24 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/it/**</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <liberty.test.port>${testServerHttpPort}</liberty.test.port>
+                                <war.name>${warContext}</war.name>
+                            </systemPropertyVariables>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
+            <!-- end::build_test[] -->
         </plugins>
     </build>
+    <!-- end::build[] -->
+
+
+
 </project>
+<!-- end::whole[] -->
