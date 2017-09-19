@@ -88,6 +88,7 @@
                     </assemblyArtifact>
                     <serverName>${project.artifactId}Server</serverName>
                     <stripVersion>true</stripVersion>
+                    <configFile>src/main/liberty/config/server.xml</configFile>
                     <packageFile>${package.file}</packageFile>
                     <include>${packaging.type}</include>
                     <bootstrapProperties>
