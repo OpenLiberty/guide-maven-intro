@@ -31,7 +31,7 @@ include::{common-includes}/gitclone.adoc[]
 
 == Creating a simple application
 
-The simple web application that we will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. The application uses the standard Maven directory structure. Using the standard directory structure saves you from customizing the `pom.xml` file later. 
+The simple web application that you will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. The application uses the standard Maven directory structure. Using the standard directory structure saves you from customizing the `pom.xml` file later. 
 
 All the application source code, including the Open Liberty server configuration (`server.xml`), is in the `src/main/liberty/config` directory:
 
@@ -67,7 +67,7 @@ OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
 
 == Creating the project POM file
 
-Before you can build the project, you define the Maven Project Object Model (POM) file, the `pom.xml`. Because the POM can look a bit daunting in full, we'll create it a section at a time.
+Before you can build the project, you define the Maven Project Object Model (POM) file, the `pom.xml`. Because the POM can look a bit daunting in full, create it a section at a time.
 
 Create the `pom.xml` file in the current directory (at the same level as the `src` directory):
 
@@ -78,7 +78,7 @@ include::finish/pom.xml[tags=whole;!*]
 
 The `pom.xml` file starts with a root `<project />` element and `<modelversion />`, which is always set to `4.0.0`. The `<parent />` section of the POM specifies that Maven will use the https://github.com/WASdev/ci.maven/blob/master/liberty-maven-app-parent/pom.xml[Liberty Maven parent POM] to build the project. This is the minimum you technically need for the POM to be valid. But it won't do much with this project unless you give it a bit more information about your application.
 
-We'll now build up the rest of the `pom.xml` file, a section at a time in the space between the `</parent>` and `</project>` tags. Unless specified otherwise, add each of the sections of XML code beneath the previous one. The `</project>` tag must be the last thing in the `pom.xml` file.
+Now build up the rest of the `pom.xml` file, a section at a time in the space between the `</parent>` and `</project>` tags. Unless specified otherwise, add each of the sections of XML code beneath the previous one. The `</project>` tag must be the last thing in the `pom.xml` file.
 
 A typical POM for a Liberty application contains the following sections:
 
@@ -87,7 +87,7 @@ A typical POM for a Liberty application contains the following sections:
 * **Dependencies** (`<dependencies />`): Any Java dependencies that are required for compiling, testing, and running the application are listed here.
 * **Build plugins** (`<build />`): Maven is modular and each of its capabilities is provided by a separate plugin. This is where you specify which Maven plugins should be used to build this project and any configuration information needed by those plugins.
 
-We'll start by adding the project coordinates of the sample application after the closing `</parent>` tag:
+Start by adding the project coordinates of the sample application after the closing `</parent>` tag:
 
 [source,xml,indent=0]
 ----
