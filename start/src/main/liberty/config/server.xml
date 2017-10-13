@@ -3,8 +3,8 @@
         <feature>servlet-3.1</feature>
     </featureManager>
 
-    <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
+    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
 
-    <webApplication id="ServletSample" location="ServletSample.war" name="ServletSample"/>
+    <webApplication id="ServletSample" location="ServletSample.war" contextRoot="${app.context.root}" />
 
 </server>
