@@ -232,7 +232,8 @@ The complete `pom.xml` should now look like this:
 include::finish/pom.xml[tags=whole]
 ----
 
-== Great Work! You're done!
+
+== Great work! You're done!
 
 You built and tested a web application project with an Open Liberty server using Maven.
 
