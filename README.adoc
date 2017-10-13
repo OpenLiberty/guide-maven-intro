@@ -12,7 +12,7 @@
 :page-description: Learn how to build and test a simple web application using Maven and Open Liberty
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
-:common-includes: ../guides-common/
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 = Building a web application with Maven
 
 Learn how to build and test a simple web application using Maven and Open Liberty.
@@ -31,10 +31,12 @@ include::{common-includes}/gitclone.adoc[]
 
 == Creating a simple application
 
-The simple web application that we will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. The application uses the standard Maven directory structure. Using the standard directory structure saves you from customizing the `pom.xml` file later. 
+The simple web application that we will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. The application uses the standard Maven directory structure. Using the standard directory structure saves you from customizing the `pom.xml` file later.
 
 All the application source code, including the Open Liberty server configuration (`server.xml`), is in the `src/main/liberty/config` directory:
 
+[source, role="no_copy"]
+----
     └── src
         └── main
            └── java
@@ -42,6 +44,7 @@ All the application source code, including the Open Liberty server configuration
            └── webapp
            └── liberty
                   └── config
+----
 
 == Installing Maven
 
@@ -49,12 +52,14 @@ Now you're ready to install Maven (if you haven't already). https://maven.apache
 
 Test that Maven is installed by running the following command in a terminal:
 
+[source, role="no_copy"]
 ----
 mvn -v
 ----
 
 If Maven is installed properly, you should see information about the Maven installation similar to this:
 
+[source, role="no_copy"]
 ----
 Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T20:39:06+01:00)
 Maven home: /Applications/Maven/apache-maven-3.5.0
@@ -148,7 +153,7 @@ Create the test class `src/test/java/io/openliberty/guides/hello/it/EndpointIT.j
 include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tags=**;!comment]
 ----
 
-The test class name ends in `IT` to indicate that it contains an integration test. (Test classes with a name that ends in TEST are unit test classes.) 
+The test class name ends in `IT` to indicate that it contains an integration test. (Test classes with a name that ends in TEST are unit test classes.)
 
 Configure Maven to run the integration test using the `maven-failsafe-plugin` by adding another `<plugin />` section just before the closing `</plugins>` tag:
 
@@ -190,6 +195,8 @@ Now, during the Maven build, Maven creates the WAR file that contains the web ap
 
 The directory structure of the project should now look like this:
 
+[source, role="no_copy"]
+----
     └── src
         ├── main
         │  └── java
@@ -199,10 +206,11 @@ The directory structure of the project should now look like this:
         │         └── config
         └── test
             └── java
+----
 
 You can now run the command `mvn install` to rebuild the application, including the test you've added, run the test, and see that the test passes. The Maven build takes a little longer than before the test existed, but expect to see the following information in the output:
 
-[source,xml,indent=0]
+[source, role="no_copy"]
 ----
 -------------------------------------------------------
  T E S T S
@@ -223,6 +231,7 @@ The complete `pom.xml` should now look like this:
 ----
 include::finish/pom.xml[tags=whole]
 ----
+
 
 == Great work! You're done!
 
