@@ -90,8 +90,8 @@ The `pom.xml` file starts with a root `<project />` element and `<modelversion /
 
 A typical POM for a Liberty application contains the following sections:
 
-* **Project coordinates** (`<project` />): The identifiers for this application.
-* **Properties** (`<properties />)`: Any properties for the project go here, including compilation details and any values that are referenced during compilation of the Java source code and generating the application.
+* **Project coordinates** (`<project />`): The identifiers for this application.
+* **Properties** (`<properties />`): Any properties for the project go here, including compilation details and any values that are referenced during compilation of the Java source code and generating the application.
 * **Dependencies** (`<dependencies />`): Any Java dependencies that are required for compiling, testing, and running the application are listed here.
 * **Build plugins** (`<build />`): Maven is modular and each of its capabilities is provided by a separate plugin. This is where you specify which Maven plugins should be used to build this project and any configuration information needed by those plugins.
 
