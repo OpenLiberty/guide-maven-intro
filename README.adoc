@@ -10,7 +10,7 @@
 :page-layout: guide
 :page-duration: 15 minutes
 :page-releasedate: 2017-09-19
-:page-description: Learn how to build and test a simple web application using a Maven Project Object Model (POM) file and Liberty Maven plugin.
+:page-description: Learn how to build and test a simple web application using a Maven Project Object Model (POM) file and the Liberty Maven plug-in.
 :page-related-guides: ['maven-multimodules']
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
@@ -21,7 +21,7 @@ Learn how to build and test a simple web application using Maven and Open Libert
 
 == What you'll learn
 
-You will learn how to configure a simple web servlet application using Maven and the Liberty Maven plugin. When you compile and build the application code, Maven downloads and installs Open Liberty. If you run the application, Maven creates an Open Liberty server and runs the application on it. The application displays a simple web page with a link that, when clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
+You will learn how to configure a simple web servlet application using Maven and the Liberty Maven plug-in. When you compile and build the application code, Maven downloads and installs Open Liberty. If you run the application, Maven creates an Open Liberty server and runs the application on it. The application displays a simple web page with a link that, when clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
 One benefit of using Maven is that, once you have defined the details of the project and any dependencies it has, Maven automatically handles downloading and installing any and all of the dependencies.
 
@@ -92,7 +92,7 @@ A typical POM for a Liberty application contains the following sections:
 * **Project coordinates**: The identifiers for this application.
 * **Properties** (`<properties />`): Any properties for the project go here, including compilation details and any values that are referenced during compilation of the Java source code and generating the application.
 * **Dependencies** (`<dependencies />`): Any Java dependencies that are required for compiling, testing, and running the application are listed here.
-* **Build plugins** (`<build />`): Maven is modular and each of its capabilities is provided by a separate plugin. This is where you specify which Maven plugins should be used to build this project and any configuration information needed by those plugins.
+* **Build plug-ins** (`<build />`): Maven is modular and each of its capabilities is provided by a separate plug-in. This is where you specify which Maven plug-ins should be used to build this project and any configuration information needed by those plug-ins.
 
 Start by adding the project coordinates of the sample application after the closing `</parent>` tag:
 
@@ -125,19 +125,19 @@ include::finish/pom.xml[tags=dependencies;!dependencies_test]
 
 The `HelloServlet.java` class depends on `javax.servlet-api` to compile. Maven will download this dependency from the Maven Central repository using the `groupId`, `artifactId`, and `version` details that you provide here. The dependency is set to `provided`, which means that the API is in the server runtime and doesn't need to be packaged by the application.
 
-Configure the Maven plugins that build this project:
+Configure the Maven plug-ins that build this project:
 
 [source,xml,indent=0]
 ----
 include::finish/pom.xml[tags=build;!build_test;]
 ----
 
-The `<build />` section gives details of the two plugins that Maven uses to build this project:
+The `<build />` section gives details of the two plug-ins that Maven uses to build this project:
 
-* The Maven plugin for generating a WAR file as one of the output files.
-* The Liberty Maven plugin, which gives details of the name, version, and file type of Open Liberty runtime package which it will download from the public Maven repository.
+* The Maven plug-in for generating a WAR file as one of the output files.
+* The Liberty Maven plug-in, which gives details of the name, version, and file type of Open Liberty runtime package which it will download from the public Maven repository.
 
-In the `liberty-maven-plugin` plugin section, the `<serverName />` field defines the name of the Liberty server that Maven creates. The `<bootstrapProperties />` section provides the set of variables that the `server.xml` references. The `<stripVersion />` field removes the version number from the name of the application (by default the version number of the application (`1.0-SNAPSHOT`) is appended to the application name). This means that the application URL remains the same even when the version number changes.
+In the `liberty-maven-plugin` plug-in section, the `<serverName />` field defines the name of the Liberty server that Maven creates. The `<bootstrapProperties />` section provides the set of variables that the `server.xml` references. The `<stripVersion />` field removes the version number from the name of the application (by default the version number of the application (`1.0-SNAPSHOT`) is appended to the application name). This means that the application URL remains the same even when the version number changes.
 
 include::{common-includes}/mvnbuild.adoc[]
 
