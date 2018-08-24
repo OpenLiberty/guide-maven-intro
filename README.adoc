@@ -10,6 +10,8 @@
 :page-layout: guide
 :page-duration: 15 minutes
 :page-releasedate: 2017-09-19
+:page-guide-catagory: basic
+:page-essential: true
 :page-description: Learn how to build and test a simple web application using Maven and Open Liberty
 :page-related-guides: ['maven-multimodules']
 :page-tags: ['Maven', 'Getting Started']
