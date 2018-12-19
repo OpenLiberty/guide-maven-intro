@@ -147,8 +147,5 @@
         </plugins>
     </build>
     <!-- end::build[] -->
-
-
-
 </project>
 <!-- end::whole[] -->
