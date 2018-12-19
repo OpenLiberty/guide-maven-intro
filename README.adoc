@@ -73,7 +73,10 @@ All the application source code, including the Open Liberty server configuration
 
 == Installing Maven
 
-Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file] and then follow the https://maven.apache.org/install.html[installation instructions for your operating system] to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) to the `PATH` on your computer.
+Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file] 
+and then follow the https://maven.apache.org/install.html[installation instructions for your operating system] 
+to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) 
+to the `PATH` on your computer.
 
 Test that Maven is installed by running the following command in a terminal:
 
@@ -82,9 +85,10 @@ Test that Maven is installed by running the following command in a terminal:
 mvn -v
 ----
 
-If Maven is installed properly, you should see information about the Maven installation similar to this:
+If Maven is installed properly, you should see information about the Maven installation 
+similar to this:
 
-[role="no_copy"]
+[source, role="no_copy"]
 ----
 Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T20:39:06+01:00)
 Maven home: /Applications/Maven/apache-maven-3.5.0
@@ -109,7 +113,7 @@ Create the POM file.
 pom.xml
 [source, xml, linenums, role='code_column']
 ----
-include::finish/pom.xml[tags=whole;!*]
+include::finish/pom.xml[]
 ----
 
 The `pom.xml` file starts with a root [hotspot=2-150]`<project />` element and 
@@ -209,7 +213,7 @@ Create `EndpointIT` class.
 EndpointIT.java
 [source, Java, linenums, role='code_column']
 ----
-include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java
+include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[]
 ----
 
 The test class name ends in `IT` to indicate that it contains an integration test. 
