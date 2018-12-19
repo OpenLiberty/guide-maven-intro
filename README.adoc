@@ -113,7 +113,7 @@ Create the POM file.
 pom.xml
 [source, xml, linenums, role='code_column']
 ----
-include::finish/pom.xml[]
+include::finish/pom.xml[tags=whole;!*]
 ----
 
 The `pom.xml` file starts with a root [hotspot=2-150]`<project />` element and 
@@ -131,18 +131,28 @@ tag must be the last thing in the `pom.xml` file.
 A typical POM for a Liberty application contains the following sections:
 
 * **Project coordinates**: The identifiers for this application.
-* **Properties** ([hotspot=13-24]`<properties />`): Any properties for the project go here, 
+* **Properties** (`<properties />`): Any properties for the project go here, 
 including compilation details and any values that are referenced during compilation of the 
 Java source code and generating the application.
-* **Dependencies** ([hotspot=25-89]`<dependencies />`): Any Java dependencies that are 
+* **Dependencies** (`<dependencies />`): Any Java dependencies that are 
 required for compiling, testing, and running the application are listed here.
-* **Build plugins** ([hotspot=90-124]`<build />`): Maven is modular and each of its 
+* **Build plugins** (`<build />`): Maven is modular and each of its 
 capabilities is provided by a separate plugin. This is where you specify which Maven 
 plugins should be used to build this project and any configuration information needed by 
 those plugins.
 
-Start by adding the project coordinates of the sample application after the closing 
-[hotspot=8]`</parent>` tag:
+[role="code_command hotspot=10-15", subs="quotes"]
+----
+Add the project coordinates of the sample application. 
+`src/pom.xml`
+----
+
+pom.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/pom.xml[tags=whole;coordinates;!*]
+----
+
 
 The project coordinates describe the name and version of the application. The `artifactId` 
 gives a name to the web application project, which is used to name the output files that 
@@ -213,7 +223,7 @@ Create `EndpointIT` class.
 EndpointIT.java
 [source, Java, linenums, role='code_column']
 ----
-include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[]
+include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tags=**]
 ----
 
 The test class name ends in `IT` to indicate that it contains an integration test. 
@@ -294,14 +304,6 @@ To see whether the test detects a failure, change the response string in the ser
 `src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
 the string that the test is looking for. Then re-run the Maven build and check that the 
 test fails.
-
-The complete `pom.xml` should now look like this:
-
-[source,xml,indent=0]
-----
-include::finish/pom.xml[tags=whole]
-----
-
 
 == Great work! You're done!
 
