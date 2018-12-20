@@ -129,7 +129,7 @@ capabilities is provided by a separate plugin. This is where you specify which M
 plugins should be used to build this project and any configuration information needed by 
 those plugins.
 
-[role="code_command hotspot=9-12", subs="quotes"]
+[role="code_command hotspot=10-13", subs="quotes"]
 ----
 Add the project coordinates of the sample application. 
 `src/pom.xml`
@@ -150,7 +150,7 @@ that you can update the name of the sample application, including files generate
 in a single place in the [hotspot=1-137]`pom.xml` file. The value of the [hotspot=12]`packaging` 
 field is `war` so that the project output artifact is a WAR file.
 
-[role="code_command hotspot=13-27", subs="quotes"]
+[role="code_command hotspot=14-25", subs="quotes"]
 ----
 Add the properties of the project. 
 `src/pom.xml`
@@ -218,7 +218,7 @@ the link is clicked.
 When Maven runs the test, it starts a test server, runs the application, runs the test, 
 and then stops the server.
 
-[role="code_command hotspot=10-37", subs="quotes"]
+[role="code_command hotspot=10-38", subs="quotes"]
 ----
 Create `EndpointIT` class. 
 `src/test/java/io/openliberty/guides/hello/it/EndpointIT.java`  
@@ -249,13 +249,13 @@ pom.xml
 include::finish/pom.xml[tags=**]
 ----
 
-The following lines in the [hotspot=30-32 file=0]`Endpoint.java` test class uses these 
+The following lines in the [hotspot=15-17 file=0]`Endpoint.java` test class uses these 
 system variables to build up the URL of the application.
 
 In the test class, after defining how to build the application URL, the [hotspot=23 file=0]`@Test` 
 annotation indicates the start of the test method.
 
-In the [hotspot=25-34 file=0]`try` block of the test method, an HTTP `GET` request to the 
+In the [hotspot=25-36 file=0]`try` block of the test method, an HTTP `GET` request to the 
 URL of the application returns a status code. If the response to the request includes the 
 string `Hello! How are you today?`, the test passes. If that string is not in the response, 
 the test fails.  The HTTP client then disconnects from the application.
@@ -265,7 +265,7 @@ test has some new dependencies. Before the test can be compiled by Maven, you ne
 the [hotspot=1-137 file=1]`pom.xml` to include these dependencies.
 
 The Apache [hotspot=33-38 file=1]`commons-httpclient` and [hotspot=39-44 file=1]`junit` 
-dependencies are needed to compile and run the integration test [hotspot=10-37 file=0]`EndpointIT` 
+dependencies are needed to compile and run the integration test [hotspot=10-38 file=0]`EndpointIT` 
 class. The scope for each of the dependencies is set to [hotspot=37 file=1]`test` because 
 the libraries are needed only during the Maven build and do not needed to be packaged with 
 the application.
