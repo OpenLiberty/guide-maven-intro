@@ -138,7 +138,7 @@ Add the project coordinates of the sample application.
 pom.xml
 [source, xml, linenums, role='code_column']
 ----
-include::finish/pom.xml[**]
+include::finish/pom.xml[tags=**]
 ----
 
 The project coordinates describe the name and version of the application. The 
@@ -246,7 +246,7 @@ and [hotspot=129 file=1]`war.name` variables.
 pom.xml
 [source, xml, linenums, role='code_column']
 ----
-include::finish/pom.xml[**]
+include::finish/pom.xml[tags=**]
 ----
 
 The following lines in the [hotspot=30-32 file=0]`Endpoint.java` test class uses these 
