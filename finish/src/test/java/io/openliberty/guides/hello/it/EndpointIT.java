@@ -21,17 +21,14 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 public class EndpointIT {
     private static String URL;
-
  
     @BeforeClass
     public static void init() {
-
         // tag::URL[]
         String port = System.getProperty("liberty.test.port");
         String war = System.getProperty("war.name");
         URL = "http://localhost:" + port + "/" + war + "/" + "servlet";
         // end::URL[]
-        
     }
 
     @Test
@@ -47,7 +44,8 @@ public class EndpointIT {
 
             String response = method.getResponseBodyAsString(1000);
 
-            assertTrue("Unexpected response body", response.contains("Hello! How are you today?"));
+            assertTrue("Unexpected response body", 
+                response.contains("Hello! How are you today?"));
         } finally {
             method.releaseConnection();
         }
