@@ -136,7 +136,9 @@
                                 <include>**/it/**</include>
                             </includes>
                             <systemPropertyVariables>
-                                <liberty.test.port>${testServerHttpPort}</liberty.test.port>
+                                <liberty.test.port>
+                                    ${testServerHttpPort}
+                                </liberty.test.port>
                                 <war.name>${warContext}</war.name>
                             </systemPropertyVariables>
                         </configuration>
