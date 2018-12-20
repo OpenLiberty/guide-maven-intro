@@ -252,7 +252,7 @@ include::finish/pom.xml[tags=**]
 The following lines in the [hotspot=15-17 file=0]`Endpoint.java` test class uses these 
 system variables to build up the URL of the application.
 
-In the test class, after defining how to build the application URL, the [hotspot=23 file=0]`@Test` 
+In the test class, after defining how to build the application URL, the [hotspot=20 file=0]`@Test` 
 annotation indicates the start of the test method.
 
 In the [hotspot=25-36 file=0]`try` block of the test method, an HTTP `GET` request to the 
