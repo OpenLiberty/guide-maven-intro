@@ -196,10 +196,10 @@ to build this project.
 * The Liberty Maven plugin, which gives details of the name, version, and file type of 
 Open Liberty runtime package which it will download from the public Maven repository.
 
-In the [hotspot=76-110]`liberty-maven-plugin` plugin section, the [hotspot=87]`<serverName/>` 
-field defines the name of the Liberty server that Maven creates. The [hotspot=92-96]`<bootstrapProperties/>` 
+In the [hotspot=76-105]`liberty-maven-plugin` plugin section, the [hotspot=86]`<serverName/>` 
+field defines the name of the Liberty server that Maven creates. The [hotspot=91-95]`<bootstrapProperties/>` 
 section provides the set of variables that the `server.xml` references. The 
-[hotspot=88]`<stripVersion/>` field removes the version number from the name of the application 
+[hotspot=87]`<stripVersion/>` field removes the version number from the name of the application 
 (by default the version number of the application (`1.0-SNAPSHOT`) is appended to the 
 application name). This means that the application URL remains the same even when the version 
 number changes.
@@ -243,7 +243,7 @@ test class, it is better to specify it in a single place like the Maven [hotspot
 file because this information is also used by other files in the project. The 
 [hotspot=120-125 file=1]`<systemPropertyVariables/>` section passes these details to the 
 Java test program as a series of system properties, resolving the [hotspot=121-123 file=1]`liberty.test.port` 
-and [hotspot=122 file=1]`war.name` variables.
+and [hotspot=124 file=1]`war.name` variables.
 
 pom.xml
 [source, xml, linenums, role='code_column']
