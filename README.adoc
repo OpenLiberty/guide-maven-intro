@@ -18,6 +18,7 @@
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:guide-author: Open Liberty
 = Building a web application with Maven
 
 [.hidden]
