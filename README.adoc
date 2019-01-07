@@ -252,13 +252,13 @@ pom.xml
 include::finish/pom.xml[tags=**]
 ----
 
-The following lines in the [hotspot=15-17 file=0]`Endpoint.java` test class uses these 
+The following lines in the [hotspot=15-17 file=0]`EndpointIT` test class uses these 
 system variables to build up the URL of the application.
 
 In the test class, after defining how to build the application URL, the [hotspot=20 file=0]`@Test` 
 annotation indicates the start of the test method.
 
-In the [hotspot=25-36 file=0]`try` block of the test method, an HTTP `GET` request to the 
+In the [hotspot=25-36 file=0]`try block` of the test method, an HTTP `GET` request to the 
 URL of the application returns a status code. If the response to the request includes the 
 string `Hello! How are you today?`, the test passes. If that string is not in the response, 
 the test fails.  The HTTP client then disconnects from the application.
@@ -317,9 +317,15 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
 To see whether the test detects a failure, change the response string in the servlet 
-`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
+[hotspot=1-30 file=1]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
 the string that the test is looking for. Then re-run the Maven build and check that the 
 test fails.
+
+HelloServlet.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags=**;!comment]
+----
 
 == Great work! You're done!
 
