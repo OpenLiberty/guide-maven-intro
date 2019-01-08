@@ -133,7 +133,7 @@ those plugins.
 
 [role="code_command hotspot=10-13", subs="quotes"]
 ----
-Add the project coordinates of the sample application. 
+#Add the project coordinates of the sample application.#
 `src/pom.xml`
 ----
 
@@ -154,7 +154,7 @@ field is `war` so that the project output artifact is a WAR file.
 
 [role="code_command hotspot=14-25", subs="quotes"]
 ----
-Add the properties of the project. 
+#Add the properties of the project.# 
 `src/pom.xml`
 ----
 
@@ -174,7 +174,7 @@ the application with a Liberty server.
 
 [role="code_command hotspot=26-65", subs="quotes"]
 ----
-Add the dependencies that the web application needs in order to compile. 
+#Add the dependencies that the web application needs in order to compile.# 
 `src/pom.xml`
 ----
 
@@ -186,7 +186,7 @@ API is in the server runtime and doesn't need to be packaged by the application.
 
 [role="code_command hotspot=66-131", subs="quotes"]
 ----
-Configure the Maven plugins that build this project.
+#Configure the Maven plugins that build this project.#
 `src/pom.xml`
 ----
 
@@ -211,9 +211,9 @@ include::{common-includes}/mvnbuild.adoc[]
 To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
 
 [role='command']
-----
+```
 mvn liberty:stop-server
-----
+```
 
 == Testing the web application
 
@@ -229,7 +229,7 @@ and then stops the server.
 
 [role="code_command hotspot=10-38", subs="quotes"]
 ----
-Create `EndpointIT` class. 
+#Create `EndpointIT` class.#
 `src/test/java/io/openliberty/guides/hello/it/EndpointIT.java`  
 ----
 
