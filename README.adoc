@@ -210,7 +210,6 @@ include::{common-includes}/mvnbuild.adoc[]
 
 To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
 
-[role='command']
 ```
 mvn liberty:stop-server
 ```
