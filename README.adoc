@@ -302,7 +302,6 @@ The directory structure of the project should now look like this:
 // Running the tests
 // =================================================================================================
 
-[role='command']
 include::{common-includes}/mvnverify.adoc[]
 
 [source, role="no_copy"]
