@@ -210,6 +210,7 @@ include::{common-includes}/mvnbuild.adoc[]
 
 To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
 
+[role='command']
 ```
 mvn liberty:stop-server
 ```
@@ -301,6 +302,7 @@ The directory structure of the project should now look like this:
 // Running the tests
 // =================================================================================================
 
+[role='command']
 include::{common-includes}/mvnverify.adoc[]
 
 [source, role="no_copy"]
@@ -317,7 +319,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
 To see whether the test detects a failure, change the response string in the servlet 
-[hotspot=1-30 file=2]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
+[hotspot=1-30]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
 the string that the test is looking for. Then re-run the Maven build and check that the 
 test fails.
 
