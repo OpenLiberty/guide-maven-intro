@@ -208,6 +208,12 @@ number changes.
 [role='command']
 include::{common-includes}/mvnbuild.adoc[]
 
+To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
+
+[role='command']
+----
+mvn liberty:stop-server
+----
 
 == Testing the web application
 
@@ -292,16 +298,11 @@ The directory structure of the project should now look like this:
             └── java
 ----
 
-Now, run the following command:
+// =================================================================================================
+// Running the tests
+// =================================================================================================
 
-[role='command']
-```
-mvn install
-```
-
-This command will rebuild the application, including the test you've added, run the test, 
-and see that the test passes. The Maven build takes a little longer than before the test 
-existed, but expect to see the following information in the output:
+include::{common-includes}/mvnverify.adoc[]
 
 [source, role="no_copy"]
 ----
