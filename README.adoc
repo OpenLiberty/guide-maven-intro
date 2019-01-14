@@ -86,7 +86,7 @@ Create the `pom.xml` file in the current directory (at the same level as the `sr
 
 [source,xml,indent=0]
 ----
-include::finish/pom.xml[tags=whole;!*]
+include::finish/pom.xml
 ----
 
 The `pom.xml` file starts with a root `<project />` element and `<modelversion />`, which is always set to `4.0.0`. The `<parent />` section of the POM specifies that Maven will use the https://github.com/WASdev/ci.maven/blob/master/liberty-maven-app-parent/pom.xml[Liberty Maven parent POM] to build the project. This is the minimum you technically need for the POM to be valid. But it won't do much with this project unless you give it a bit more information about your application.
@@ -237,7 +237,7 @@ The complete `pom.xml` should now look like this:
 
 [source,xml,indent=0]
 ----
-include::finish/pom.xml[tags=whole]
+include::finish/pom.xml
 ----
 
 
