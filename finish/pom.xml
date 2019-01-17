@@ -32,12 +32,6 @@
     <!-- end::properties[] -->
     <!-- tag::dependencies[] -->
     <dependencies>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
         <!-- tag::dependencies_test[] -->
         <dependency>
             <groupId>commons-httpclient</groupId>
@@ -72,6 +66,12 @@
             <version>1.1.1</version>
         </dependency>
         <!-- end::dependencies_test[] -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <!-- end::dependencies[] -->
     <!-- tag::build[] -->
