@@ -133,7 +133,7 @@ those plugins.
 
 [role="code_command hotspot=10-13", subs="quotes"]
 ----
-#Add the project coordinates of the sample application.#
+#Create the pom.xml.#
 `src/pom.xml`
 ----
 
