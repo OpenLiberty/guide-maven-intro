@@ -1,5 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!-- tag::whole[] -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
@@ -9,31 +8,24 @@
         <version>RELEASE</version>
     </parent>
 
-    <!-- tag::coordinates[] -->
     <groupId>io.openliberty.guides</groupId>
     <artifactId>ServletSample</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <!-- end::coordinates[] -->
-    <!-- tag::properties[] -->
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <app.name>${project.artifactId}</app.name>
-        <!-- tag::serverProperties[] -->
         <testServerHttpPort>9080</testServerHttpPort>
         <testServerHttpsPort>9443</testServerHttpsPort>
         <warContext>${app.name}</warContext>
-        <!-- end::serverProperties[] -->
         <package.file>${project.build.directory}/${app.name}.zip</package.file>
         <packaging.type>usr</packaging.type>
     </properties>
-    <!-- end::properties[] -->
-    <!-- tag::dependencies[] -->
     <dependencies>
-        <!-- tag::dependencies_test[] -->
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
@@ -67,7 +59,6 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
-        <!-- end::dependencies_test[] -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -75,8 +66,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <!-- end::dependencies[] -->
-    <!-- tag::build[] -->
     <build>
         <plugins>
             <plugin>
@@ -117,7 +106,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- tag::build_test[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -142,9 +130,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- end::build_test[] -->
         </plugins>
     </build>
-    <!-- end::build[] -->
 </project>
-<!-- end::whole[] -->
