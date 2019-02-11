@@ -202,7 +202,7 @@ the link is clicked.
 When Maven runs the test, it starts a test server, runs the application, runs the test, 
 and then stops the server.
 
-[role="code_command hotspot=10-38", subs="quotes"]
+[role="code_command hotspot", subs="quotes"]
 ----
 #Create `EndpointIT` class.#
 `src/test/java/io/openliberty/guides/hello/it/EndpointIT.java`  
@@ -246,7 +246,7 @@ the test fails.  The HTTP client then disconnects from the application.
 
 In the [hotspot=3-8 file=0]`import` statements of this test class, you'll notice that the 
 test has some new dependencies. Before the test can be compiled by Maven, you need to update 
-the [hotspot=1-132 file=1]`pom.xml` to include these dependencies.
+the [hotspot file=1]`pom.xml` to include these dependencies.
 
 The Apache [hotspot=29-34 file=1]`commons-httpclient` and [hotspot=35-40 file=1]`junit` 
 dependencies are needed to compile and run the integration test [hotspot=10-38 file=0]`EndpointIT` 
@@ -294,7 +294,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
 To see whether the test detects a failure, change the response string in the servlet 
-[hotspot=1-30]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
+[hotspot]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
 the string that the test is looking for. Then re-run the Maven build and check that the 
 test fails.
 
