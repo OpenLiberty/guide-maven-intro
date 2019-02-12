@@ -75,8 +75,8 @@ All the application source code, including the Open Liberty server configuration
 
 == Installing Maven
 
-Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file] 
-and then follow the https://maven.apache.org/install.html[installation instructions for your operating system] 
+Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file^] 
+and then follow the https://maven.apache.org/install.html[installation instructions for your operating system^] 
 to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) 
 to the `PATH` on your computer.
 
@@ -119,7 +119,7 @@ include::finish/pom.xml[tags=**]
 
 The [hotspot]`pom.xml` file starts with a root [hotspot=2]`<project/>` 
 element and [hotspot=3]`<modelversion/>`, which is always set to `4.0.0`. The [hotspot=5-9]`<parent/>` section 
-of the POM specifies that Maven will use the https://github.com/WASdev/ci.maven/blob/master/liberty-maven-app-parent/pom.xml[Liberty Maven parent POM] 
+of the POM specifies that Maven will use the https://github.com/WASdev/ci.maven/blob/master/liberty-maven-app-parent/pom.xml[Liberty Maven parent POM^] 
 to build the project. This is the minimum you technically need for the POM to be valid. 
 
 A typical POM for a Liberty application contains the following sections:
@@ -308,7 +308,7 @@ include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags
 
 You built and tested a web application project with an Open Liberty server using Maven.
 
-You can quickly create this project structure by using the https://liberty-app-accelerator.wasdev.developer.ibm.com/start/[Liberty App Accelerator] accelerator or the Maven https://github.com/WASdev/ci.maven#liberty-archetype-webapp[liberty-archetype-webapp] archetype.
+You can quickly create this project structure by using the https://liberty-app-accelerator.wasdev.developer.ibm.com/start/[Liberty App Accelerator^] accelerator or the Maven https://github.com/WASdev/ci.maven#liberty-archetype-webapp[liberty-archetype-webapp] archetype.
 
 
 
