@@ -102,13 +102,13 @@ OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
 
 
 == Creating the project POM file
-
+Navigate to the `start` directory to begin.
 Before you can build the project, you define the Maven Project Object Model (POM) file, the `pom.xml`. 
 
 [role="code_command", subs="quotes"]
 ----
 #Create the pom.xml.#
-`src/pom.xml`
+`pom.xml`
 ----
 
 pom.xml
