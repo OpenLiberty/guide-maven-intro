@@ -106,7 +106,7 @@ Navigate to the `start` directory to begin.
 
 Before you can build the project, you define the Maven Project Object Model (POM) file, the `pom.xml`. 
 
-[role="code_command", subs="quotes"]
+[role="code_command hotspot", subs="quotes"]
 ----
 #Create the pom.xml file.#
 `pom.xml`
@@ -180,7 +180,7 @@ Open Liberty runtime package which it will download from the public Maven reposi
 
 In the [hotspot=79-108 file=0]`liberty-maven-plugin` plugin section, the [hotspot=89 file=0]`<serverName/>` 
 field defines the name of the Liberty server that Maven creates. The [hotspot=94-98 file=0]`<bootstrapProperties/>` 
-section provides the set of variables that the [hotspot=6-10 file=2]`server.xml` references. The 
+section provides the set of variables that the [hotspot=6-9 file=2]`server.xml` references. The 
 [hotspot=90 file=0]`<stripVersion/>` field removes the version number from the name of the application 
 (by default the version number of the application (`1.0-SNAPSHOT`) is appended to the 
 application name). This means that the application URL remains the same even when the version 
