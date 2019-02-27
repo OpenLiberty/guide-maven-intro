@@ -1,6 +1,6 @@
-// tag::comment[]
+// tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2017 IBM Corporation and others.
+ * Copyright (c) 2017, 2019 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-// end::comment[]
+// end::copyright[]
 package io.openliberty.guides.hello.it;
 
 import static org.junit.Assert.*;
@@ -21,17 +21,14 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 public class EndpointIT {
     private static String URL;
-
  
     @BeforeClass
     public static void init() {
-
         // tag::URL[]
         String port = System.getProperty("liberty.test.port");
         String war = System.getProperty("war.name");
         URL = "http://localhost:" + port + "/" + war + "/" + "servlet";
         // end::URL[]
-        
     }
 
     @Test
@@ -47,7 +44,8 @@ public class EndpointIT {
 
             String response = method.getResponseBodyAsString(1000);
 
-            assertTrue("Unexpected response body", response.contains("Hello! How are you today?"));
+            assertTrue("Unexpected response body", 
+                response.contains("Hello! How are you today?"));
         } finally {
             method.releaseConnection();
         }
