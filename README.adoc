@@ -54,7 +54,7 @@ include::{common-includes}/gitclone.adoc[]
 
 === Try what you'll build
 To try out the application, first navigate to the `finish` directory and then run the following Maven goals to build the application and run it inside Open Liberty:
-
+[role='command']
 ```
 mvn install
 ```
@@ -63,7 +63,7 @@ This command builds the application and creates a `.war` file in the target dire
 configures and installs Open Liberty into the `target/liberty/wlp` directory.
 
 Next, run the Maven `liberty:start-server` goal:
-
+[role='command']
 ```
 mvn liberty:start-server
 ```
@@ -77,6 +77,7 @@ The application displays a simple web page with the link that, when
 clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
 Once you're done checking out the application, stop the Open Liberty server:
+[role='command']
 ```
 mvn liberty:stop-server
 ```
@@ -222,8 +223,30 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[tags=**;!comment]
 ----
 
+== Building and running the application
+
+To build the application, run the Maven `install` phase from the command line in the `start` directory:
 [role='command']
-include::{common-includes}/mvnbuild.adoc[]
+```
+mvn install
+```
+
+This command builds the application and creates a `.war` file in the target directory. It also
+configures and installs Open Liberty into the `target/liberty/wlp` directory.
+
+Next, run the Maven `liberty:start-server` goal:
+[role='command']
+```
+mvn liberty:start-server
+```
+
+This goal starts an Open Liberty server instance. Your Maven `pom.xml` is already configured to start
+the application in this server instance.
+
+Navigate your browser to this URL to access the application: https://localhost:9080/ServletSample/servlet[https://localhost:9080/ServletSample/servlet^].
+
+The application displays a simple web page with the link that, when 
+clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
 To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
 
