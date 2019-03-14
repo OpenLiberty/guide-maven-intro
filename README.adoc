@@ -71,7 +71,7 @@ mvn liberty:start-server
 This goal starts an Open Liberty server instance. Your Maven `pom.xml` is already configured to start
 the application in this server instance.
 
-Navigate your browser to this URL to access the application: `https://localhost:9080/ServletSample/servlet`.
+Navigate your browser to this URL to access the application: https://localhost:9080/ServletSample/servlet[https://localhost:9080/ServletSample/servlet^].
 
 The application displays a simple web page with the link that, when 
 clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
