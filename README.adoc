@@ -56,16 +56,11 @@ include::{common-includes}/gitclone.adoc[]
 
 The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
 
-To try out the application, first navigate to the `finish` directory and then run the following
-Maven goal to build the application and run it inside Open Liberty:
-
+To try out the application, first navigate to the `finish` directory and then run the following Maven goals to build the application and run it inside Open Liberty:
 [role='command']
 ```
 mvn install
 ```
-
-This command builds the application and creates a `.war` file in the target directory. It also
-configures and installs Open Liberty into the `target/liberty/wlp` directory.
 
 Next, run the Maven `liberty:start-server` goal:
 [role='command']
@@ -73,18 +68,11 @@ Next, run the Maven `liberty:start-server` goal:
 mvn liberty:start-server
 ```
 
-This goal starts an Open Liberty server instance. Your Maven `pom.xml` is already configured to start
-the application in this server instance.
-
 Navigate your browser to this URL to access the application: https://localhost:9080/ServletSample/servlet[^]. The application displays a simple web page with the link that, when 
 clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
-Once you're done checking out the application, stop the Open Liberty server:
-[role='command']
-```
-mvn liberty:stop-server
-```
-
+[role=command]
+include::{common-includes}/trywhatyoubuild-end.adoc[]
 
 == Creating a simple application
 
