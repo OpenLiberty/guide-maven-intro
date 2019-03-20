@@ -200,8 +200,6 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[tags=**;!comment]
 ----
 
-== Building and running the application
-
 [role='command']
 include::{common-includes}/mvnbuild.adoc[]
 
