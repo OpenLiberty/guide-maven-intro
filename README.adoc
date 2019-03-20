@@ -52,6 +52,13 @@ and configure Maven to run it after building the application.
 [role='command']
 include::{common-includes}/gitclone.adoc[]
 
+include::{common-includes}/trywhatyoubuild-beg.adoc[]
+
+Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
+
+[role=command]
+include::{common-includes}/trywhatyoubuild-end.adoc[]
+
 == Creating a simple application
 
 The simple web application that you will build using Maven and Open Liberty is provided 
@@ -195,6 +202,7 @@ include::finish/src/main/liberty/config/server.xml[tags=**;!comment]
 [role='command']
 include::{common-includes}/mvnbuild.adoc[]
 
+Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
 
 [role='command']
