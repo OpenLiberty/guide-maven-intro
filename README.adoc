@@ -54,7 +54,7 @@ include::{common-includes}/gitclone.adoc[]
 
 include::{common-includes}/trywhatyoubuild-beg.adoc[]
 
-Navigate your browser to the https://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
+Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 
 [role=command]
 include::{common-includes}/trywhatyoubuild-end.adoc[]
@@ -202,7 +202,7 @@ include::finish/src/main/liberty/config/server.xml[tags=**;!comment]
 [role='command']
 include::{common-includes}/mvnbuild.adoc[]
 
-Navigate your browser to the https://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
+Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
 
 [role='command']
