@@ -243,7 +243,7 @@ that the test class uses. The test code needs to know where to find the applicat
 it is testing. While the port number and context root information can be hardcoded in the 
 test class, it is better to specify it in a single place like the Maven [hotspot file=1]`pom.xml` 
 file because this information is also used by other files in the project. The 
-[hotspot=123-128 file=1]`<systemPropertyVariables/>` section passes these details to the 
+[hotspot=103-108 file=1]`<systemPropertyVariables/>` section passes these details to the 
 Java test program as a series of system properties, resolving the [hotspot=104-106 file=1]`liberty.test.port` 
 and [hotspot=107 file=1]`war.name` variables.
 
