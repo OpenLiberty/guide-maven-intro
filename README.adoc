@@ -136,9 +136,9 @@ A typical POM for a Liberty application contains the following sections:
 * **Properties** ([hotspot=16-27 file=0]`<properties/>`): Any properties for the project go here, 
 including compilation details and any values that are referenced during compilation of the 
 Java source code and generating the application.
-* **Dependencies** ([hotspot=28-68 file=0]`<dependencies/>`): Any Java dependencies that are 
+* **Dependencies** ([hotspot=28-48 file=0]`<dependencies/>`): Any Java dependencies that are 
 required for compiling, testing, and running the application are listed here.
-* **Build plugins** ([hotspot=69-134 file=0]`<build/>`): Maven is modular and each of its 
+* **Build plugins** ([hotspot=49-114 file=0]`<build/>`): Maven is modular and each of its 
 capabilities is provided by a separate plugin. This is where you specify which Maven 
 plugins should be used to build this project and any configuration information needed by 
 those plugins.
@@ -172,23 +172,23 @@ HelloServlet.java
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags=**;!comment]
 ----
 
-The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=62-67 file=0]`javax.servlet-api` to compile. 
+The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=42-47 file=0]`javax.servlet-api` to compile. 
 Maven will download this dependency from the Maven Central repository using the 
-[hotspot=63 file=0]`groupId`, [hotspot=64 file=0]`artifactId`, and [hotspot=65 file=0]`version` details that 
-you provide here. The dependency is set to [hotspot=66 file=0]`provided`, which means that the 
+[hotspot=43 file=0]`groupId`, [hotspot=44 file=0]`artifactId`, and [hotspot=45 file=0]`version` details that 
+you provide here. The dependency is set to [hotspot=46 file=0]`provided`, which means that the 
 API is in the server runtime and doesn't need to be packaged by the application.
 
-The [hotspot=69-134 file=0]`<build/>` section gives details of the two plugins that Maven uses 
+The [hotspot=49-114 file=0]`<build/>` section gives details of the two plugins that Maven uses 
 to build this project.
 
 * The Maven plugin for generating a WAR file as one of the output files.
 * The Liberty Maven plugin, which gives details of the name, version, and file type of 
 Open Liberty runtime package which it will download from the public Maven repository.
 
-In the [hotspot=79-108 file=0]`liberty-maven-plugin` plugin section, the [hotspot=89 file=0]`<serverName/>` 
-field defines the name of the Liberty server that Maven creates. The [hotspot=94-98 file=0]`<bootstrapProperties/>` 
+In the [hotspot=59-88 file=0]`liberty-maven-plugin` plugin section, the [hotspot=69 file=0]`<serverName/>` 
+field defines the name of the Liberty server that Maven creates. The [hotspot=74-78 file=0]`<bootstrapProperties/>` 
 section provides the set of variables that the [hotspot=6-9 file=2]`server.xml` references. The 
-[hotspot=90 file=0]`<stripVersion/>` field removes the version number from the name of the application 
+[hotspot=70 file=0]`<stripVersion/>` field removes the version number from the name of the application 
 (by default the version number of the application (`1.0-SNAPSHOT`) is appended to the 
 application name). This means that the application URL remains the same even when the version 
 number changes.
@@ -237,15 +237,15 @@ include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tag
 The test class name ends in `IT` to indicate that it contains an integration test. 
 (Test classes with a name that ends in TEST are unit test classes.)
 
-Maven is configured to run the integration test using the [hotspot=109-132 file=1]`maven-failsafe-plugin`.
-The [hotspot=123-128 file=1]`<systemPropertyVariables/>` section defines some variables 
+Maven is configured to run the integration test using the [hotspot=89-112 file=1]`maven-failsafe-plugin`.
+The [hotspot=103-108 file=1]`<systemPropertyVariables/>` section defines some variables 
 that the test class uses. The test code needs to know where to find the application that 
 it is testing. While the port number and context root information can be hardcoded in the 
 test class, it is better to specify it in a single place like the Maven [hotspot file=1]`pom.xml` 
 file because this information is also used by other files in the project. The 
-[hotspot=123-128 file=1]`<systemPropertyVariables/>` section passes these details to the 
-Java test program as a series of system properties, resolving the [hotspot=124-126 file=1]`liberty.test.port` 
-and [hotspot=127 file=1]`war.name` variables.
+[hotspot=103-108 file=1]`<systemPropertyVariables/>` section passes these details to the 
+Java test program as a series of system properties, resolving the [hotspot=104-106 file=1]`liberty.test.port` 
+and [hotspot=107 file=1]`war.name` variables.
 
 pom.xml
 [source, xml, linenums, role='code_column']
