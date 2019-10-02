@@ -11,14 +11,16 @@
  *******************************************************************************/
 // end::copyright[]
 package io.openliberty.guides.hello.it;
-
+// tag::import[]
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
+// end::import[]
 
+// tag::EndpointIT[]
 public class EndpointIT {
     private static String URL;
  
@@ -31,12 +33,14 @@ public class EndpointIT {
         // end::URL[]
     }
 
+    // tag::Test[]
     @Test
+    // end::Test[]
     public void testServlet() throws Exception {
         HttpClient client = new HttpClient();
 
         GetMethod method = new GetMethod(URL);
-        // tag::clicklink[]
+        // tag::link[]
         try {
             int statusCode = client.executeMethod(method);
 
@@ -49,6 +53,7 @@ public class EndpointIT {
         } finally {
             method.releaseConnection();
         }
-        // end::clicklink[]
+        // end::link[]
     }
 }
+// end::EndpointIT[]
