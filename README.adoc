@@ -122,7 +122,7 @@ Before you can build the project, you define the Maven Project Object Model (POM
 pom.xml
 [source, xml, linenums, role='code_column']
 ----
-include::finish/pom.xml[tags=**]
+include::finish/pom.xml[]
 ----
 
 The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`<project/>` 
@@ -167,9 +167,9 @@ The final two properties define the name and type of server package Maven uses t
 the application with a Liberty server.
 
 HelloServlet.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags=**;!comment]
+include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
 
 The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=javax-servlet-api file=0]`javax.servlet-api` to compile. 
@@ -194,9 +194,9 @@ application name). This means that the application URL remains the same even whe
 number changes.
 
 server.xml
-[source, xml, linenums, role='code_column']
+[source, xml, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/main/liberty/config/server.xml[tags=**;!comment]
+include::finish/src/main/liberty/config/server.xml[]
 ----
 
 [role='command']
@@ -229,9 +229,9 @@ and then stops the server.
 ----
 
 EndpointIT.java
-[source, Java, linenums, role='code_column']
+[source, Java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[tags=**;!copyright]
+include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[]
 ----
 
 The test class name ends in `IT` to indicate that it contains an integration test. 
@@ -250,7 +250,7 @@ and [hotspot=war-name file=1]`war.name` variables.
 pom.xml
 [source, xml, linenums, role='code_column']
 ----
-include::finish/pom.xml[tags=**]
+include::finish/pom.xml[]
 ----
 
 The following lines in the [hotspot=URL file=0]`EndpointIT` test class uses these 
@@ -270,7 +270,7 @@ the [hotspot file=1]`pom.xml` to include these dependencies.
 
 The Apache [hotspot=commons-httpclient file=1]`commons-httpclient` and [hotspot=junit file=1]`junit` 
 dependencies are needed to compile and run the integration test [hotspot=EndpointIT file=0]`EndpointIT` 
-class. The scope for each of the dependencies is set to [hotspot=33 hotspot=39 file=1]`test` because 
+class. The scope for each of the dependencies is set to [hotspot=test1 hotspot=test2 file=1]`test` because 
 the libraries are needed only during the Maven build and do not needed to be packaged with 
 the application.
 
@@ -319,9 +319,9 @@ the string that the test is looking for. Then re-run the Maven build and check t
 test fails.
 
 HelloServlet.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags=**;!comment]
+include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
 
 == Great work! You're done!

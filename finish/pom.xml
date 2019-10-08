@@ -59,9 +59,9 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <!-- tag::tag2[] -->
+            <!-- tag::test2[] -->
             <scope>test</scope>
-            <!-- end::tag2[] -->
+            <!-- end::test2[] -->
         </dependency>
         <!-- end::junit[] -->
         <!-- Support for JDK 9 and above -->
