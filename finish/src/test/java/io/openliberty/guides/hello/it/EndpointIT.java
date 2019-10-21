@@ -11,6 +11,7 @@
  *******************************************************************************/
 // end::copyright[]
 package io.openliberty.guides.hello.it;
+
 // tag::import[]
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;

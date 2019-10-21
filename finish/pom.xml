@@ -4,7 +4,7 @@
 <!-- end::project[] -->
     <!-- tag::modelVersion[] -->
     <modelVersion>4.0.0</modelVersion>
-    <!-- end::modeVersion[] -->
+    <!-- end::modelVersion[] -->
     <!-- tag::parent[] -->
     <parent>
         <groupId>net.wasdev.wlp.maven.parent</groupId>
@@ -156,10 +156,10 @@
                                 <!-- end::liberty-test-port[] -->
                                 <!-- tag::war-name[] -->
                                 <war.name>${warContext}</war.name>
-                                <!-- tag::war-name[] -->
+                                <!-- end::war-name[] -->
                             </systemPropertyVariables>
+                             <!-- end::system-property-variables[] -->
                         </configuration>
-                        <!-- end::system-property-variables[] -->
                     </execution>
                 </executions>
             </plugin>
