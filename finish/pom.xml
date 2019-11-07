@@ -52,7 +52,7 @@
                 <version>${version.maven-war-plugin}</version>
             </plugin>
             <plugin>
-                <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
             </plugin>
             <plugin>
@@ -62,7 +62,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <http.port>${liberty.var.default.http.port}</http.port>
-                        <war.name>${liberty.var.app.context.root</war.name>
+                        <war.name>${liberty.var.app.context.root}</war.name>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
