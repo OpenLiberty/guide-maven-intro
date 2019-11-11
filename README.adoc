@@ -367,6 +367,9 @@ HelloServlet.java
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[tags=**;!comment]
 ----
 
+When you are done checking out the service, exit development mode by typing `q` in the shell session
+where you ran the server and then pressing the `enter/return` key.
+
 == Great work! You're done!
 
 You built and tested a web application project with an Open Liberty server using Maven.
