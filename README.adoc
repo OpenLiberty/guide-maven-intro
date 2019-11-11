@@ -310,7 +310,7 @@ In the [hotspot=3-8 file=0]`import` statements of this test class, you'll notice
 test has some new dependencies. Before the test can be compiled by Maven, you need to update 
 the [hotspot file=1]`pom.xml` to include these dependencies.
 
-The Apache [hotspot=26-31 file=1]`commons-httpclient` and [hotspot=32-37 file=1]`junit` 
+The Apache [hotspot=26-31 file=1]`commons-httpclient` and [hotspot=32-37 file=1]`junit-jupiter-engine` 
 dependencies are needed to compile and run the integration test [hotspot=10-38 file=0]`EndpointIT` 
 class. The scope for each of the dependencies is set to [hotspot=30 hotspot=36 file=1]`test` because 
 the libraries are needed only during the Maven build and do not needed to be packaged with 
