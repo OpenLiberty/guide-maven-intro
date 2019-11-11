@@ -200,13 +200,6 @@ you will add (`EndpointIT.java`) in the application itself. This means that you 
 change the port number that the server will run on without having to update the application 
 code in multiple places.
 
-Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
-
-[role=command]
-```
-mvn liberty:dev
-```
-
 HelloServlet.java
 [source, java, linenums, role='code_column']
 ----
@@ -246,7 +239,12 @@ include::finish/src/main/liberty/config/server.xml[]
 
 == Building and running the application
 
-The Open Liberty server was started in development mode at the beginning of the guide and all the changes were automatically picked up.
+Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
+
+[role=command]
+```
+mvn liberty:dev
+```
 
 Your application has been built, and a .war file has been created in the target directory. Open Liberty was configured and installed into the target/liberty/wlp directory.
 
@@ -265,8 +263,6 @@ server directly (integration tests). In this example you will create a simple in
 test that checks that the web page opens and that the correct response is returned when 
 the link is clicked.
 
-When Maven runs the test, it starts a test server, runs the application, runs the test, 
-and then stops the server.
 
 [role="code_command hotspot", subs="quotes"]
 ----
