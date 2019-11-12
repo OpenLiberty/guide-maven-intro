@@ -15,7 +15,7 @@
 
     <groupId>io.openliberty.guides</groupId>
     <!-- tag::artifactID[] -->
-    <artifactId>guide-maven-intro</artifactId>
+    <artifactId>ServletSample</artifactId>
     <!-- end::artifactID[] -->
     <!-- tag::packaging[] -->
     <packaging>war</packaging>
