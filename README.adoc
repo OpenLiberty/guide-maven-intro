@@ -277,7 +277,6 @@ include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[]
 ----
 
 The test class name ends in `IT` to indicate that it contains an integration test. 
-(Test classes with a name that ends in TEST are unit test classes.)
 
 Maven is configured to run the integration test using the [hotspot=maven-failsafe-plugin file=1]`maven-failsafe-plugin`.
 The [hotspot=system-property-variables file=1]`<systemPropertyVariables/>` section defines some variables 
@@ -316,8 +315,8 @@ class. The scope for each of the dependencies is set to [hotspot=test1 hotspot=t
 the libraries are needed only during the Maven build and do not needed to be packaged with 
 the application.
 
-Now, during the Maven build, Maven creates the WAR file that contains the web application 
-and then runs any integration test classes (classes with names that end in `IT`) that it 
+Now, the created WAR file contains the web application 
+and then development mode can run any integration test classes (classes with names that end in `IT`) that it 
 finds.
 
 The directory structure of the project should now look like this:
