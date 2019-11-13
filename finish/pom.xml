@@ -30,9 +30,9 @@
         <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
         <!-- Liberty configuration -->
-        <!-- tag::test-server-port[] -->
+        <!-- tag::default-http-port[] -->
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
-        <!-- end::test-server-port[] -->
+        <!-- end::default-http-port[] -->
         <liberty.var.default.https.port>9443</liberty.var.default.https.port>
         <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
     </properties>
@@ -101,9 +101,9 @@
                 <configuration>
                     <!-- tag::system-property-variables[] -->
                     <systemPropertyVariables>
-                        <!-- tag::liberty-test-port[] -->
+                        <!-- tag::http-port[] -->
                         <http.port>${liberty.var.default.http.port}</http.port>
-                        <!-- end::liberty-test-port[] -->
+                        <!-- end::http-port[] -->
                         <!-- tag::war-name[] -->
                         <war.name>${liberty.var.app.context.root}</war.name>
                         <!-- end::war-name[] -->

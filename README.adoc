@@ -194,8 +194,8 @@ and version of Java ([hotspot=java-version file=0]`Java 8`) that Maven uses to c
 source code.
 
 The Liberty configuration properties provide a single place to specify values that are used in multiple 
-places throughout the application. For example, the [hotspot=test-server-port file=0]`default.http.port` value is used in 
-both the server configuration (`server.xml`) file and will be used in the test class that 
+places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in
+both the server configuration ([hotspot file=2]`server.xml`) file and will be used in the test class that
 you will add (`EndpointIT.java`) in the application itself. This means that you can easily 
 change the port number that the server will run on without having to update the application 
 code in multiple places.
@@ -286,7 +286,7 @@ it is testing. While the port number and context root information can be hardcod
 test class, it is better to specify it in a single place like the Maven [hotspot file=1]`pom.xml` 
 file because this information is also used by other files in the project. The 
 [hotspot=system-property-variables file=1]`<systemPropertyVariables/>` section passes these details to the 
-Java test program as a series of system properties, resolving the [hotspot=liberty-test-port file=1]`http.port` 
+Java test program as a series of system properties, resolving the [hotspot=http-port file=1]`http.port`
 and [hotspot=war-name file=1]`war.name` variables.
 
 pom.xml
