@@ -1,47 +1,84 @@
 <?xml version='1.0' encoding='utf-8'?>
+<!-- tag::project[] -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- end::project[] -->
+    <!-- tag::modelVersion[] -->
     <modelVersion>4.0.0</modelVersion>
+    <!-- end::modelVersion[] -->
 
     <groupId>io.openliberty.guides</groupId>
+    <!-- tag::artifactID[] -->
     <artifactId>ServletSample</artifactId>
+    <!-- end::artifactID[] -->
+    <!-- tag::packaging[] -->
     <packaging>war</packaging>
+    <!-- end::packaging[] -->
     <version>1.0-SNAPSHOT</version>
     
+    <!-- tag::properties[] -->
     <properties>
+        <!-- tag::encoding[] -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- end::encoding[] -->
+        <!-- tag::java-version[] -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- end::java-version[] -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <!-- Plugin versions -->
         <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
         <!-- Liberty configuration -->
+        <!-- tag::test-server-port[] -->
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
+        <!-- end::test-server-port[] -->
         <liberty.var.default.https.port>9443</liberty.var.default.https.port>
         <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
     </properties>
+    <!-- end::properties[] -->
+    <!-- tag::dependencies[] -->
     <dependencies>
+        <!-- tag::commons-httpclient[] -->
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
+            <!-- tag::test1[] -->
             <scope>test</scope>
+            <!-- end::test1[] -->
         </dependency>
+        <!-- end::commons-httpclient[] -->
+        <!-- tag::junit[] -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.5.2</version>
+            <!-- tag::test2[] -->
             <scope>test</scope>
+            <!-- end::test2[] -->
         </dependency>
+        <!-- end::junit[] -->
         <!-- Support for JDK 9 and above -->
+        <!-- tag::javax-servlet-api[] -->
         <dependency>
+            <!-- tag::groupID-servlet-api[] -->
             <groupId>javax.servlet</groupId>
+            <!-- end::groupID-servlet-api[] -->
+            <!-- tag::artifactID-servlet-api[] -->
             <artifactId>javax.servlet-api</artifactId>
+            <!-- end::artifactID-servlet-api[] -->
+            <!-- tag::version-servlet-api[] -->
             <version>3.1.0</version>
+            <!-- end::version-servlet-api[] -->
+            <!-- tag::scope-servlet-api[] -->
             <scope>provided</scope>
+            <!-- end::scope-servlet-api[] -->
         </dependency>
+        <!-- end::javax-servlet-api[] -->
     </dependencies>
+    <!-- end::dependencies[] -->
+    <!-- tag::build[] -->
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -50,21 +87,32 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.maven-war-plugin}</version>
             </plugin>
+            <!-- tag::liberty-maven-plugin[] -->
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
             </plugin>
+            <!-- end::liberty-maven-plugin[] -->
+            <!-- tag::maven-failsafe-plugin[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${version.maven-failsafe-plugin}</version>
                 <configuration>
+                    <!-- tag::system-property-variables[] -->
                     <systemPropertyVariables>
+                        <!-- tag::liberty-test-port[] -->
                         <http.port>${liberty.var.default.http.port}</http.port>
+                        <!-- end::liberty-test-port[] -->
+                        <!-- tag::war-name[] -->
                         <war.name>${liberty.var.app.context.root}</war.name>
+                        <!-- end::war-name[] -->
                     </systemPropertyVariables>
+                    <!-- end::system-property-variables[] -->
                 </configuration>
             </plugin>
+            <!-- end::maven-failsafe-plugin[] -->
         </plugins>
     </build>
+    <!-- end::build[] -->
 </project>
