@@ -27,6 +27,7 @@
         <!-- end::java-version[] -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <!-- Plugin versions -->
+        <version.liberty-maven-plugin>3.1</version.liberty-maven-plugin>
         <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
         <!-- Liberty configuration -->
@@ -91,6 +92,7 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
+                <version>${version.liberty-maven-plugin}</version>
             </plugin>
             <!-- end::liberty-maven-plugin[] -->
             <!-- tag::maven-failsafe-plugin[] -->
