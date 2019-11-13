@@ -246,7 +246,7 @@ Start Open Liberty in development mode, which starts the Open Liberty server and
 mvn liberty:dev
 ```
 
-Your application has been built, and a .war file has been created in the target directory. Open Liberty was configured and installed into the target/liberty/wlp directory.
+Your application has been built, and a `.war` file has been created in the target directory. Open Liberty was configured and installed into the `target/liberty/wlp` directory.
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 
