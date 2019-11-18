@@ -54,6 +54,37 @@ and use it to build the web application. You will then create a simple, automate
 and configure Maven to run it after building the application.
 
 // =================================================================================================
+// Installing Maven
+// =================================================================================================
+
+== Installing Maven
+
+Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file^] 
+and then follow the https://maven.apache.org/install.html[installation instructions for your operating system^] 
+to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) 
+to the `PATH` on your computer.
+
+Test that Maven is installed by running the following command in a terminal:
+
+[role="command"]
+----
+mvn -v
+----
+
+If Maven is installed properly, you should see information about the Maven installation 
+similar to this:
+
+[source, role="no_copy"]
+----
+Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T20:39:06+01:00)
+Maven home: /Applications/Maven/apache-maven-3.5.0
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
+----
+
+// =================================================================================================
 // Getting Started
 // =================================================================================================
 [role='command']
@@ -112,38 +143,6 @@ All the application source code, including the Open Liberty server configuration
 ----
 
 // =================================================================================================
-// Installing Maven
-// =================================================================================================
-
-== Installing Maven
-
-Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file^] 
-and then follow the https://maven.apache.org/install.html[installation instructions for your operating system^] 
-to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) 
-to the `PATH` on your computer.
-
-Test that Maven is installed by running the following command in a terminal:
-
-[role="command"]
-----
-mvn -v
-----
-
-If Maven is installed properly, you should see information about the Maven installation 
-similar to this:
-
-[source, role="no_copy"]
-----
-Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T20:39:06+01:00)
-Maven home: /Applications/Maven/apache-maven-3.5.0
-Java version: 1.8.0_131, vendor: Oracle Corporation
-Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
-Default locale: en_GB, platform encoding: UTF-8
-OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
-----
-
-
-// =================================================================================================
 // Creating the project POM file
 // =================================================================================================
 
@@ -165,7 +164,7 @@ include::finish/pom.xml[]
 ----
 
 The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`<project/>` 
-element and [hotspot=modelVersion file=0]`<modelversion/>`, which is always set to `4.0.0`. This is the minimum you technically need for the POM to be valid. 
+element and [hotspot=modelVersion file=0]`<modelversion/>`, which is always set to `4.0.0`. 
 
 A typical POM for a Liberty application contains the following sections:
 
@@ -195,7 +194,7 @@ source code.
 
 The Liberty configuration properties provide a single place to specify values that are used in multiple 
 places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in
-both the server configuration ([hotspot file=2]`server.xml`) file and will be used in the test class that
+both the server configuration ([hotspot=httpEndpoint file=2]`server.xml`) file and will be used in the test class that
 you will add (`EndpointIT.java`) in the application itself. This means that you can easily 
 change the port number that the server will run on without having to update the application 
 code in multiple places.
@@ -218,11 +217,8 @@ to build this project.
 * The Maven plugin for generating a WAR file as one of the output files.
 * The Liberty Maven plugin, which allows you to install applications into Open Liberty and manage the server instances.
 
-In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add the `<serverName/>` 
-field to define the name of the Liberty server that Maven creates. The default value is `defaultServer`.
-Adding a `<bootstrapProperties/>` 
-section would provide a set of variables that the [hotspot file=2]`server.xml` references. The 
-`<stripVersion/>` field would remove the version number from the name of the application 
+In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add the
+`<stripVersion/>` field to remove the version number from the name of the application 
 (by default the version number of the application (`1.0-SNAPSHOT`) is appended to the 
 application name). This means that the application URL remains the same even when the version 
 number changes.
@@ -366,8 +362,8 @@ HelloServlet.java
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
 
-When you are done checking out the service, exit development mode by typing `q` in the shell session
-where you ran the server and then pressing the `enter/return` key.
+When you are done checking out the service, exit development mode by pressing `CTRL+C` in the shell session
+where you ran the server, or by typing `q` and then pressing the `enter/return` key.
 
 == Great work! You're done!
 

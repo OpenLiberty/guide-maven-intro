@@ -38,6 +38,7 @@
         <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
     </properties>
     <!-- end::properties[] -->
+
     <!-- tag::dependencies[] -->
     <dependencies>
         <!-- tag::commons-httpclient[] -->
@@ -79,6 +80,7 @@
         <!-- end::javax-servlet-api[] -->
     </dependencies>
     <!-- end::dependencies[] -->
+
     <!-- tag::build[] -->
     <build>
         <finalName>${project.artifactId}</finalName>
