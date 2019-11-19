@@ -220,7 +220,7 @@ to build this project.
 In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add a
 [hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
 For example, you can add the
-[hotspot=configuration file=0]`<serverName/>` field to define the name of the Liberty server that Maven creates.
+[hotspot=configuration file=0]`<serverName/>` field to define the name of the Open Liberty server that Maven creates.
 The default value is `defaultServer`.
 You can uncomment out the [hotspot=configuration file=0]`<configuration>` element to use `guideServer` as the name
 for the Liberty server instance.
