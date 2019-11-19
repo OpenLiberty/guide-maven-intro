@@ -5,13 +5,6 @@
     <!-- tag::modelVersion[] -->
     <modelVersion>4.0.0</modelVersion>
     <!-- end::modelVersion[] -->
-    <!-- tag::parent[] -->
-    <parent>
-        <groupId>net.wasdev.wlp.maven.parent</groupId>
-        <artifactId>liberty-maven-app-parent</artifactId>
-        <version>RELEASE</version>
-    </parent>
-    <!-- end::parent[] -->
 
     <groupId>io.openliberty.guides</groupId>
     <!-- tag::artifactID[] -->
@@ -32,16 +25,20 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- end::java-version[] -->
-        <app.name>${project.artifactId}</app.name>
-        <!-- tag::test-server-port[] -->
-        <testServerHttpPort>9080</testServerHttpPort>
-        <!-- end::test-server-port[] -->
-        <testServerHttpsPort>9443</testServerHttpsPort>
-        <warContext>${app.name}</warContext>
-        <package.file>${project.build.directory}/${app.name}.zip</package.file>
-        <packaging.type>usr</packaging.type>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <!-- Plugin versions -->
+        <version.liberty-maven-plugin>3.1</version.liberty-maven-plugin>
+        <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
+        <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
+        <!-- Liberty configuration -->
+        <!-- tag::default-http-port[] -->
+        <liberty.var.default.http.port>9080</liberty.var.default.http.port>
+        <!-- end::default-http-port[] -->
+        <liberty.var.default.https.port>9443</liberty.var.default.https.port>
+        <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
     </properties>
     <!-- end::properties[] -->
+
     <!-- tag::dependencies[] -->
     <dependencies>
         <!-- tag::commons-httpclient[] -->
@@ -56,9 +53,9 @@
         <!-- end::commons-httpclient[] -->
         <!-- tag::junit[] -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.5.2</version>
             <!-- tag::test2[] -->
             <scope>test</scope>
             <!-- end::test2[] -->
@@ -83,85 +80,47 @@
         <!-- end::javax-servlet-api[] -->
     </dependencies>
     <!-- end::dependencies[] -->
+
     <!-- tag::build[] -->
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
-                <configuration>
-                    <packagingExcludes>pom.xml</packagingExcludes>
-                </configuration>
+                <version>${version.maven-war-plugin}</version>
             </plugin>
             <!-- tag::liberty-maven-plugin[] -->
             <plugin>
-                <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
+                <version>${version.liberty-maven-plugin}</version>
+                <!-- tag::configuration[] -->
+                <!--
                 <configuration>
-                    <assemblyArtifact>
-                        <groupId>io.openliberty</groupId>
-                        <artifactId>openliberty-runtime</artifactId>
-                        <version>RELEASE</version>
-                        <type>zip</type>
-                    </assemblyArtifact>
-                    <!-- tag::server-name[] -->
-                    <serverName>${project.artifactId}Server</serverName>
-                    <!-- end::server-name[] -->
-                    <!-- tag::strip-version[] -->
-                    <stripVersion>true</stripVersion>
-                    <!-- end::strip-version[] -->
-                    <configFile>src/main/liberty/config/server.xml</configFile>
-                    <packageFile>${package.file}</packageFile>
-                    <include>${packaging.type}</include>
-                    <!-- tag::bootstrap-properties[] -->
-                    <bootstrapProperties>
-                        <default.http.port>${testServerHttpPort}</default.http.port>
-                        <default.https.port>${testServerHttpsPort}</default.https.port>
-                        <app.context.root>${warContext}</app.context.root>
-                    </bootstrapProperties>
-                    <!-- end::bootstrap-properties[] -->
+                    <serverName>guideServer</serverName>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>package-server</id>
-                        <configuration>
-                            <outputDirectory>target/wlp-package</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
+                -->
+                <!-- end::configuration[] -->
             </plugin>
             <!-- end::liberty-maven-plugin[] -->
             <!-- tag::maven-failsafe-plugin[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/it/**</include>
-                            </includes>
-                            <!-- tag::system-property-variables[] -->
-                            <systemPropertyVariables>
-                                <!-- tag::liberty-test-port[] -->
-                                <liberty.test.port>
-                                    ${testServerHttpPort}
-                                </liberty.test.port>
-                                <!-- end::liberty-test-port[] -->
-                                <!-- tag::war-name[] -->
-                                <war.name>${warContext}</war.name>
-                                <!-- end::war-name[] -->
-                            </systemPropertyVariables>
-                             <!-- end::system-property-variables[] -->
-                        </configuration>
-                    </execution>
-                </executions>
+                <version>${version.maven-failsafe-plugin}</version>
+                <configuration>
+                    <!-- tag::system-property-variables[] -->
+                    <systemPropertyVariables>
+                        <!-- tag::http-port[] -->
+                        <http.port>${liberty.var.default.http.port}</http.port>
+                        <!-- end::http-port[] -->
+                        <!-- tag::war-name[] -->
+                        <war.name>${liberty.var.app.context.root}</war.name>
+                        <!-- end::war-name[] -->
+                    </systemPropertyVariables>
+                    <!-- end::system-property-variables[] -->
+                </configuration>
             </plugin>
             <!-- end::maven-failsafe-plugin[] -->
         </plugins>
