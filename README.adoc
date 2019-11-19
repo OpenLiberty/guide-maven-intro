@@ -59,8 +59,8 @@ and configure Maven to run it after building the application.
 
 == Installing Maven
 
-Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file^] 
-and then follow the https://maven.apache.org/install.html[installation instructions for your operating system^] 
+If you haven't already installed Maven, https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file^].
+Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^]
 to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) 
 to the `PATH` on your computer.
 
@@ -217,11 +217,13 @@ to build this project.
 * The Maven plugin for generating a WAR file as one of the output files.
 * The Liberty Maven plugin, which allows you to install applications into Open Liberty and manage the server instances.
 
-In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add the
-`<stripVersion/>` field to remove the version number from the name of the application 
-(by default the version number of the application (`1.0-SNAPSHOT`) is appended to the 
-application name). This means that the application URL remains the same even when the version 
-number changes.
+In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add a
+[hotspot=configuration file=0]`<configuration>` element to specify Liberty configuration details.
+For example, you can add the
+[hotspot=configuration file=0]`<serverName/>` field to define the name of the Liberty server that Maven creates.
+The default value is `defaultServer`.
+You can uncomment out the [hotspot=configuration file=0]`<configuration>` element to use `guideServer` as the name
+for the Liberty server instance.
 
 server.xml
 [source, xml, linenums, role='code_column hide_tags=comment']
@@ -230,10 +232,10 @@ include::finish/src/main/liberty/config/server.xml[]
 ----
 
 // =================================================================================================
-// Building and running the application
+// Running the application
 // =================================================================================================
 
-== Building and running the application
+== Running the application
 
 Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
 
@@ -241,8 +243,6 @@ Start Open Liberty in development mode, which starts the Open Liberty server and
 ```
 mvn liberty:dev
 ```
-
-Your application has been built, and a `.war` file has been created in the target directory. Open Liberty was configured and installed into the `target/liberty/wlp` directory.
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 

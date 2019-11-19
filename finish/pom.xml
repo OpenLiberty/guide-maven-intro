@@ -95,6 +95,13 @@
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>${version.liberty-maven-plugin}</version>
+                <!-- tag::configuration[] -->
+                <!--
+                <configuration>
+                    <serverName>guideServer</serverName>
+                </configuration>
+                -->
+                <!-- end::configuration[] -->
             </plugin>
             <!-- end::liberty-maven-plugin[] -->
             <!-- tag::maven-failsafe-plugin[] -->
