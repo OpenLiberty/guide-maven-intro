@@ -218,7 +218,7 @@ to build this project.
 * The Liberty Maven plugin, which allows you to install applications into Open Liberty and manage the server instances.
 
 In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add a
-[hotspot=configuration file=0]`<configuration>` element to specify Liberty configuration details.
+[hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
 For example, you can add the
 [hotspot=configuration file=0]`<serverName/>` field to define the name of the Liberty server that Maven creates.
 The default value is `defaultServer`.
