@@ -41,6 +41,7 @@
 
     <!-- tag::dependencies[] -->
     <dependencies>
+        <!-- For testing -->
         <!-- tag::commons-httpclient[] -->
         <dependency>
             <groupId>commons-httpclient</groupId>
@@ -96,11 +97,11 @@
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>${version.liberty-maven-plugin}</version>
                 <!-- tag::configuration[] -->
-                <!--
                 <configuration>
+                    <!-- tag::serverName[] -->
                     <serverName>guideServer</serverName>
+                    <!-- end::serverName[] -->
                 </configuration>
-                -->
                 <!-- end::configuration[] -->
             </plugin>
             <!-- end::liberty-maven-plugin[] -->
