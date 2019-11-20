@@ -7,8 +7,9 @@
     <variable name="default.https.port" defaultValue="9443"/>
     <variable name="app.context.root" defaultValue="ServletSample"/>
 
-    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
-
+    <!-- tag::httpEndpoint[] -->
+    <httpEndpoint httpPort="${default.http.port}" 
+    httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
+    <!-- end::httpEndpoint[] -->
     <webApplication id="ServletSample" location="ServletSample.war" contextRoot="${app.context.root}" />
-
 </server>

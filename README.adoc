@@ -1,4 +1,4 @@
-// Copyright (c) 2017 IBM Corporation and others.
+// Copyright (c) 2017, 2019 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -200,7 +200,7 @@ change the port number that the server will run on without having to update the 
 code in multiple places.
 
 HelloServlet.java
-[source, java, linenums, role='code_column hide_tags=comment']
+[source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']
 ----
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
@@ -219,9 +219,10 @@ to build this project.
 
 In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add a
 [hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
-For example, you can add the
-[hotspot=configuration file=0]`<serverName/>` field to define the name of the Open Liberty server that Maven creates.
-The default value is `defaultServer`.
+For example, the
+[hotspot=serverName file=0]`<serverName/>` field defines the name of the Open Liberty server that Maven creates.
+You specified the value for [hotspot=serverName file=0]`<serverName/>` to be `guideServer`.
+If the [hotspot=serverName file=0]`<serverName/>` field is not provided, the default value is `defaultServer`.
 
 server.xml
 [source, xml, linenums, role='code_column hide_tags=comment']
@@ -355,7 +356,7 @@ the string that the test is looking for. Then re-run the tests and check that th
 test fails.
 
 HelloServlet.java
-[source, java, linenums, role='code_column hide_tags=comment']
+[source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']
 ----
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
