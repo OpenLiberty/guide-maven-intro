@@ -31,7 +31,9 @@ public class HelloServlet extends HttpServlet {
     // end::javadoc1[]
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
+        // tag::responseString[]
         response.getWriter().append("Hello! How are you today?\n");
+        // end::responseString[]
     }
 
     // tag::javadoc2[]
