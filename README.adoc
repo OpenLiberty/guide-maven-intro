@@ -1,4 +1,4 @@
-// Copyright (c) 2017 IBM Corporation and others.
+// Copyright (c) 2017, 2019 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -26,6 +26,10 @@ NOTE: This repository contains the guide documentation source. To view the guide
 
 Learn how to build and test a simple web application using Maven and Open Liberty.
 
+// =================================================================================================
+// What you'll learn
+// =================================================================================================
+
 == What you'll learn
 
 You will learn how to configure a simple web servlet application using Maven and the Liberty 
@@ -49,15 +53,58 @@ You will create a Maven build definition file (`pom.xml`) for the web applicatio
 and use it to build the web application. You will then create a simple, automated test 
 and configure Maven to run it after building the application.
 
+// =================================================================================================
+// Installing Maven
+// =================================================================================================
+
+== Installing Maven
+
+If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^].
+Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^]
+to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command 
+to the `PATH` on your computer.
+
+Run the following command to test that Maven is installed:
+
+[role="command"]
+----
+mvn -v
+----
+
+If Maven is installed properly, you see information about the Maven installation 
+similar to the following example:
+
+[source, role="no_copy"]
+----
+Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T20:39:06+01:00)
+Maven home: /Applications/Maven/apache-maven-3.5.0
+Java version: 1.8.0_131, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
+----
+
+// =================================================================================================
+// Getting Started
+// =================================================================================================
 [role='command']
 include::{common-includes}/gitclone.adoc[]
 
-include::{common-includes}/trywhatyoubuild-beg.adoc[]
+// =================================================================================================
+// Try what you'll build
+// =================================================================================================
+
+[role='command']
+include::{common-includes}/twyb-intro.adoc[]
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 
-[role=command]
-include::{common-includes}/trywhatyoubuild-end.adoc[]
+[role='command']
+include::{common-includes}/twyb-end.adoc[]
+
+// =================================================================================================
+// Creating a simple application
+// =================================================================================================
 
 == Creating a simple application
 
@@ -80,33 +127,9 @@ All the application source code, including the Open Liberty server configuration
                   └── config
 ----
 
-== Installing Maven
-
-Now you're ready to install Maven (if you haven't already). https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file^] 
-and then follow the https://maven.apache.org/install.html[installation instructions for your operating system^] 
-to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) 
-to the `PATH` on your computer.
-
-Test that Maven is installed by running the following command in a terminal:
-
-[role="command"]
-----
-mvn -v
-----
-
-If Maven is installed properly, you should see information about the Maven installation 
-similar to this:
-
-[source, role="no_copy"]
-----
-Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-03T20:39:06+01:00)
-Maven home: /Applications/Maven/apache-maven-3.5.0
-Java version: 1.8.0_131, vendor: Oracle Corporation
-Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
-Default locale: en_GB, platform encoding: UTF-8
-OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
-----
-
+// =================================================================================================
+// Creating the project POM file
+// =================================================================================================
 
 == Creating the project POM file
 Navigate to the `start` directory to begin.
@@ -126,9 +149,7 @@ include::finish/pom.xml[]
 ----
 
 The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`<project/>` 
-element and [hotspot=modelVersion file=0]`<modelversion/>`, which is always set to `4.0.0`. The [hotspot=parent file=0]`<parent/>` section 
-of the POM specifies that Maven will use the https://github.com/WASdev/ci.maven/blob/master/liberty-maven-app-parent/pom.xml[Liberty Maven parent POM^] 
-to build the project. This is the minimum you technically need for the POM to be valid. 
+element and a [hotspot=modelVersion file=0]`<modelversion/>` element, which is always set to `4.0.0`. 
 
 A typical POM for a Liberty application contains the following sections:
 
@@ -156,18 +177,16 @@ The first four properties in the properties section of the project, just define 
 and version of Java ([hotspot=java-version file=0]`Java 8`) that Maven uses to compile the application 
 source code.
 
-The next four properties provide a single place to specify values that are used in multiple 
-places throughout the application. For example, the [hotspot=test-server-port file=0]`testServerHttpPort` value is used in 
-both the server configuration (`server.xml`) file and will be used in the test class that 
-you will add (`EndpointIT.java`) in the application itself. This means that you can easily 
-change the port number that the server will run on without having to update the application 
+Open Liberty configuration properties provide you with a single place to specify values that are used in multiple 
+places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in
+both the server configuration ([hotspot=httpEndpoint file=2]`server.xml`) file and will be used in the test class that
+you will add (`EndpointIT.java`) to the application. Because the [hotspot=default-http-port file=0]`default.http.port` value 
+is specified in the [hotspot file=0]`pom.xml` file, you can easily 
+change the port number that the server runs on without updating the application 
 code in multiple places.
 
-The final two properties define the name and type of server package Maven uses to package 
-the application with a Liberty server.
-
 HelloServlet.java
-[source, java, linenums, role='code_column hide_tags=comment']
+[source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']
 ----
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
@@ -182,16 +201,14 @@ The [hotspot=build file=0]`<build/>` section gives details of the two plugins th
 to build this project.
 
 * The Maven plugin for generating a WAR file as one of the output files.
-* The Liberty Maven plugin, which gives details of the name, version, and file type of 
-Open Liberty runtime package which it will download from the public Maven repository.
+* The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the server instances.
 
-In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, the [hotspot=server-name file=0]`<serverName/>` 
-field defines the name of the Liberty server that Maven creates. The [hotspot=bootstrap-properties file=0]`<bootstrapProperties/>` 
-section provides the set of variables that the [hotspot=http-port file=2]`server.xml` references. The 
-[hotspot=strip-version file=0]`<stripVersion/>` field removes the version number from the name of the application 
-(by default the version number of the application (`1.0-SNAPSHOT`) is appended to the 
-application name). This means that the application URL remains the same even when the version 
-number changes.
+In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in section, you can add a
+[hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
+For example, the
+[hotspot=serverName file=0]`<serverName/>` field defines the name of the Open Liberty server that Maven creates.
+You specified `guideServer` as the value for [hotspot=serverName file=0]`<serverName/>`.
+If the [hotspot=serverName file=0]`<serverName/>` field is not included, the default value is `defaultServer`.
 
 server.xml
 [source, xml, linenums, role='code_column hide_tags=comment']
@@ -199,16 +216,20 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[]
 ----
 
+// =================================================================================================
+// Running the application
+// =================================================================================================
+
+== Running the application
+
 [role='command']
-include::{common-includes}/mvnbuild.adoc[]
+include::{common-includes}/devmode-start.adoc[]
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
-To stop the Open Liberty server, run the Maven `liberty:stop-server` goal: 
 
-[role='command']
-```
-mvn liberty:stop-server
-```
+// =================================================================================================
+// Testing the web application
+// =================================================================================================
 
 == Testing the web application
 
@@ -219,8 +240,6 @@ server directly (integration tests). In this example you will create a simple in
 test that checks that the web page opens and that the correct response is returned when 
 the link is clicked.
 
-When Maven runs the test, it starts a test server, runs the application, runs the test, 
-and then stops the server.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -235,7 +254,6 @@ include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[]
 ----
 
 The test class name ends in `IT` to indicate that it contains an integration test. 
-(Test classes with a name that ends in TEST are unit test classes.)
 
 Maven is configured to run the integration test using the [hotspot=maven-failsafe-plugin file=1]`maven-failsafe-plugin`.
 The [hotspot=system-property-variables file=1]`<systemPropertyVariables/>` section defines some variables 
@@ -244,7 +262,7 @@ it is testing. While the port number and context root information can be hardcod
 test class, it is better to specify it in a single place like the Maven [hotspot file=1]`pom.xml` 
 file because this information is also used by other files in the project. The 
 [hotspot=system-property-variables file=1]`<systemPropertyVariables/>` section passes these details to the 
-Java test program as a series of system properties, resolving the [hotspot=liberty-test-port file=1]`liberty.test.port` 
+Java test program as a series of system properties, resolving the [hotspot=http-port file=1]`http.port`
 and [hotspot=war-name file=1]`war.name` variables.
 
 pom.xml
@@ -268,15 +286,15 @@ In the [hotspot=import file=0]`import` statements of this test class, you'll not
 test has some new dependencies. Before the test can be compiled by Maven, you need to update 
 the [hotspot file=1]`pom.xml` to include these dependencies.
 
-The Apache [hotspot=commons-httpclient file=1]`commons-httpclient` and [hotspot=junit file=1]`junit` 
+The Apache [hotspot=commons-httpclient file=1]`commons-httpclient` and [hotspot=junit file=1]`junit-jupiter-engine` 
 dependencies are needed to compile and run the integration test [hotspot=EndpointIT file=0]`EndpointIT` 
 class. The scope for each of the dependencies is set to [hotspot=test1 hotspot=test2 file=1]`test` because 
 the libraries are needed only during the Maven build and do not needed to be packaged with 
 the application.
 
-Now, during the Maven build, Maven creates the WAR file that contains the web application 
-and then runs any integration test classes (classes with names that end in `IT`) that it 
-finds.
+Now, the created WAR file contains the web application, 
+and development mode can run any integration test classes that it finds.
+Integration test classes are classes with names that end in `IT`.
 
 The directory structure of the project should now look like this:
 
@@ -298,7 +316,9 @@ The directory structure of the project should now look like this:
 // =================================================================================================
 
 [role='command']
-include::{common-includes}/mvnverify.adoc[]
+include::{common-includes}/devmode-test.adoc[]
+
+You see the following output:
 
 [source, role="no_copy"]
 ----
@@ -313,16 +333,19 @@ Results :
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-To see whether the test detects a failure, change the response string in the servlet 
+To see whether the test detects a failure, change the [hotspot=responseString file=0]`response string` in the servlet 
 [hotspot]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
-the string that the test is looking for. Then re-run the Maven build and check that the 
+the string that the test is looking for. Then re-run the tests and check that the 
 test fails.
 
 HelloServlet.java
-[source, java, linenums, role='code_column hide_tags=comment']
+[source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']
 ----
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
+
+[role='command']
+include::{common-includes}/devmode-quit.adoc[]
 
 == Great work! You're done!
 
