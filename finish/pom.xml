@@ -72,7 +72,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <!-- end::artifactID-servlet-api[] -->
             <!-- tag::version-servlet-api[] -->
-            <version>3.1.0</version>
+            <version>4.0.1</version>
             <!-- end::version-servlet-api[] -->
             <!-- tag::scope-servlet-api[] -->
             <scope>provided</scope>
