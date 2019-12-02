@@ -13,9 +13,9 @@
 package io.openliberty.guides.hello.it;
 
 // tag::import[]
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -25,10 +25,10 @@ import org.apache.commons.httpclient.methods.GetMethod;
 public class EndpointIT {
     private static String URL;
  
-    @BeforeClass
+    @BeforeAll
     public static void init() {
         // tag::URL[]
-        String port = System.getProperty("liberty.test.port");
+        String port = System.getProperty("http.port");
         String war = System.getProperty("war.name");
         URL = "http://localhost:" + port + "/" + war + "/" + "servlet";
         // end::URL[]
@@ -45,12 +45,12 @@ public class EndpointIT {
         try {
             int statusCode = client.executeMethod(method);
 
-            assertEquals("HTTP GET failed", HttpStatus.SC_OK, statusCode);
+            assertEquals(HttpStatus.SC_OK, statusCode, "HTTP GET failed");
 
             String response = method.getResponseBodyAsString(1000);
 
-            assertTrue("Unexpected response body", 
-                response.contains("Hello! How are you today?"));
+            assertTrue(response.contains("Hello! How are you today?"), 
+                "Unexpected response body");
         } finally {
             method.releaseConnection();
         }
