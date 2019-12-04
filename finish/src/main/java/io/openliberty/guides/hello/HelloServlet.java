@@ -24,17 +24,23 @@ import javax.servlet.http.HttpServletResponse;
 public class HelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    // tag::javadoc1[]
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
+    // end::javadoc1[]
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
+        // tag::responseString[]
         response.getWriter().append("Hello! How are you today?\n");
+        // end::responseString[]
     }
 
+    // tag::javadoc2[]
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
+    // end::javadoc2[]
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
         doGet(request, response);
