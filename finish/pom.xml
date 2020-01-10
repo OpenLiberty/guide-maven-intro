@@ -29,7 +29,7 @@
         <!-- Plugin versions -->
         <version.liberty-maven-plugin>3.1</version.liberty-maven-plugin>
         <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
-        <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
+        <version.maven-war-plugin>3.2.3</version.maven-war-plugin>
         <!-- Liberty configuration -->
         <!-- tag::default-http-port[] -->
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
@@ -72,7 +72,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <!-- end::artifactID-servlet-api[] -->
             <!-- tag::version-servlet-api[] -->
-            <version>3.1.0</version>
+            <version>4.0.1</version>
             <!-- end::version-servlet-api[] -->
             <!-- tag::scope-servlet-api[] -->
             <scope>provided</scope>

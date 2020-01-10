@@ -18,6 +18,8 @@
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:page-seo-title: Build and test a web application with Maven and Open Liberty
+:page-seo-description: A tutorial on how to build and test a simple web application using Maven and Open Liberty
 :guide-author: Open Liberty
 = Building a web application with Maven
 
@@ -59,20 +61,20 @@ and configure Maven to run it after building the application.
 
 == Installing Maven
 
-If you haven't already installed Maven, https://maven.apache.org/download.cgi[Download the binary zip or tar.gz file^].
+If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^].
 Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^]
-to extract the ZIP file and add the `bin` directory (which contains the `mvn` command) 
+to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command 
 to the `PATH` on your computer.
 
-Test that Maven is installed by running the following command in a terminal:
+Run the following command to test that Maven is installed:
 
 [role="command"]
 ----
 mvn -v
 ----
 
-If Maven is installed properly, you should see information about the Maven installation 
-similar to this:
+If Maven is installed properly, you see information about the Maven installation 
+similar to the following example:
 
 [source, role="no_copy"]
 ----
@@ -94,28 +96,13 @@ include::{common-includes}/gitclone.adoc[]
 // Try what you'll build
 // =================================================================================================
 
-=== Try what you'll build
-
-The `finish` directory contains the finished implementation for the application. You can try it out
-before you build your own.
-
-To try out the application, first go to the `finish` directory and run the 
-following Maven goal to build the application and deploy it to Open Liberty:
-
 [role='command']
-```
-mvn liberty:run
-```
+include::{common-includes}/twyb-intro.adoc[]
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 
-After you are done checking out the application, stop the Open Liberty server by pressing `CTRL+C` in the shell session where you ran the server. 
-Alternatively, you can run the `liberty:stop` goal from the `finish` directory in another shell session:
-
 [role='command']
-```
-mvn liberty:stop
-```
+include::{common-includes}/twyb-end.adoc[]
 
 // =================================================================================================
 // Creating a simple application
@@ -164,7 +151,7 @@ include::finish/pom.xml[]
 ----
 
 The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`<project/>` 
-element and [hotspot=modelVersion file=0]`<modelversion/>`, which is always set to `4.0.0`. 
+element and a [hotspot=modelVersion file=0]`<modelversion/>` element, which is always set to `4.0.0`. 
 
 A typical POM for a Liberty application contains the following sections:
 
@@ -192,11 +179,12 @@ The first four properties in the properties section of the project, just define 
 and version of Java ([hotspot=java-version file=0]`Java 8`) that Maven uses to compile the application 
 source code.
 
-The Liberty configuration properties provide a single place to specify values that are used in multiple 
+Open Liberty configuration properties provide you with a single place to specify values that are used in multiple 
 places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in
 both the server configuration ([hotspot=httpEndpoint file=2]`server.xml`) file and will be used in the test class that
-you will add (`EndpointIT.java`) in the application itself. This means that you can easily 
-change the port number that the server will run on without having to update the application 
+you will add (`EndpointIT.java`) to the application. Because the [hotspot=default-http-port file=0]`default.http.port` value 
+is specified in the [hotspot file=0]`pom.xml` file, you can easily 
+change the port number that the server runs on without updating the application 
 code in multiple places.
 
 HelloServlet.java
@@ -215,14 +203,14 @@ The [hotspot=build file=0]`<build/>` section gives details of the two plugins th
 to build this project.
 
 * The Maven plugin for generating a WAR file as one of the output files.
-* The Liberty Maven plugin, which allows you to install applications into Open Liberty and manage the server instances.
+* The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the server instances.
 
-In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plugin section, you can add a
+In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in section, you can add a
 [hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
 For example, the
 [hotspot=serverName file=0]`<serverName/>` field defines the name of the Open Liberty server that Maven creates.
-You specified the value for [hotspot=serverName file=0]`<serverName/>` to be `guideServer`.
-If the [hotspot=serverName file=0]`<serverName/>` field is not provided, the default value is `defaultServer`.
+You specified `guideServer` as the value for [hotspot=serverName file=0]`<serverName/>`.
+If the [hotspot=serverName file=0]`<serverName/>` field is not included, the default value is `defaultServer`.
 
 server.xml
 [source, xml, linenums, role='code_column hide_tags=comment']
@@ -236,12 +224,8 @@ include::finish/src/main/liberty/config/server.xml[]
 
 == Running the application
 
-Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
-
-[role=command]
-```
-mvn liberty:dev
-```
+[role='command']
+include::{common-includes}/devmode-start.adoc[]
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 
@@ -310,9 +294,9 @@ class. The scope for each of the dependencies is set to [hotspot=test1 hotspot=t
 the libraries are needed only during the Maven build and do not needed to be packaged with 
 the application.
 
-Now, the created WAR file contains the web application 
-and then development mode can run any integration test classes (classes with names that end in `IT`) that it 
-finds.
+Now, the created WAR file contains the web application, 
+and development mode can run any integration test classes that it finds.
+Integration test classes are classes with names that end in `IT`.
 
 The directory structure of the project should now look like this:
 
@@ -333,9 +317,10 @@ The directory structure of the project should now look like this:
 // Running the tests
 // =================================================================================================
 
-=== Running the tests
+[role='command']
+include::{common-includes}/devmode-test.adoc[]
 
-Since you started Open Liberty in development mode at the start of the guide, press the `enter/return` key to run the tests. You will see the following output:
+You see the following output:
 
 [source, role="no_copy"]
 ----
@@ -350,7 +335,7 @@ Results :
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-To see whether the test detects a failure, change the response string in the servlet 
+To see whether the test detects a failure, change the [hotspot=responseString file=0]`response string` in the servlet 
 [hotspot]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
 the string that the test is looking for. Then re-run the tests and check that the 
 test fails.
@@ -361,8 +346,8 @@ HelloServlet.java
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
 
-When you are done checking out the service, exit development mode by pressing `CTRL+C` in the shell session
-where you ran the server, or by typing `q` and then pressing the `enter/return` key.
+[role='command']
+include::{common-includes}/devmode-quit.adoc[]
 
 == Great work! You're done!
 
