@@ -18,8 +18,8 @@
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
-:page-seo-title: Build and test a web application with Maven and Open Liberty
-:page-seo-description: A tutorial on how to build and test a simple web application using Maven and Open Liberty
+:page-seo-title: Building and testing a Java web application with Maven and Open Liberty
+:page-seo-description: A getting started tutorial and an example on how to build and test a simple Java or Jakarta EE web application using a Maven Project Object Model (POM) file. 
 :guide-author: Open Liberty
 = Building a web application with Maven
 
