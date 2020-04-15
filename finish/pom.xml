@@ -27,7 +27,7 @@
         <!-- end::java-version[] -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <!-- Plugin versions -->
-        <version.liberty-maven-plugin>3.1</version.liberty-maven-plugin>
+        <version.liberty-maven-plugin>3.2</version.liberty-maven-plugin>
         <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
         <version.maven-war-plugin>3.2.3</version.maven-war-plugin>
         <!-- Liberty configuration -->
@@ -55,8 +55,8 @@
         <!-- tag::junit[] -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.5.2</version>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.6.2</version>
             <!-- tag::test2[] -->
             <scope>test</scope>
             <!-- end::test2[] -->
