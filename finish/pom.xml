@@ -14,7 +14,7 @@
     <packaging>war</packaging>
     <!-- end::packaging[] -->
     <version>1.0-SNAPSHOT</version>
-    
+
     <!-- tag::properties[] -->
     <properties>
         <!-- tag::encoding[] -->
