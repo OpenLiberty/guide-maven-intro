@@ -14,7 +14,7 @@
     <packaging>war</packaging>
     <!-- end::packaging[] -->
     <version>1.0-SNAPSHOT</version>
-    
+
     <!-- tag::properties[] -->
     <properties>
         <!-- tag::encoding[] -->
@@ -71,23 +71,6 @@
             <!-- end::test2[] -->
         </dependency>
         <!-- end::junit[] -->
-        <!-- Support for JDK 9 and above -->
-        <!-- tag::javax-servlet-api[] -->
-        <dependency>
-            <!-- tag::groupID-servlet-api[] -->
-            <groupId>javax.servlet</groupId>
-            <!-- end::groupID-servlet-api[] -->
-            <!-- tag::artifactID-servlet-api[] -->
-            <artifactId>javax.servlet-api</artifactId>
-            <!-- end::artifactID-servlet-api[] -->
-            <!-- tag::version-servlet-api[] -->
-            <version>4.0.1</version>
-            <!-- end::version-servlet-api[] -->
-            <!-- tag::scope-servlet-api[] -->
-            <scope>provided</scope>
-            <!-- end::scope-servlet-api[] -->
-        </dependency>
-        <!-- end::javax-servlet-api[] -->
     </dependencies>
     <!-- end::dependencies[] -->
 
