@@ -351,7 +351,14 @@ include::{common-includes}/devmode-quit.adoc[]
 
 == Maven vs Gradle
 
-Gradle is a build tool similar to Maven. A key difference between the two are that Gradle build files use a programming language called http://groovy-lang.org/[Groovy], and Maven uses XML. As a result, Gradle gives you the ability to add custom logic directly into your build without the use of plugins. There are arguments to be made for and against being allowed to do this, but it is an important difference to keep in mind when evaluating your options. Writing code in your build files is seen by some as a practice that can become difficult to maintain as a project grows, others like to have that flexibility. Additionally, Gradle makes some https://gradle.org/gradle-vs-maven-performance/[performance] optimizations such as caching builds and incremental compilation. Ultimately, both build tools are used to achieve the same goals, they will download dependencies from Maven Central and build your project. You have to decide for yourself which tool will make things easier for your team.
+Gradle is a build tool similar to Maven. 
+A key difference between the two are that Gradle build files use a programming language called http://groovy-lang.org/[Groovy^], and Maven uses XML. 
+As a result, Gradle gives you the ability to add custom logic directly into your build without the use of plugins. 
+There are arguments to be made for and against being allowed to do this, but it is an important difference to keep in mind when evaluating your options. 
+Writing code in your build files is seen by some as a practice that can become difficult to maintain as a project grows, others like to have that flexibility. 
+Additionally, Gradle makes some https://gradle.org/gradle-vs-maven-performance/[performance^] optimizations such as caching builds and incremental compilation. 
+Ultimately, both build tools are used to achieve the same goals, they will download dependencies from Maven Central and build your project. 
+You have to decide for yourself which tool will make things easier for your team.
 
 
 == Great work! You're done!
