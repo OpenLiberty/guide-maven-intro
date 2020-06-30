@@ -14,7 +14,7 @@
 :page-essential: true
 :page-essential-order: 3
 :page-description: Learn how to build and test a simple web application using Maven and Open Liberty
-:page-related-guides: ['maven-multimodules']
+:page-related-guides: ['maven-multimodules', gradle-intro]
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
