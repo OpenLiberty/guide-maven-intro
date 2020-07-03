@@ -351,21 +351,35 @@ include::{common-includes}/devmode-quit.adoc[]
 
 == Maven vs Gradle
 
-Gradle is a build tool similar to Maven. 
-A key difference between the two are that Gradle build files use a programming language called http://groovy-lang.org/[Groovy^], and Maven uses XML. 
-As a result, Gradle gives you the ability to add custom logic directly into your build without the use of plugins. 
-There are arguments to be made for and against being allowed to do this, but it is an important difference to keep in mind when evaluating your options. 
-Writing code in your build files is seen by some as a practice that can become difficult to maintain as a project grows, others like to have that flexibility. 
-Additionally, Gradle makes some https://gradle.org/gradle-vs-maven-performance/[performance^] optimizations such as caching builds and incremental compilation. 
-Ultimately, both build tools are used to achieve the same goals, they will download dependencies from Maven Central and build your project. 
-You have to decide for yourself which tool will make things easier for your team.
+Gradle is another build tool similar to Maven. However, Gradle has a few key differences from Maven.
 
+[cols="2*", options="header"] 
+|===
+| Maven 
+| Gradle
+
+| Builds defined using `.xml` files
+| Builds defined using http://groovy-lang.org/[Groovy^]
+
+| Builds in fixed linear phases
+| Builds with graph of task dependencies
+
+| Customize builds using plugins
+| Customize builds using code
+
+| Mandatory Java compilation
+| Avoids Java compilation
+
+|===
+
+Benefits of Maven over Gradle include a greater variety of functions and support available through its larger plugin library. 
+Maven's integration with IDEs and other tools is also more developed than Gradle's.
+
+Ultimately, both build tools accomplish the same goals. 
+You will have to decide which is more appropriate for your team and project. 
 
 == Great work! You're done!
 
 You built and tested a web application project with an Open Liberty server using Maven.
-
-
-
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
