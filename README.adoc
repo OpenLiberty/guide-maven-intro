@@ -40,16 +40,14 @@ Open Liberty. If you run the application, Maven creates an Open Liberty server a
 the application on it. The application displays a simple web page with a link that, when 
 clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
-One benefit of using Maven is that, once you have defined the details of the project and 
-any dependencies it has, Maven automatically handles downloading and installing any and 
-all of the dependencies.
+One beneift of using build tools is that after you define the details of the project and any dependencies it has, the build tool automatically downloads and installs the dependencies. 
+Build tools let you run repeatable, automated tests on the application.
+This is better than manually running tests because you can easily rerun the same tests each time the application is built.
+If the tests don't pass after you've made a change, the build fails so you know you need to fix your code.
 
-Another benefit of using Maven is that it can run automated tests on the application after 
-building it. You could, of course, test your application manually by starting a server 
-and pointing a web browser at the application URL. Automated tests are a much better 
-approach though because Maven can easily re-run the same tests each time it builds the 
-application. If the tests don't pass after you've made a change to the application, the 
-build fails so you know that you need to fix your code.
+Maven's benefits are its greater integration with IDEs. 
+Maven's plugin library also offers a great variety of ways to customize your projects.
+The plugin library also helps to provide easier support for whatever customizations you're making to your project.
 
 You will create a Maven build definition file (`pom.xml`) for the web application project 
 and use it to build the web application. You will then create a simple, automated test 
