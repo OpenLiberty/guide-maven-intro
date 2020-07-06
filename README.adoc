@@ -349,35 +349,6 @@ include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 [role='command']
 include::{common-includes}/devmode-quit.adoc[]
 
-== Maven vs Gradle
-
-Gradle is another build tool similar to Maven. However, Gradle has a few key differences from Maven.
-
-[cols="2*", options="header"] 
-|===
-| Maven 
-| Gradle
-
-| Builds defined using `.xml` files
-| Builds defined using http://groovy-lang.org/[Groovy^]
-
-| Builds in fixed linear phases
-| Builds with graph of task dependencies
-
-| Customize builds using plugins
-| Customize builds using code
-
-| Mandatory Java compilation
-| Avoids Java compilation
-
-|===
-
-Benefits of Maven over Gradle include a greater variety of functions and support available through its larger plugin library. 
-Maven's integration with IDEs and other tools is also more developed than Gradle's.
-
-Ultimately, both build tools accomplish the same goals. 
-You will have to decide which is more appropriate for your team and project. 
-
 == Great work! You're done!
 
 You built and tested a web application project with an Open Liberty server using Maven.
