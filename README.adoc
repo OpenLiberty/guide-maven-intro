@@ -44,7 +44,7 @@ Maven has some differences and benefits over another build tool called Gradle.
 Maven defines its builds using `.xml` files in a hierarchical dependency tree. 
 As an older tool Maven also has greater integrations with IDEs. 
 Maven also has an extensive plugin library which offers a variety of ways to quickly customize your build.
-This make Maven a good choice for smaller, quicker projects. 
+This makes Maven a good choice for smaller, quicker projects. 
 
 You will create a Maven build definition file (`pom.xml`) for the web application project 
 and use it to build the web application. You will then create a simple, automated test 
