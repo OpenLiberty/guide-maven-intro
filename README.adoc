@@ -14,7 +14,7 @@
 :page-essential: true
 :page-essential-order: 3
 :page-description: Learn how to build and test a simple web application using Maven and Open Liberty
-:page-related-guides: ['maven-multimodules']
+:page-related-guides: ['maven-multimodules', 'gradle-intro']
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
@@ -40,16 +40,11 @@ Open Liberty. If you run the application, Maven creates an Open Liberty server a
 the application on it. The application displays a simple web page with a link that, when 
 clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
-One benefit of using Maven is that, once you have defined the details of the project and 
-any dependencies it has, Maven automatically handles downloading and installing any and 
-all of the dependencies.
-
-Another benefit of using Maven is that it can run automated tests on the application after 
-building it. You could, of course, test your application manually by starting a server 
-and pointing a web browser at the application URL. Automated tests are a much better 
-approach though because Maven can easily re-run the same tests each time it builds the 
-application. If the tests don't pass after you've made a change, the 
-build will fail, indicating that you need to fix your code.
+Maven has some differences and benefits over another build tool called Gradle. 
+Maven defines its builds using `.xml` files in a hierarchical dependency tree. 
+As an older tool Maven also has greater integrations with IDEs. 
+Maven also has an extensive plugin library which offers a variety of ways to quickly customize your build.
+This makes Maven a good choice for smaller, quicker projects. 
 
 You will create a Maven build definition file called a `pom.xml` file, which stands for 
 project object model, and use it to build your web application. You will then create a simple, 
@@ -351,8 +346,5 @@ include::{common-includes}/devmode-quit.adoc[]
 == Great work! You're done!
 
 You built and tested a web application project with an Open Liberty server using Maven.
-
-
-
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
