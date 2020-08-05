@@ -40,14 +40,14 @@ Open Liberty. If you run the application, Maven creates an Open Liberty server a
 the application on it. The application displays a simple web page with a link that, when 
 clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
-Using a build tool like Maven is beneficial as it handles the downloading and installation of all dependencies.
+Using a build tool like Maven is beneficial as you can define the details of the projects and its dependencies.
+The build tool will automatically handle downloading and installing any and all of the dependencies.
 Build tools also allow for defining automated tests that can be easily re-run on each build. 
 If the tests don't pass after changes are made, the build fails so you know you need to fix your code. 
 
-Maven has some differences and benefits over another build tool called Gradle. 
-Maven defines its builds using `.xml` files in a hierarchical dependency tree. 
-As an older tool Maven also has greater integrations with IDEs. 
-Maven also has an extensive plugin library which offers a variety of ways to quickly customize your build.
+Choosing a build tool often comes down to personal preference, but Maven has some benefits.  
+As a mature build tool, Maven has greater integrations with IDEs. 
+Maven also has an extensive plugin library which offers a variety of ways to quickly customize your build. 
 This makes Maven a good choice for smaller, quicker projects. 
 
 You will create a Maven build definition file called a `pom.xml` file, which stands for 
