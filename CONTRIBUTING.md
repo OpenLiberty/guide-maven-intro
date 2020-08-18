@@ -34,7 +34,11 @@ If reviewers agree with your change, your change will be merged to the `master` 
 
 If you are contributing trivial changes such as typos, redundant spaces, minor formatting and spelling errors, you must follow the above instructions under [Text or Content Contributions](./CONTRIBUTING.md#text-or-content-contributions).
 
-If you are contributing code changes via a pull request for anything except trivial changes, you must signoff on the [Individual Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-individual.pdf) If you are doing this as part of your job you may also wish to get your employer to sign a CCLA [Corporate Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-corporate.pdf). Instructions how to sign and submit these agreements are located at the top of each document. 
+If you are contributing code changes via a pull request for non-trivial changes, you must sign off on the [Individual Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-individual.pdf).
+
+If you are doing this as part of your job you may also wish to get your employer to sign a CCLA [Corporate Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-corporate.pdf).
+
+Instructions how to sign and submit these agreements are located at the top of each document. 
 
 After we obtain the signed CLA, you are welcome to open a pull request against the `qa` branch, and the team will be notified for review. We ask you follow these steps through the submission process.
 
