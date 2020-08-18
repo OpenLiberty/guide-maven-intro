@@ -12,7 +12,7 @@ A good bug report is one that makes it easy for everyone to understand what you 
 
 ## Contributions 
 
-Contributing to the Open Liberty guides is simple. All you need to do is create your own branch to include your contribution(s). If you want to make updates to existing guides, create a new branch and open a pull request to the `qa` (quality assurance) branch.
+Contributing to an Open Liberty guide is simple. All you need to do is create your own branch to include your contribution and open a pull request to the `qa` (quality assurance) branch.
 
 ### Text or Content Contributions
 
