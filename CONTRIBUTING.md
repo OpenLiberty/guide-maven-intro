@@ -43,7 +43,7 @@ After we obtain the signed CLA, you are welcome to open a pull request against t
 3. The team will be notified and will review your change. 
     - If there are further changes to be made, the team will request changes on the pull request. 
     - If the team does not agree with the change, the PR will be closed with an explanation and suggestion for follow-up.
-4. If the team approves, a full OL build will be invoked.
+4. If the team approves, a full Open Liberty site build will be invoked.
 5. Based on the results of the build, and if further review is needed, more discussion will occur.
 
 ## Questions and Concerns
