@@ -39,12 +39,14 @@ If you are contributing code changes via a pull request for anything except triv
 After we obtain the signed CLA, you are welcome to open a pull request against the `qa` branch, and the team will be notified for review. We ask you follow these steps through the submission process.
 
 1. Open a pull request against the `qa` branch.
-2. A "CLA signed" label will be added.
-3. The team will be notified and will review your change. 
+2. A "CLA signed" label will be manually added by the team.
+3. The team will be notified and will review your change(s). 
     - If there are further changes to be made, the team will request changes on the pull request. 
     - If the team does not agree with the change, the PR will be closed with an explanation and suggestion for follow-up.
-4. If the team approves, a full Open Liberty site build will be invoked.
-5. Based on the results of the build, and if further review is needed, more discussion will occur.
+4. If the team approves, a full Open Liberty site build will be run.
+5. Based on the results of the build:
+    - If further review is needed, we will let you know about a pending review from our team and discuss any necessary improvements that need to be made to your change(s). 
+    - If everything is successful, the team will merge your PR.
 
 ## Questions and Concerns
 
