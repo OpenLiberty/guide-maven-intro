@@ -6,7 +6,7 @@ There are multiple ways to contribute: report bugs, fix bugs, contribute code, i
 
 ## Raising Issues
 
-Please raise any bug reports on the Open Liberty guide's repository: https://github.com/OpenLiberty/[guide-name]/issues, where `[guide-name]` is the repository name of the guide . For new topics, large updates to existing guides, or general suggestions and ideas, report your issue on the [Open Liberty common guides repository](https://github.com/OpenLiberty/guides-common/issues). Be sure to search the list to see if your issue has already been raised.
+Please raise any bug reports on the Open Liberty guide's repository: https://github.com/OpenLiberty/../../issues, where `[guide-name]`. For new topics, large updates to existing guides, or general suggestions and ideas, report your issue on the [Open Liberty common guides repository](https://github.com/OpenLiberty/guides-common/issues). Be sure to search the list to see if your issue has already been raised.
 
 A good bug report is one that makes it easy for everyone to understand what you were trying to do and what went wrong. Provide as much context as possible so we can try to recreate the issue.
 
@@ -24,7 +24,11 @@ Signed-off-by: Jane Williams <jane.williams@gmail.com>
 
 The sign-off is just a line at the end of the commit message that certifies that you wrote it or otherwise have the right to pass it on as an open source patch.
 
-Use your real name when you sign. We can't accept pseudonyms or anonymous contributions. To open a pull request to the `qa` branch, follow the official [git documentation](https://git-scm.com/docs/git-request-pull). If reviewers agree with your change, your change will be merged to the `master` branch for publishing.
+Use your real name when you sign. We can't accept pseudonyms or anonymous contributions. 
+
+Many Git UI tools have support for adding the `Signed-off-by` line to the end of your commit message. This line can be automatically added by the `git commit` command by using the `-s` option.
+
+If reviewers agree with your change, your change will be merged to the `master` branch for publishing.
 
 ### Code Contributions
 
@@ -34,11 +38,13 @@ If you are contributing code changes via a pull request for anything except triv
 
 After we obtain the signed CLA, you are welcome to open a pull request against the `qa` branch, and the team will be notified for review. We ask you follow these steps through the submission process.
 
-1. Open PR's against the `qa` branch, as we ensure changes pass our series of verification buckets before pushing to master.
+1. Open a pull request against the `qa` branch.
 2. A "CLA signed" label will be added.
-3. A team of "reviewers" will be notified and will review your change. If approved, a full integration build will be invoked.
-4. Based on the results of the build, and if further review is needed, more discussion will occur.
-5. If the reviewer agrees with the change, the PR will be merged to `qa` branch; otherwise the PR will be closed with an explanation and suggestion for follow-up.
+3. The team will be notified and will review your change. 
+    - If there are further changes to be made, the team will request changes on the pull request. 
+    - If the team does not agree with the change, the PR will be closed with an explanation and suggestion for follow-up.
+4. If the team approves, a full OL build will be invoked.
+5. Based on the results of the build, and if further review is needed, more discussion will occur.
 
 ## Questions and Concerns
 
