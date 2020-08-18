@@ -16,7 +16,9 @@ Contributing to an Open Liberty guide is simple. All you need to do is create yo
 
 ### Text or Content Contributions
 
-If you are contributing text of content changes via a pull request and you certify the [Developer Certificate of Origin (DCO)](https://developercertificate.org), add a line to the end of the Git commit message to sign your work:
+If you are contributing text of content changes via a pull request, all you need is to certify the originality of the work via a [Developer Certificate of Origin (DCO)](https://developercertificate.org).
+
+Add a line to the end of the Git commit message to sign your work:
 
 ```
 Signed-off-by: Jane Williams <jane.williams@gmail.com>
