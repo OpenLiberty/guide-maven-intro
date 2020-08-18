@@ -34,7 +34,7 @@ If reviewers agree with your change, your change will be merged to the `master` 
 
 ### Code Contributions
 
-If you are contributing trivial changes such as typos, redundant spaces, minor formatting and spelling errors, you must follow the above instructions under [Text or Content Contributions](./CONTRIBUTING.md#text-or-content-contributions).
+If you are contributing trivial code changes such as typos, redundant spaces, minor formatting and spelling errors, follow the same instructions under [Text or Content Contributions](./CONTRIBUTING.md#text-or-content-contributions).
 
 If you are contributing code changes via a pull request for non-trivial changes, you must sign off on the [Individual Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-individual.pdf).
 
