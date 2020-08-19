@@ -1,22 +1,22 @@
-# Contributing to Open Liberty Guides
+# Contributing to Open Liberty guides
 
 Anyone can contribute to the Open Liberty guides and we welcome your contributions!
 
 There are multiple ways to contribute: report bugs, fix bugs, contribute code, improve upon documentation, etc. 
 
-## Raising Issues
+## Raising issues
 
-Please raise any bug reports on this [guide repository](../../issues). For new topics, large updates to existing guides, or general suggestions and ideas, report your issue on the [Open Liberty common guides repository](https://github.com/OpenLiberty/guides-common/issues). Be sure to search the list to see if your issue has already been raised.
+Please raise any bug reports in this [guide repository](../../issues). For new topics, large updates to existing guides, or general suggestions and ideas, report your issue in the [Open Liberty common guides repository](https://github.com/OpenLiberty/guides-common/issues). Be sure to search the list of open issues to see if your issue has already been raised.
 
-A good bug report is one that makes it easy for everyone to understand what you were trying to do and what went wrong. Provide as much context as possible so we can try to recreate the issue.
+A good bug report makes it easy for everyone to understand what you were trying to do and what went wrong. Provide as much context as possible so we can try to recreate the issue.
 
 ## Contributions 
 
 Contributing to an Open Liberty guide is simple. All you need to do is create your own branch to include your contribution and open a pull request to the `qa` (quality assurance) branch.
 
-### Text or Content Contributions
+### Text or content contributions
 
-If you are contributing text of content changes via a pull request, all you need is to certify the originality of the work via a [Developer Certificate of Origin (DCO)](https://developercertificate.org).
+If you are contributing text or content changes via a pull request, you need to certify that the originality of the work follows the [Developer Certificate of Origin (DCO)](https://developercertificate.org).
 
 Add a line to the end of the Git commit message to sign your work:
 
@@ -32,18 +32,18 @@ Many Git UI tools have support for adding the `Signed-off-by` line to the end of
 
 If reviewers agree with your change, your change will be merged to the `master` branch for publishing.
 
-### Code Contributions
+### Code contributions
 
-If you are contributing trivial code changes such as typos, redundant spaces, minor formatting and spelling errors, follow the same instructions under [Text or Content Contributions](./CONTRIBUTING.md#text-or-content-contributions).
+If you are contributing trivial code changes such as typos, redundant spaces, or minor formatting and spelling errors, follow the instructions under [Text or content contributions](./CONTRIBUTING.md#text-or-content-contributions).
 
 If you are contributing code changes via a pull request for non-trivial changes, you must sign off on the [Individual Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-individual.pdf). An example of a non-trivial change could be adding a new
 microservice to the backend application of the guide. 
 
-If you are doing this as part of your job you may also wish to get your employer to sign a CCLA [Corporate Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-corporate.pdf).
+If you are contributing changes as part of your job, you may also wish to have your employer sign a [Corporate Contributor License Agreement](https://github.com/OpenLiberty/open-liberty/blob/master/cla/open-liberty-cla-corporate.pdf).
 
-Instructions how to sign and submit these agreements are located at the top of each document. 
+Instructions for how to sign and submit these agreements are located at the top of each document. 
 
-After we obtain the signed CLA, you are welcome to open a pull request against the `qa` branch, and the team will be notified for review. We ask you follow these steps through the submission process.
+After we obtain the signed CLA, you are welcome to open a pull request against the `qa` branch, and the team will be notified for review. We ask you follow these steps through the submission process:
 
 1. Open a pull request against the `qa` branch.
 2. A "CLA signed" label will be manually added by the team.
@@ -55,6 +55,6 @@ After we obtain the signed CLA, you are welcome to open a pull request against t
     - If further review is needed, we will let you know about a pending review from our team and discuss any necessary improvements that need to be made to your change(s). 
     - If everything is successful, the team will merge your PR.
 
-## Questions and Concerns
+## Questions and concerns
 
-If you have any questions or concerns about the guides or about Open Liberty, you can visit [Gitter for Open Liberty](https://gitter.im/OpenLiberty/) and post your questions in the relevant rooms. You can also join the Open Liberty group on [Group.io](https://groups.io/g/openliberty) to discuss any issues you have.
+If you have any questions or concerns about the guides or about Open Liberty, you can visit [Gitter for Open Liberty](https://gitter.im/OpenLiberty/) and post your questions in the relevant rooms. You can also join the Open Liberty group on [Groups.io](https://groups.io/g/openliberty) to discuss any issues you have.
