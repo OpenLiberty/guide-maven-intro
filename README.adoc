@@ -96,8 +96,27 @@ include::{common-includes}/gitclone.adoc[]
 // Try what you'll build
 // =================================================================================================
 
+=== Try what you'll build
+
+The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
+
+// tag::runCommand[]
+To try out the application, first go to the `finish` directory and run the following
+Maven goal to build the application and deploy it to Open Liberty:
+
 [role='command']
-include::{common-includes}/twyb-intro.adoc[]
+```
+mvn liberty:run
+```
+
+After you see the following message, your application server is ready.
+
+[role="no_copy"]
+----
+The guideServer server is ready to run a smarter planet.
+----
+// end::runCommand[]
+
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 
@@ -209,7 +228,7 @@ In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in secti
 [hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
 For example, the
 [hotspot=serverName file=0]`<serverName/>` field defines the name of the Open Liberty server that Maven creates.
-You specified `defaultServer` as the value for [hotspot=serverName file=0]`<serverName/>`.
+You specified `guideServer` as the value for [hotspot=serverName file=0]`<serverName/>`.
 If the [hotspot=serverName file=0]`<serverName/>` field is not included, the default value is `defaultServer`.
 
 server.xml

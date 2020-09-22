@@ -91,7 +91,7 @@
                 <!-- tag::configuration[] -->
                 <configuration>
                     <!-- tag::serverName[] -->
-                    <serverName>defaultServer</serverName>
+                    <serverName>guideServer</serverName>
                     <!-- end::serverName[] -->
                 </configuration>
                 <!-- end::configuration[] -->
