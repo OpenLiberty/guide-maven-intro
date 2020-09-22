@@ -209,7 +209,7 @@ In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in secti
 [hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
 For example, the
 [hotspot=serverName file=0]`<serverName/>` field defines the name of the Open Liberty server that Maven creates.
-You specified `guideServer` as the value for [hotspot=serverName file=0]`<serverName/>`.
+You specified `defaultServer` as the value for [hotspot=serverName file=0]`<serverName/>`.
 If the [hotspot=serverName file=0]`<serverName/>` field is not included, the default value is `defaultServer`.
 
 server.xml
