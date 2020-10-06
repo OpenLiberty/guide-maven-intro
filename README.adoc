@@ -101,11 +101,12 @@ include::{common-includes}/gitclone.adoc[]
 The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
 
 // tag::runCommand[]
-To try out the application, first go to the `finish` directory and run the following
-Maven goal to build the application and deploy it to Open Liberty:
+To try out the application, first go to the `finish` directory and run Maven with the
+`liberty:run` goal to build the application and deploy it to Open Liberty:
 
 [role='command']
 ```
+cd finish
 mvn liberty:run
 ```
 
