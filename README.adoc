@@ -95,8 +95,28 @@ include::{common-includes}/gitclone.adoc[]
 // Try what you'll build
 // =================================================================================================
 
+=== Try what you'll build
+
+The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
+
+// tag::runCommand[]
+To try out the application, first go to the `finish` directory and run Maven with the
+`liberty:run` goal to build the application and deploy it to Open Liberty:
+
 [role='command']
-include::{common-includes}/twyb-intro.adoc[]
+```
+cd finish
+mvn liberty:run
+```
+
+After you see the following message, your application server is ready.
+
+[role="no_copy"]
+----
+The guideServer server is ready to run a smarter planet.
+----
+// end::runCommand[]
+
 
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
 
