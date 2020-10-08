@@ -132,7 +132,7 @@ include::{common-includes}/twyb-end.adoc[]
 == Creating a simple application
 
 The simple web application that you will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. 
-This application uses a standard Maven directory structure, eliminating the need to customize the pom.xml file so that Maven understands your project layout.
+This application uses a standard Maven directory structure, eliminating the need to customize the `pom.xml` file so that Maven understands your project layout.
 
 All the application source code, including the Open Liberty server configuration 
 (`server.xml`), is in the `src/main/liberty/config` directory:
