@@ -46,7 +46,7 @@ You could, of course, test your application manually by starting a server and po
 Automated tests are a much better approach because you can easily rerun the same tests each time the application is built. 
 If the tests don't pass after you've made a change to the application, the build fails, and you know that you introduced a regression that requires a fix to your code.
 
-Choosing a build tool often comes down to personal preference, but you might choose to use Maven for several reasons. 
+Choosing a build tool often comes down to personal or organizational preference, but you might choose to use Maven for several reasons. 
 Maven defines its builds using XML, which is probably familiar to you already. 
 As a mature, commonly used build tool, Maven probably integrates with whichever IDE you prefer to use. 
 Maven also has an extensive plugin library which offers a variety of ways to quickly customize your build. 
