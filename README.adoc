@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2019 IBM Corporation and others.
+// Copyright (c) 2017, 2020 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -14,7 +14,7 @@
 :page-essential: true
 :page-essential-order: 3
 :page-description: Learn how to build and test a simple web application using Maven and Open Liberty
-:page-related-guides: ['maven-multimodules']
+:page-related-guides: ['maven-multimodules', 'gradle-intro']
 :page-tags: ['Maven', 'Getting Started']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
@@ -40,20 +40,21 @@ Open Liberty. If you run the application, Maven creates an Open Liberty server a
 the application on it. The application displays a simple web page with a link that, when 
 clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
-One benefit of using Maven is that, once you have defined the details of the project and 
-any dependencies it has, Maven automatically handles downloading and installing any and 
-all of the dependencies.
+One benefit of using a build tool like Maven is that you can define the details of the project and any dependencies it has, and Maven automatically downloads and installs the dependencies. 
+Another benefit of using Maven is that it can run repeatable, automated tests on the application. 
+You can, of course, test your application manually by starting a server and pointing a web browser at the application URL.
+However, automated tests are a much better approach because you can easily rerun the same tests each time the application is built. 
+If the tests don't pass after you change the application, the build fails, and you know that you introduced a regression that requires a fix to your code. 
 
-Another benefit of using Maven is that it can run automated tests on the application after 
-building it. You could, of course, test your application manually by starting a server 
-and pointing a web browser at the application URL. Automated tests are a much better 
-approach though because Maven can easily re-run the same tests each time it builds the 
-application. If the tests don't pass after you've made a change to the application, the 
-build fails so you know that you need to fix your code.
+Choosing a build tool often comes down to personal or organizational preference, but you might choose to use Maven for several reasons. 
+Maven defines its builds by using XML, which is probably familiar to you already. 
+As a mature, commonly used build tool, Maven probably integrates with whichever IDE you prefer to use. 
+Maven also has an extensive plug-in library that offers various ways to quickly customize your build. 
+Maven can be a good choice if your team is already familiar with it. 
 
-You will create a Maven build definition file (`pom.xml`) for the web application project 
-and use it to build the web application. You will then create a simple, automated test 
-and configure Maven to run it after building the application.
+You will create a Maven build definition file that's called a `pom.xml` file, which stands for 
+Project Object Model, and use it to build your web application. You will then create a simple, 
+automated test and configure Maven to automatically run the test.
 
 // =================================================================================================
 // Installing Maven
@@ -130,10 +131,8 @@ include::{common-includes}/twyb-end.adoc[]
 
 == Creating a simple application
 
-The simple web application that you will build using Maven and Open Liberty is provided 
-for you in the `start` directory so that you can focus on learning about Maven. The application 
-uses the standard Maven directory structure. Using the standard directory structure saves 
-you from customizing the `pom.xml` file later. 
+The simple web application that you will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. 
+This application uses a standard Maven directory structure, eliminating the need to customize the `pom.xml` file so that Maven understands your project layout.
 
 All the application source code, including the Open Liberty server configuration 
 (`server.xml`), is in the `src/main/liberty/config` directory:
@@ -156,7 +155,7 @@ All the application source code, including the Open Liberty server configuration
 == Creating the project POM file
 Navigate to the `start` directory to begin.
 
-Before you can build the project, you define the Maven Project Object Model (POM) file, the `pom.xml`. 
+Before you can build the project, define the Maven Project Object Model (POM) file, the `pom.xml`. 
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -261,7 +260,6 @@ running application server (unit tests), or you can write them to call the appli
 server directly (integration tests). In this example you will create a simple integration 
 test that checks that the web page opens and that the correct response is returned when 
 the link is clicked.
-
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -372,8 +370,5 @@ include::{common-includes}/devmode-quit.adoc[]
 == Great work! You're done!
 
 You built and tested a web application project with an Open Liberty server using Maven.
-
-
-
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
