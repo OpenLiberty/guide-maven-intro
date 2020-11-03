@@ -22,6 +22,7 @@ jobs:
         java-version: 1.8
     - run: unset _JAVA_OPTIONS
     - run: cd finish
+    - run: ls
     - run: chmod +x ../scripts/travisTest.sh
     - name: Run Travis tests
       run: ../scripts/travisTest.sh
