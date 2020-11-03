@@ -13,6 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: finish
 
     steps:
     - uses: actions/checkout@v2
@@ -21,8 +24,8 @@ jobs:
       with:
         java-version: 1.8
     - run: unset _JAVA_OPTIONS
-    - run: cd finish
-    - run: ls
-    - run: chmod +x ../scripts/travisTest.sh
-    - name: Run Travis tests
-      run: ../scripts/travisTest.sh
+    - name: Run tests
+      run: mvn -q clean package liberty:create liberty:install-feature liberty:deploy
+    - run: mvn liberty:start
+    - run: mvn failsafe:integration-test liberty:stop
+    - run: mvn failsafe:verify
