@@ -22,7 +22,7 @@ jobs:
         java-version: 1.8
     - run: unset _JAVA_OPTIONS
     - name: Run tests
-      run: test_result=$(../scripts/travisTest.sh);
+      run: ../scripts/travisTest.sh
     - name: Post tests
       if: always()
       run: |
@@ -36,7 +36,7 @@ jobs:
              "\033[1;34m Open Liberty release:\033[0m\033[1;36m $release \033[0m \n"\
              "\033[1;34m Open Liberty build number:\033[0m\033[1;36m $number \033[0m \n"\
              "\033[1;34m Java version:\033[0m\033[1;36m $jv \033[0m \n"
-    - name: Archive logs if failed
+    - name: Archive server logs if failed
       if: failure()
       uses: actions/upload-artifact@v2
       with:
