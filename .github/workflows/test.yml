@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: server-logs
-        path: target/liberty/wlp/usr/servers/defaultServer/logs
+        path: target/liberty/wlp/usr/servers/guideServer/logs
     - name: Post tests
       if: always()
       run: |
