@@ -4,10 +4,8 @@
 name: Test Application
 
 on:
-  push:
-    branches: [ master, qa ]
   pull_request:
-    branches: [ master, qa ]
+    branches: [ qa ]
 
 jobs:
   build:
