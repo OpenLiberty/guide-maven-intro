@@ -5,8 +5,6 @@
 name: Test Application
 
 on:
-  push:
-    branches: [ qa ]
   pull_request:
     branches: [ qa ]
 
@@ -28,16 +26,8 @@ jobs:
     - name: Post tests
       if: always()
       run: |
-           logsPath=$(find . -name "console.log" | sed "s/console.log//g");
-           build=$(grep "Open Liberty" $logsPath/console.log | cut -d" " -f5 | cut -d")" -f1 );
-           release=$( echo "$build" | cut -d'/' -f1); 
-           number=$(echo "$build" | cut -d'/' -f2); 
-           ol_jv=$(grep -i "version" $logsPath/console.log);
-           jv=$(printf '%s\n' "${ol_jv//$' on '/$'\n'}" | sed '2q;d'); 
-           echo -e "\n"\
-             "\033[1;34m Open Liberty release:\033[0m\033[1;36m $release \033[0m \n"\
-             "\033[1;34m Open Liberty build number:\033[0m\033[1;36m $number \033[0m \n"\
-             "\033[1;34m Java version:\033[0m\033[1;36m $jv \033[0m \n"
+           logsPath=$(find . -name "console.log");
+           cat $logsPath | grep Launching
     - name: Archive server logs if failed
       if: failure()
       uses: actions/upload-artifact@v2
