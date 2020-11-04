@@ -1,0 +1,46 @@
+# This workflow will test the guide application.
+# For more information about building and testing Java,
+# see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Test Application
+
+on:
+  push:
+    branches: [ qa ]
+  pull_request:
+    branches: [ qa ]
+
+jobs:
+  java8build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: finish
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - run: unset _JAVA_OPTIONS
+    - name: Run tests
+      run: ../scripts/travisTest.sh
+    - name: Post tests
+      if: always()
+      run: |
+           logsPath=$(find . -name "console.log" | sed "s/console.log//g");
+           build=$(grep "Open Liberty" $logsPath/console.log | cut -d" " -f5 | cut -d")" -f1 );
+           release=$( echo "$build" | cut -d'/' -f1); 
+           number=$(echo "$build" | cut -d'/' -f2); 
+           ol_jv=$(grep -i "version" $logsPath/console.log);
+           jv=$(printf '%s\n' "${ol_jv//$' on '/$'\n'}" | sed '2q;d'); 
+           echo -e "\n"\
+             "\033[1;34m Open Liberty release:\033[0m\033[1;36m $release \033[0m \n"\
+             "\033[1;34m Open Liberty build number:\033[0m\033[1;36m $number \033[0m \n"\
+             "\033[1;34m Java version:\033[0m\033[1;36m $jv \033[0m \n"
+    - name: Archive server logs if failed
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: server-logs
+        path: finish/target/liberty/wlp/usr/servers/guideServer/logs/
