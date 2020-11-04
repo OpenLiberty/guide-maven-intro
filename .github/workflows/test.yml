@@ -35,13 +35,10 @@ jobs:
            echo -e "\n"\
              "\033[1;34m Open Liberty release:\033[0m\033[1;36m $release \033[0m \n"\
              "\033[1;34m Open Liberty build number:\033[0m\033[1;36m $number \033[0m \n"\
-             "\033[1;34m Java version:\033[0m\033[1;36m $jv \033[0m \n"\
-             "\033[1;34m log path:\033[0m\033[1;36m $logsPath \033[0m \n"
+             "\033[1;34m Java version:\033[0m\033[1;36m $jv \033[0m \n"
     - name: Archive logs if failed
       if: failure()
       uses: actions/upload-artifact@v2
       with:
         name: server-logs
-        path: |
-              $logsPath/
-              target/liberty/wlp/usr/servers/guideServer/logs/
+        path: finish/target/liberty/wlp/usr/servers/guideServer/logs/
