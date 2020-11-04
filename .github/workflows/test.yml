@@ -36,4 +36,22 @@ jobs:
         java-version: 11
     - run: unset _JAVA_OPTIONS
     - name: Run tests
-      run: ../scripts/travisTest.sh
+      run: |
+           ../scripts/travisTest.sh
+           logsPath=$(find . -name "console.log" | sed "s/console.log//g");
+           build=$(grep "Open Liberty" $logsPath/console.log | cut -d" " -f5 | cut -d")" -f1 );
+           release=$( echo "$build" | cut -d'/' -f1); 
+           number=$(echo "$build" | cut -d'/' -f2); 
+           ol_jv=$(grep -i "version" $logsPath/console.log);
+           jv=$(printf '%s\n' "${ol_jv//$' on '/$'\n'}" | sed '2q;d'); 
+           echo -e "\n"\
+             "\033[1;34m Open Liberty release:\033[0m\033[1;36m $release \033[0m \n"\
+             "\033[1;34m Open Liberty build number:\033[0m\033[1;36m $number \033[0m \n"\
+             "\033[1;34m Java version:\033[0m\033[1;36m $jv \033[0m \n"
+           cd $logsPath;
+           repo_name=$(echo "$TRAVIS_REPO_SLUG" | sed -e "s/\//-/g"); 
+           if [[ $? == 0 ]]; then RESULT="passed"; else RESULT="failed"; fi;
+           echo -e "\033[1;34m result:\033[0m\033[1;36m $RESULT \033[0m \n"
+           serverlogsarchive="$repo_name-$TRAVIS_BUILD_NUMBER-$RESULT.zip";
+           if [[ $? == 0 ]]; then echo skipped to zip $serverlogsarchive; else zip -r "$serverlogsarchive" .; fi;
+           if [[ $? == 0 ]]; then echo skipped upload; else curl -H "$JFROG_TOKEN" -T "$serverlogsarchive" "https://na.artifactory.swg-devops.com/artifactory/hyc-openliberty-guides-files-generic-local/"; fi;
