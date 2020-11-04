@@ -37,6 +37,12 @@ jobs:
     - run: unset _JAVA_OPTIONS
     - name: Run tests
       run: test_result=$(../scripts/travisTest.sh);
+    - name: Archive logs
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: server-logs
+        path: target/liberty/wlp/usr/servers/defaultServer/logs
     - name: Post tests
       if: always()
       run: |
