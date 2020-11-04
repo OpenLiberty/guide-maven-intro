@@ -38,6 +38,7 @@ jobs:
     - name: Run tests
       run: test_result=$(../scripts/travisTest.sh);
     - name: Post tests
+      if: always()
       run: |
            logsPath=$(find . -name "console.log" | sed "s/console.log//g");
            build=$(grep "Open Liberty" $logsPath/console.log | cut -d" " -f5 | cut -d")" -f1 );
