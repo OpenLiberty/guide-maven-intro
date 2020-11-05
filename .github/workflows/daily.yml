@@ -1,0 +1,38 @@
+name: Daily Build
+
+on:
+  repository_dispatch:
+    types: [ daily-build ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk: [ 8, 11 ]
+    defaults:
+      run:
+        working-directory: finish
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.jdk }}
+    - run: unset _JAVA_OPTIONS
+    - name: Modify pom.xml
+      run: sed -i "\#<version>3.2</version>#,\#<configuration>#c<version>3.2</version><configuration><install><runtimeUrl>https:\\/\\/public.dhe.ibm.com\\/ibmdl\\/export\\/pub\\/software\\/openliberty\\/runtime\\/nightly\\/'$DEVDATE'\\/'$DEVBUILD'<\\/runtimeUrl><\\/install>"'
+    - name: Run tests
+      run: ../scripts/travisTest.sh
+    - name: Post tests
+      if: always()
+      run: |
+           logsPath=$(find . -name "console.log");
+           cat $logsPath | grep Launching
+    - name: Archive server logs if failed
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: server-logs
+        path: finish/target/liberty/wlp/usr/servers/guideServer/logs/
+    
