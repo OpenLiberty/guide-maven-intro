@@ -21,7 +21,9 @@ jobs:
         java-version: ${{ matrix.jdk }}
     - run: unset _JAVA_OPTIONS
     - name: Modify pom.xml
-      run: sed -i "\#<version>3.2</version>#,\#<configuration>#c<version>3.2</version><configuration><install><runtimeUrl>https:\\/\\/public.dhe.ibm.com\\/ibmdl\\/export\\/pub\\/software\\/openliberty\\/runtime\\/nightly\\/'${{github.event.client_payload.dev-date}}'\\/'${{github.event.client_payload.dev-build}}'<\\/runtimeUrl><\\/install>"'
+      run: |
+           sed -i "\#<version>3.2</version>#,\#<configuration>#c<version>3.2</version><configuration><install><runtimeUrl>https:\/\/public.dhe.ibm.com\/ibmdl\/export\/pub\/software\/openliberty\/runtime\/nightly\/${{github.event.client_payload.dev-date}}\/${{github.event.client_payload.dev-build}}<\/runtimeUrl><\/install>" pom.xml
+           cat pom.xml
     - name: Run tests
       run: ../scripts/travisTest.sh
     - name: Post tests
