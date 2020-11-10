@@ -1,26 +1,32 @@
-# This workflow will test the guide application.
-# For more information about building and testing Java,
-# see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: Test Application
 
 on:
   pull_request:
     branches: [ qa ]
-
+  repository_dispatch:
+    types: [ daily-build ]
+    
 jobs:
-  java8build:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk: [ 8, 11 ]
     defaults:
       run:
         working-directory: finish
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
+    - name: Set up JDK
       uses: actions/setup-java@v1
       with:
-        java-version: 1.8
+        java-version: ${{ matrix.jdk }}
     - run: unset _JAVA_OPTIONS
+    - name: Modify pom.xml
+      if: ${{ github.event_name == 'repository_dispatch'}}
+      run: |
+           sed -i "\#<version>3.2</version>#,\#<configuration>#c<version>3.2</version><configuration><install><runtimeUrl>https:\/\/public.dhe.ibm.com\/ibmdl\/export\/pub\/software\/openliberty\/runtime\/nightly\/${{github.event.client_payload.dev-date}}\/${{github.event.client_payload.dev-build}}<\/runtimeUrl><\/install>" pom.xml
+           cat pom.xml
     - name: Run tests
       run: ../scripts/travisTest.sh
     - name: Post tests
