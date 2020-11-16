@@ -7,11 +7,28 @@ on:
     types: [ daily-build ]
     
 jobs:
+  set_java:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.create-matrix.outputs.matrix }}
+    steps: 
+      - name: Add JDK 8 to Java matrix
+        run: |
+          export JDKS=8
+          echo "JDKS=$JDKS" >> $GITHUB_ENV
+      - name: Add JDK 11 to Java matrix
+        if: ${{ github.event_name == 'repository_dispatch'}}
+        run: |
+          export JDKS=$JDKS,11
+          echo "JDKS=$JDKS" >> $GITHUB_ENV
+      - name: Create JDK matrix
+        id: create-matrix
+        run: echo "::set-output name=matrix::{ \"jdk\":[$JDKS] }"
   build:
     runs-on: ubuntu-latest
+    needs: [set_java]
     strategy:
-      matrix:
-        jdk: [ 8, 11 ]
+      matrix: ${{ fromJson(needs.set_java.outputs.matrix) }}
     defaults:
       run:
         working-directory: finish
