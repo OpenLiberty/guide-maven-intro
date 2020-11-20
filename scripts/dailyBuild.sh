@@ -1,14 +1,14 @@
 #!/bin/bash
-while getopts du:dp:gt: flag
+while getopts t:d:b: flag;
 do
     case "${flag}" in
-        --date)   DATE=${OPTARG};;
-        --driver) DRIVER=${OPTARG};;
-        --build)  BUILD=${OPTARG};;
+        t) DATE="${OPTARG}";;
+        d) DRIVER="${OPTARG}";;
+        b) BUILD="${OPTARG}";;
     esac
 done
 
-sed -i "\#<artifactId>liberty-maven-plugin</artifactId>#a<configuration><install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/$DATE/$DRIVER</runtimeUrl></install></configuration>" pom.xml
+sed -i "\#<artifactId>liberty-maven-plugin</artifactId>,\#<configuration>#a<install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/"$DATE"/"$DRIVER"</runtimeUrl></install>" pom.xml
 cat pom.xml
 
 set -euxo pipefail
