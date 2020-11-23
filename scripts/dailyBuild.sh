@@ -1,5 +1,5 @@
 #!/bin/bash
-while getopts t:d:b: flag;
+while getopts t:d:b:u: flag;
 do
     case "${flag}" in
         t) DATE="${OPTARG}";;
