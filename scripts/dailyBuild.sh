@@ -5,6 +5,7 @@ do
         t) DATE="${OPTARG}";;
         d) DRIVER="${OPTARG}";;
         b) BUILD="${OPTARG}";;
+        u) DOCKER_USERNAME="${OPTARG}"
     esac
 done
 
