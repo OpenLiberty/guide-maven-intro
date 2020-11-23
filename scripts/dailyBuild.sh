@@ -1,5 +1,14 @@
 #!/bin/bash
-sed -i "\#<artifactId>liberty-maven-plugin</artifactId>,\#<configuration>#a<install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/"$DEVDATE"/"$DRIVER"</runtimeUrl></install>" pom.xml
+while getopts t:d:b: flag;
+do
+    case "${flag}" in
+        t) DATE="${OPTARG}";;
+        d) DRIVER="${OPTARG}";;
+        b) BUILD="${OPTARG}";;
+    esac
+done
+
+sed -i "\#<artifactId>liberty-maven-plugin</artifactId>,\#<configuration>#a<install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/"$DATE"/"$DRIVER"</runtimeUrl></install>" pom.xml
 cat pom.xml
 
 set -euxo pipefail
