@@ -21,7 +21,7 @@ jobs:
         java-version: ${{ matrix.jdk }}
     - run: unset _JAVA_OPTIONS
     - name: Run tests
-      run: ../scripts/travisTest.sh
+      run: ../scripts/testApp.sh
     - name: Post tests
       if: always()
       run: |
