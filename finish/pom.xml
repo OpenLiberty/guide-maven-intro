@@ -87,7 +87,7 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.2</version>
+                <version>3.2.3</version>
                 <!-- tag::configuration[] -->
                 <configuration>
                     <!-- tag::serverName[] -->
