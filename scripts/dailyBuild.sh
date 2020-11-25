@@ -9,7 +9,7 @@ do
     esac
 done
 
-sed "\#<version>3.2.3</version>#,\#<configuration>#c<version>3.2.3</version><configuration><install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/"$DATE"/"$DRIVER"</runtimeUrl></install>" pom.xml
+sed -i "\#<version>3.2.3</version>#,\#<configuration>#c<version>3.2.3</version><configuration><install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/"$DATE"/"$DRIVER"</runtimeUrl></install>" pom.xml
 cat pom.xml
 
 ../scripts/testApp.sh
