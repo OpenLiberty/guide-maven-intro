@@ -1,3 +1,4 @@
+#!/bin/bash
 set -euxo pipefail
 
 # LMP 3.0+ goals are listed here: https://github.com/OpenLiberty/ci.maven#goals
