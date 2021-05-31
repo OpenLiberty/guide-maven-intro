@@ -1,3 +1,4 @@
+#!/bin/bash
 set -euxo pipefail
 
 # LMP 3.0+ goals are listed here: https://github.com/OpenLiberty/ci.maven#goals
@@ -7,7 +8,10 @@ set -euxo pipefail
 #       liberty:create            - Create a Liberty server.
 #       liberty:install-feature   - Install a feature packaged as a Subsystem Archive (esa) to the Liberty runtime.
 #       liberty:deploy            - Copy applications to the Liberty server's dropins or apps directory. 
-mvn -q clean package liberty:create liberty:install-feature liberty:deploy
+mvn -Dhttp.keepAlive=false \
+    -Dmaven.wagon.http.pool=false \
+    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+    -q clean package liberty:create liberty:install-feature liberty:deploy
 
 
 ## Run the tests
