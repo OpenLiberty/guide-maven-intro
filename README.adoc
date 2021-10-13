@@ -62,10 +62,12 @@ automated test and configure Maven to automatically run the test.
 
 == Installing Maven
 
+ifndef::cloud-hosted[]
 If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^].
 Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^]
 to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command 
 to the `PATH` on your computer.
+endif::[]
 
 Run the following command to test that Maven is installed:
 
@@ -126,12 +128,12 @@ endif::[]
 ifdef::cloud-hosted[]
 Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
 Run the following command to get the URL to access the application.
-The servlet returns a simple response of `Hello! How are you today?`.
 ```
 echo http://${USERNAME}-9080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')/ServletSample/servlet
 ```
 {: codeblock}
 
+The servlet returns a simple response of **Hello! How are you today?**.
 endif::[]
 
 [role='command']
@@ -259,12 +261,12 @@ endif::[]
 ifdef::cloud-hosted[]
 Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
 Run the following command to get the URL to access the application.
-The servlet returns a simple response of `Hello! How are you today?`.
 ```
 echo http://${USERNAME}-9080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')/ServletSample/servlet
 ```
 {: codeblock}
 
+The servlet returns a simple response of **Hello! How are you today?**.
 endif::[]
 // =================================================================================================
 // Testing the web application
