@@ -17,7 +17,7 @@
 :page-related-guides: ['maven-multimodules', 'gradle-intro']
 :page-tags: ['Maven']
 :page-permalink: /guides/{projectid}
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :page-seo-title: Building and testing a Java web application with Maven and Open Liberty
 :page-seo-description: A getting started tutorial with examples of how to build and test a simple Java EE or Jakarta EE web application using a Maven Project Object Model (POM) file. 
 :guide-author: Open Liberty
@@ -169,18 +169,18 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`<project/>` 
-element and a [hotspot=modelVersion file=0]`<modelversion/>` element, which is always set to `4.0.0`. 
+The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`project` 
+element and a [hotspot=modelVersion file=0]`modelversion` element, which is always set to `4.0.0`. 
 
 A typical POM for a Liberty application contains the following sections:
 
 * **Project coordinates**: The identifiers for this application.
-* **Properties** ([hotspot=properties file=0]`<properties/>`): Any properties for the project go here, 
+* **Properties** ([hotspot=properties file=0]`properties`): Any properties for the project go here, 
 including compilation details and any values that are referenced during compilation of the 
 Java source code and generating the application.
-* **Dependencies** ([hotspot=dependencies file=0]`<dependencies/>`): Any Java dependencies that are 
+* **Dependencies** ([hotspot=dependencies file=0]`dependencies`): Any Java dependencies that are 
 required for compiling, testing, and running the application are listed here.
-* **Build plugins** ([hotspot=build file=0]`<build/>`): Maven is modular and each of its 
+* **Build plugins** ([hotspot=build file=0]`build`): Maven is modular and each of its 
 capabilities is provided by a separate plugin. This is where you specify which Maven 
 plugins should be used to build this project and any configuration information needed by 
 those plugins.
@@ -218,18 +218,18 @@ Maven will download this dependency from the Maven Central repository using the
 you provide here. The dependency is set to [hotspot=scope-servlet-api file=0]`provided`, which means that the 
 API is in the server runtime and doesn't need to be packaged by the application.
 
-The [hotspot=build file=0]`<build/>` section gives details of the two plugins that Maven uses 
+The [hotspot=build file=0]`build` section gives details of the two plugins that Maven uses 
 to build this project.
 
 * The Maven plugin for generating a WAR file as one of the output files.
 * The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the server instances.
 
 In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in section, you can add a
-[hotspot=configuration file=0]`<configuration/>` element to specify Open Liberty configuration details.
+[hotspot=configuration file=0]`configuration` element to specify Open Liberty configuration details.
 For example, the
-[hotspot=serverName file=0]`<serverName/>` field defines the name of the Open Liberty server that Maven creates.
-You specified `guideServer` as the value for [hotspot=serverName file=0]`<serverName/>`.
-If the [hotspot=serverName file=0]`<serverName/>` field is not included, the default value is `defaultServer`.
+[hotspot=serverName file=0]`serverName` field defines the name of the Open Liberty server that Maven creates.
+You specified `guideServer` as the value for [hotspot=serverName file=0]`serverName`.
+If the [hotspot=serverName file=0]`serverName` field is not included, the default value is `defaultServer`.
 
 server.xml
 [source, xml, linenums, role='code_column hide_tags=comment']
@@ -276,12 +276,12 @@ include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[]
 The test class name ends in `IT` to indicate that it contains an integration test. 
 
 Maven is configured to run the integration test using the [hotspot=maven-failsafe-plugin file=1]`maven-failsafe-plugin`.
-The [hotspot=system-property-variables file=1]`<systemPropertyVariables/>` section defines some variables 
+The [hotspot=system-property-variables file=1]`systemPropertyVariables` section defines some variables 
 that the test class uses. The test code needs to know where to find the application that 
 it is testing. While the port number and context root information can be hardcoded in the 
 test class, it is better to specify it in a single place like the Maven [hotspot file=1]`pom.xml` 
 file because this information is also used by other files in the project. The 
-[hotspot=system-property-variables file=1]`<systemPropertyVariables/>` section passes these details to the 
+[hotspot=system-property-variables file=1]`systemPropertyVariables` section passes these details to the 
 Java test program as a series of system properties, resolving the [hotspot=http-port file=1]`http.port`
 and [hotspot=war-name file=1]`war.name` variables.
 
