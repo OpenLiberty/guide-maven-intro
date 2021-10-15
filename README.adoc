@@ -168,6 +168,13 @@ All the application source code, including the Open Liberty server configuration
 
 == Creating the project POM file
 Navigate to the `start` directory to begin.
+// cloud hosted instructions
+ifdef::cloud-hosted[]
+```
+cd /home/project/guide-maven-intro/start
+```
+{: codeblock}
+endif::[]
 
 Before you can build the project, define the Maven Project Object Model (POM) file, the `pom.xml`. 
 
