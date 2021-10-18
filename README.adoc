@@ -180,7 +180,7 @@ Before you can build the project, define the Maven Project Object Model (POM) fi
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Create the pom.xml file.#
+#Create the pom.xml file in the `start` directory.#
 `pom.xml`
 ----
 
@@ -290,7 +290,7 @@ the link is clicked.
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Create the `EndpointIT` class.#
+#Create the `EndpointIT` class in the `start` directory.#
 `src/test/java/io/openliberty/guides/hello/it/EndpointIT.java`  
 ----
 
