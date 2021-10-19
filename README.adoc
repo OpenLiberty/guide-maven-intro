@@ -290,7 +290,7 @@ the link is clicked.
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Create the `EndpointIT` class in the `start` directory.#
+#Create the `EndpointIT` class.#
 `src/test/java/io/openliberty/guides/hello/it/EndpointIT.java`  
 ----
 
