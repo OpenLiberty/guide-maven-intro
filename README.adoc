@@ -127,7 +127,7 @@ endif::[]
 
 ifdef::cloud-hosted[]
 Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
-To view the output of the application, run the following curl command: 
+Run the following curl command to view the output of the application: 
 ```
 curl -s http://localhost:9080/ServletSample/servlet
 ```
@@ -267,7 +267,7 @@ endif::[]
 
 ifdef::cloud-hosted[]
 Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
-To view the output of the application, run the following curl command: 
+Run the following curl command to view the output of the application: 
 ```
 curl -s http://localhost:9080/ServletSample/servlet
 ```
