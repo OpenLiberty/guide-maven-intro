@@ -62,10 +62,12 @@ automated test and configure Maven to automatically run the test.
 
 == Installing Maven
 
+ifndef::cloud-hosted[]
 If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^].
 Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^]
 to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command 
 to the `PATH` on your computer.
+endif::[]
 
 Run the following command to test that Maven is installed:
 
@@ -118,8 +120,20 @@ The guideServer server is ready to run a smarter planet.
 ----
 // end::runCommand[]
 
-
+ifndef::cloud-hosted[]
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
+endif::[]
+
+ifdef::cloud-hosted[]
+Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
+Run the following curl command to view the output of the application: 
+```
+curl -s http://localhost:9080/ServletSample/servlet
+```
+{: codeblock}
+
+The servlet returns a simple response of **Hello! How are you today?**.
+endif::[]
 
 [role='command']
 include::{common-includes}/twyb-end.adoc[]
@@ -153,12 +167,19 @@ All the application source code, including the Open Liberty server configuration
 
 == Creating the project POM file
 Navigate to the `start` directory to begin.
+// cloud hosted instructions
+ifdef::cloud-hosted[]
+```
+cd /home/project/guide-maven-intro/start
+```
+{: codeblock}
+endif::[]
 
 Before you can build the project, define the Maven Project Object Model (POM) file, the `pom.xml`. 
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Create the pom.xml file.#
+#Create the pom.xml file in the `start` directory.#
 `pom.xml`
 ----
 
@@ -174,15 +195,9 @@ element and a [hotspot=modelVersion file=0]`modelversion` element, which is alwa
 A typical POM for a Liberty application contains the following sections:
 
 * **Project coordinates**: The identifiers for this application.
-* **Properties** ([hotspot=properties file=0]`properties`): Any properties for the project go here, 
-including compilation details and any values that are referenced during compilation of the 
-Java source code and generating the application.
-* **Dependencies** ([hotspot=dependencies file=0]`dependencies`): Any Java dependencies that are 
-required for compiling, testing, and running the application are listed here.
-* **Build plugins** ([hotspot=build file=0]`build`): Maven is modular and each of its 
-capabilities is provided by a separate plugin. This is where you specify which Maven 
-plugins should be used to build this project and any configuration information needed by 
-those plugins.
+* **Properties** ([hotspot=properties file=0]`properties`): Any properties for the project go here, including compilation details and any values that are referenced during compilation of the Java source code and generating the application.
+* **Dependencies** ([hotspot=dependencies file=0]`dependencies`): Any Java dependencies that are required for compiling, testing, and running the application are listed here.
+* **Build plugins** ([hotspot=build file=0]`build`): Maven is modular and each of its capabilities is provided by a separate plugin. This is where you specify which Maven plugins should be used to build this project and any configuration information needed by those plugins.
 
 The project coordinates describe the name and version of the application. The 
 [hotspot=artifactID file=0]`artifactId` gives a name to the web application project, which is used to 
@@ -245,8 +260,20 @@ include::finish/src/main/liberty/config/server.xml[]
 [role='command']
 include::{common-includes}/devmode-lmp33-start.adoc[]
 
+ifndef::cloud-hosted[]
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
+endif::[]
 
+ifdef::cloud-hosted[]
+Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
+Run the following curl command to view the output of the application: 
+```
+curl -s http://localhost:9080/ServletSample/servlet
+```
+{: codeblock}
+
+The servlet returns a simple response of **Hello! How are you today?**.
+endif::[]
 // =================================================================================================
 // Testing the web application
 // =================================================================================================
