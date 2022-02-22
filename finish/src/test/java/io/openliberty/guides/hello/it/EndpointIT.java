@@ -24,7 +24,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 // tag::EndpointIT[]
 public class EndpointIT {
     private static String URL;
- 
+
     @BeforeAll
     public static void init() {
         // tag::URL[]
@@ -49,7 +49,7 @@ public class EndpointIT {
 
             String response = method.getResponseBodyAsString(1000);
 
-            assertTrue(response.contains("Hello! How are you today?"), 
+            assertTrue(response.contains("Hello! How are you today?"),
                 "Unexpected response body");
         } finally {
             method.releaseConnection();
