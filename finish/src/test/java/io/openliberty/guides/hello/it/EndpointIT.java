@@ -13,9 +13,12 @@
 package io.openliberty.guides.hello.it;
 
 // tag::import[]
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -23,14 +26,14 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 // tag::EndpointIT[]
 public class EndpointIT {
-    private static String URL;
+    private static String siteURL;
 
     @BeforeAll
     public static void init() {
         // tag::URL[]
         String port = System.getProperty("http.port");
         String war = System.getProperty("war.name");
-        URL = "http://localhost:" + port + "/" + war + "/" + "servlet";
+        siteURL = "http://localhost:" + port + "/" + war + "/" + "servlet";
         // end::URL[]
     }
 
@@ -40,7 +43,7 @@ public class EndpointIT {
     public void testServlet() throws Exception {
         HttpClient client = new HttpClient();
 
-        GetMethod method = new GetMethod(URL);
+        GetMethod method = new GetMethod(siteURL);
         // tag::link[]
         try {
             int statusCode = client.executeMethod(method);
