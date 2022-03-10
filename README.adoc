@@ -34,27 +34,13 @@ Learn how to build and test a simple web application using Maven and Open Libert
 
 == What you'll learn
 
-You will learn how to configure a simple web servlet application using Maven and the Liberty 
-Maven plugin. When you compile and build the application code, Maven downloads and installs 
-Open Liberty. If you run the application, Maven creates an Open Liberty server and runs 
-the application on it. The application displays a simple web page with a link that, when 
-clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
+You will learn how to configure a simple web servlet application using Maven and the Liberty Maven plugin. When you compile and build the application code, Maven downloads and installs Open Liberty. If you run the application, Maven creates an Open Liberty server and runs the application on it. The application displays a simple web page with a link that, when clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
-One benefit of using a build tool like Maven is that you can define the details of the project and any dependencies it has, and Maven automatically downloads and installs the dependencies. 
-Another benefit of using Maven is that it can run repeatable, automated tests on the application. 
-You can, of course, test your application manually by starting a server and pointing a web browser at the application URL.
-However, automated tests are a much better approach because you can easily rerun the same tests each time the application is built. 
-If the tests don't pass after you change the application, the build fails, and you know that you introduced a regression that requires a fix to your code. 
+One benefit of using a build tool like Maven is that you can define the details of the project and any dependencies it has, and Maven automatically downloads and installs the dependencies. Another benefit of using Maven is that it can run repeatable, automated tests on the application. You can, of course, test your application manually by starting a server and pointing a web browser at the application URL. However, automated tests are a much better approach because you can easily rerun the same tests each time the application is built. If the tests don't pass after you change the application, the build fails, and you know that you introduced a regression that requires a fix to your code. 
 
-Choosing a build tool often comes down to personal or organizational preference, but you might choose to use Maven for several reasons. 
-Maven defines its builds by using XML, which is probably familiar to you already. 
-As a mature, commonly used build tool, Maven probably integrates with whichever IDE you prefer to use. 
-Maven also has an extensive plug-in library that offers various ways to quickly customize your build. 
-Maven can be a good choice if your team is already familiar with it. 
+Choosing a build tool often comes down to personal or organizational preference, but you might choose to use Maven for several reasons. Maven defines its builds by using XML, which is probably familiar to you already. As a mature, commonly used build tool, Maven probably integrates with whichever IDE you prefer to use. Maven also has an extensive plug-in library that offers various ways to quickly customize your build. Maven can be a good choice if your team is already familiar with it. 
 
-You will create a Maven build definition file that's called a `pom.xml` file, which stands for 
-Project Object Model, and use it to build your web application. You will then create a simple, 
-automated test and configure Maven to automatically run the test.
+You will create a Maven build definition file that's called a `pom.xml` file, which stands for Project Object Model, and use it to build your web application. You will then create a simple, automated test and configure Maven to automatically run the test.
 
 // =================================================================================================
 // Installing Maven
@@ -63,10 +49,7 @@ automated test and configure Maven to automatically run the test.
 == Installing Maven
 
 ifndef::cloud-hosted[]
-If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^].
-Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^]
-to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command 
-to the `PATH` on your computer.
+If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^]. Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^] to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command to the `PATH` on your computer.
 endif::[]
 
 Run the following command to test that Maven is installed:
@@ -76,8 +59,7 @@ Run the following command to test that Maven is installed:
 mvn -v
 ----
 
-If Maven is installed properly, you see information about the Maven installation 
-similar to the following example:
+If Maven is installed properly, you see information about the Maven installation similar to the following example:
 
 [source, role="no_copy"]
 ----
@@ -103,8 +85,7 @@ include::{common-includes}/gitclone.adoc[]
 The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
 
 // tag::runCommand[]
-To try out the application, first go to the `finish` directory and run Maven with the
-`liberty:run` goal to build the application and deploy it to Open Liberty:
+To try out the application, first go to the `finish` directory and run Maven with the `liberty:run` goal to build the application and deploy it to Open Liberty:
 
 [role='command']
 ```
@@ -125,8 +106,7 @@ Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL 
 endif::[]
 
 ifdef::cloud-hosted[]
-Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
-Run the following curl command to view the output of the application: 
+Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session. Run the following curl command to view the output of the application: 
 ```
 curl -s http://localhost:9080/ServletSample/servlet
 ```
@@ -144,11 +124,9 @@ include::{common-includes}/twyb-end.adoc[]
 
 == Creating a simple application
 
-The simple web application that you will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. 
-This application uses a standard Maven directory structure, eliminating the need to customize the `pom.xml` file so that Maven understands your project layout.
+The simple web application that you will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. This application uses a standard Maven directory structure, eliminating the need to customize the `pom.xml` file so that Maven understands your project layout.
 
-All the application source code, including the Open Liberty server configuration 
-(`server.xml`), is in the `src/main/liberty/config` directory:
+All the application source code, including the Open Liberty server configuration (`server.xml`), is in the `src/main/liberty/config` directory:
 
 [source, role="no_copy"]
 ----
@@ -189,8 +167,7 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`project` 
-element and a [hotspot=modelVersion file=0]`modelversion` element, which is always set to `4.0.0`. 
+The [hotspot file=0]`pom.xml` file starts with a root [hotspot=project file=0]`project` element and a [hotspot=modelVersion file=0]`modelversion` element, which is always set to `4.0.0`. 
 
 A typical POM for a Liberty application contains the following sections:
 
@@ -199,26 +176,11 @@ A typical POM for a Liberty application contains the following sections:
 * **Dependencies** ([hotspot=dependencies file=0]`dependencies`): Any Java dependencies that are required for compiling, testing, and running the application are listed here.
 * **Build plugins** ([hotspot=build file=0]`build`): Maven is modular and each of its capabilities is provided by a separate plugin. This is where you specify which Maven plugins should be used to build this project and any configuration information needed by those plugins.
 
-The project coordinates describe the name and version of the application. The 
-[hotspot=artifactID file=0]`artifactId` gives a name to the web application project, which is used to 
-name the output files that are generated by the build (e.g. the WAR file) and the Open 
-Liberty server that is created. You'll notice that other fields in the [hotspot file=0]`pom.xml` 
-file use variables that are resolved by the [hotspot=artifactID file=0]`artifactId` field. This is so 
-that you can update the name of the sample application, including files generated by Maven, 
-in a single place in the [hotspot file=0]`pom.xml` file. The value of the [hotspot=packaging file=0]`packaging` 
-field is `war` so that the project output artifact is a WAR file.
+The project coordinates describe the name and version of the application. The [hotspot=artifactID file=0]`artifactId` gives a name to the web application project, which is used to name the output files that are generated by the build (e.g. the WAR file) and the Open Liberty server that is created. You'll notice that other fields in the [hotspot file=0]`pom.xml` file use variables that are resolved by the [hotspot=artifactID file=0]`artifactId` field. This is so that you can update the name of the sample application, including files generated by Maven, in a single place in the [hotspot file=0]`pom.xml` file. The value of the [hotspot=packaging file=0]`packaging` field is `war` so that the project output artifact is a WAR file.
 
-The first four properties in the properties section of the project, just define the encoding ([hotspot=encoding file=0]`UTF-8`) 
-and version of Java ([hotspot=java-version file=0]`Java 8`) that Maven uses to compile the application 
-source code.
+The first four properties in the properties section of the project, just define the encoding ([hotspot=encoding file=0]`UTF-8`) and version of Java ([hotspot=java-version file=0]`Java 8`) that Maven uses to compile the application source code.
 
-Open Liberty configuration properties provide you with a single place to specify values that are used in multiple 
-places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in
-both the server configuration ([hotspot=httpEndpoint file=2]`server.xml`) file and will be used in the test class that
-you will add (`EndpointIT.java`) to the application. Because the [hotspot=default-http-port file=0]`default.http.port` value 
-is specified in the [hotspot file=0]`pom.xml` file, you can easily 
-change the port number that the server runs on without updating the application 
-code in multiple places.
+Open Liberty configuration properties provide you with a single place to specify values that are used in multiple places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in both the server configuration ([hotspot=httpEndpoint file=2]`server.xml`) file and will be used in the test class that you will add (`EndpointIT.java`) to the application. Because the [hotspot=default-http-port file=0]`default.http.port` value is specified in the [hotspot file=0]`pom.xml` file, you can easily change the port number that the server runs on without updating the application code in multiple places.
 
 HelloServlet.java
 [source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']
@@ -226,24 +188,14 @@ HelloServlet.java
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
 
-The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=javax-servlet-api file=0]`javax.servlet-api` to compile. 
-Maven will download this dependency from the Maven Central repository using the 
-[hotspot=groupID-servlet-api file=0]`groupId`, [hotspot=artifactID-servlet-api file=0]`artifactId`, and [hotspot=version-servlet-api file=0]`version` details that 
-you provide here. The dependency is set to [hotspot=scope-servlet-api file=0]`provided`, which means that the 
-API is in the server runtime and doesn't need to be packaged by the application.
+The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=javax-servlet-api file=0]`javax.servlet-api` to compile. Maven will download this dependency from the Maven Central repository using the [hotspot=groupID-servlet-api file=0]`groupId`, [hotspot=artifactID-servlet-api file=0]`artifactId`, and [hotspot=version-servlet-api file=0]`version` details that you provide here. The dependency is set to [hotspot=scope-servlet-api file=0]`provided`, which means that the API is in the server runtime and doesn't need to be packaged by the application.
 
-The [hotspot=build file=0]`build` section gives details of the two plugins that Maven uses 
-to build this project.
+The [hotspot=build file=0]`build` section gives details of the two plugins that Maven uses to build this project.
 
 * The Maven plugin for generating a WAR file as one of the output files.
 * The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the server instances.
 
-In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in section, you can add a
-[hotspot=configuration file=0]`configuration` element to specify Open Liberty configuration details.
-For example, the
-[hotspot=serverName file=0]`serverName` field defines the name of the Open Liberty server that Maven creates.
-You specified `guideServer` as the value for [hotspot=serverName file=0]`serverName`.
-If the [hotspot=serverName file=0]`serverName` field is not included, the default value is `defaultServer`.
+In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in section, you can add a [hotspot=configuration file=0]`configuration` element to specify Open Liberty configuration details. For example, the [hotspot=serverName file=0]`serverName` field defines the name of the Open Liberty server that Maven creates. You specified `guideServer` as the value for [hotspot=serverName file=0]`serverName`. If the [hotspot=serverName file=0]`serverName` field is not included, the default value is `defaultServer`.
 
 server.xml
 [source, xml, linenums, role='code_column hide_tags=comment']
@@ -265,8 +217,7 @@ Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL 
 endif::[]
 
 ifdef::cloud-hosted[]
-Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session.
-Run the following curl command to view the output of the application: 
+Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session. Run the following curl command to view the output of the application: 
 ```
 curl -s http://localhost:9080/ServletSample/servlet
 ```
@@ -280,12 +231,7 @@ endif::[]
 
 == Testing the web application
 
-One of the benefits of building an application with Maven is that Maven can be configured 
-to run a set of tests. You can write tests for the individual units of code outside of a 
-running application server (unit tests), or you can write them to call the application 
-server directly (integration tests). In this example you will create a simple integration 
-test that checks that the web page opens and that the correct response is returned when 
-the link is clicked.
+One of the benefits of building an application with Maven is that Maven can be configured to run a set of tests. You can write tests for the individual units of code outside of a running application server (unit tests), or you can write them to call the application server directly (integration tests). In this example you will create a simple integration test that checks that the web page opens and that the correct response is returned when the link is clicked.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -301,15 +247,7 @@ include::finish/src/test/java/io/openliberty/guides/hello/it/EndpointIT.java[]
 
 The test class name ends in `IT` to indicate that it contains an integration test. 
 
-Maven is configured to run the integration test using the [hotspot=maven-failsafe-plugin file=1]`maven-failsafe-plugin`.
-The [hotspot=system-property-variables file=1]`systemPropertyVariables` section defines some variables 
-that the test class uses. The test code needs to know where to find the application that 
-it is testing. While the port number and context root information can be hardcoded in the 
-test class, it is better to specify it in a single place like the Maven [hotspot file=1]`pom.xml` 
-file because this information is also used by other files in the project. The 
-[hotspot=system-property-variables file=1]`systemPropertyVariables` section passes these details to the 
-Java test program as a series of system properties, resolving the [hotspot=http-port file=1]`http.port`
-and [hotspot=war-name file=1]`war.name` variables.
+Maven is configured to run the integration test using the [hotspot=maven-failsafe-plugin file=1]`maven-failsafe-plugin`. The [hotspot=system-property-variables file=1]`systemPropertyVariables` section defines some variables that the test class uses. The test code needs to know where to find the application that it is testing. While the port number and context root information can be hardcoded in the test class, it is better to specify it in a single place like the Maven [hotspot file=1]`pom.xml` file because this information is also used by other files in the project. The [hotspot=system-property-variables file=1]`systemPropertyVariables` section passes these details to the Java test program as a series of system properties, resolving the [hotspot=http-port file=1]`http.port` and [hotspot=war-name file=1]`war.name` variables.
 
 pom.xml
 [source, xml, linenums, role='code_column']
@@ -317,30 +255,17 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-The following lines in the [hotspot=URL file=0]`EndpointIT` test class uses these 
-system variables to build up the URL of the application.
+The following lines in the [hotspot=URL file=0]`EndpointIT` test class uses these system variables to build up the URL of the application.
 
-In the test class, after defining how to build the application URL, the [hotspot=Test file=0]`@Test` 
-annotation indicates the start of the test method.
+In the test class, after defining how to build the application URL, the [hotspot=Test file=0]`@Test` annotation indicates the start of the test method.
 
-In the [hotspot=link file=0]`try block` of the test method, an HTTP `GET` request to the 
-URL of the application returns a status code. If the response to the request includes the 
-string `Hello! How are you today?`, the test passes. If that string is not in the response, 
-the test fails.  The HTTP client then disconnects from the application.
+In the [hotspot=link file=0]`try block` of the test method, an HTTP `GET` request to the URL of the application returns a status code. If the response to the request includes the string `Hello! How are you today?`, the test passes. If that string is not in the response, the test fails.  The HTTP client then disconnects from the application.
 
-In the [hotspot=import file=0]`import` statements of this test class, you'll notice that the 
-test has some new dependencies. Before the test can be compiled by Maven, you need to update 
-the [hotspot file=1]`pom.xml` to include these dependencies.
+In the [hotspot=import file=0]`import` statements of this test class, you'll notice that the test has some new dependencies. Before the test can be compiled by Maven, you need to update the [hotspot file=1]`pom.xml` to include these dependencies.
 
-The Apache [hotspot=commons-httpclient file=1]`commons-httpclient` and [hotspot=junit file=1]`junit-jupiter-engine` 
-dependencies are needed to compile and run the integration test [hotspot=EndpointIT file=0]`EndpointIT` 
-class. The scope for each of the dependencies is set to [hotspot=test1 hotspot=test2 file=1]`test` because 
-the libraries are needed only during the Maven build and do not needed to be packaged with 
-the application.
+The Apache [hotspot=commons-httpclient file=1]`commons-httpclient` and [hotspot=junit file=1]`junit-jupiter-engine` dependencies are needed to compile and run the integration test [hotspot=EndpointIT file=0]`EndpointIT` class. The scope for each of the dependencies is set to [hotspot=test1 hotspot=test2 file=1]`test` because the libraries are needed only during the Maven build and do not needed to be packaged with the application.
 
-Now, the created WAR file contains the web application, 
-and development mode can run any integration test classes that it finds.
-Integration test classes are classes with names that end in `IT`.
+Now, the created WAR file contains the web application, and development mode can run any integration test classes that it finds. Integration test classes are classes with names that end in `IT`.
 
 The directory structure of the project should now look like this:
 
@@ -379,10 +304,7 @@ Results :
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
 
-To see whether the test detects a failure, change the [hotspot=responseString file=0]`response string` in the servlet 
-[hotspot]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match 
-the string that the test is looking for. Then re-run the tests and check that the 
-test fails.
+To see whether the test detects a failure, change the [hotspot=responseString file=0]`response string` in the servlet [hotspot]`src/main/java/io/openliberty/guides/hello/HelloServlet.java` so that it doesn't match the string that the test is looking for. Then re-run the tests and check that the test fails.
 
 HelloServlet.java
 [source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']
