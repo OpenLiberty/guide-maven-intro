@@ -107,12 +107,11 @@ endif::[]
 
 ifdef::cloud-hosted[]
 Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session. Run the following curl command to view the output of the application: 
-```
+```bash
 curl -s http://localhost:9080/ServletSample/servlet
 ```
-{: codeblock}
 
-The servlet returns a simple response of **Hello! How are you today?**.
+The servlet returns a simple response of ***Hello! How are you today?***.
 endif::[]
 
 [role='command']
@@ -147,10 +146,9 @@ All the application source code, including the Open Liberty server configuration
 Navigate to the `start` directory to begin.
 // cloud hosted instructions
 ifdef::cloud-hosted[]
-```
+```bash
 cd /home/project/guide-maven-intro/start
 ```
-{: codeblock}
 endif::[]
 
 Before you can build the project, define the Maven Project Object Model (POM) file, the `pom.xml`. 
@@ -218,12 +216,11 @@ endif::[]
 
 ifdef::cloud-hosted[]
 Select **Terminal** > **New Terminal** from the menu of the IDE to open another command-line session. Run the following curl command to view the output of the application: 
-```
+```bash
 curl -s http://localhost:9080/ServletSample/servlet
 ```
-{: codeblock}
 
-The servlet returns a simple response of **Hello! How are you today?**.
+The servlet returns a simple response of ***Hello! How are you today?***.
 endif::[]
 // =================================================================================================
 // Testing the web application
