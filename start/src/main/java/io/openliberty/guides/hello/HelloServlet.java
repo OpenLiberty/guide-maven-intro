@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/servlet")
 public class HelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String test = " ";
+    private static final String Test = " ";
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
