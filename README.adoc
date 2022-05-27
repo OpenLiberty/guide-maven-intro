@@ -34,7 +34,7 @@ Learn how to build and test a simple web application using Maven and Open Libert
 
 == What you'll learn
 
-You will learn how to configure a simple web servlet application using Maven and the Liberty Maven plugin. When you compile and build the application code, Maven downloads and installs Open Liberty. If you run the application, Maven creates an Open Liberty server and runs the application on it. The application displays a simple web page with a link that, when clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
+This line is a linter test. You will learn how to configure a simple web servlet application using Maven and the Liberty Maven plugin. When you compile and build the application code, Maven downloads and installs Open Liberty. If you run the application, Maven creates an Open Liberty server and runs the application on it. The application displays a simple web page with a link that, when clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
 One benefit of using a build tool like Maven is that you can define the details of the project and any dependencies it has, and Maven automatically downloads and installs the dependencies. Another benefit of using Maven is that it can run repeatable, automated tests on the application. You can, of course, test your application manually by starting a server and pointing a web browser at the application URL. However, automated tests are a much better approach because you can easily rerun the same tests each time the application is built. If the tests don't pass after you change the application, the build fails, and you know that you introduced a regression that requires a fix to your code. 
 
