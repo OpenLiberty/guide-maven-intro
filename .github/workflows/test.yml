@@ -31,10 +31,10 @@ jobs:
           DEFAULT_BRANCH: prod
       - name: Summary
         if: always()
-        run: cmd ./checker.log |  tail -n +2; echo "====== Super Linter ======"
-        run: cmd ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
-            echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
-            if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
+        run: cat ./checker.log |  tail -n +2; echo "====== Super Linter ======"
+        run: cat ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
+        run: echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
+        run: if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
   test-app:
     runs-on: ubuntu-latest
     needs: [check-files]
