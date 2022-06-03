@@ -56,7 +56,7 @@ jobs:
       if: always()
       run: |
           logsPath=$(find . -name "console.log");
-          cmd $logsPath | grep Launching
+          cmd "$logsPath" | grep Launching
     - name: Archive server logs if failed
       if: failure()
       uses: actions/upload-artifact@v2
