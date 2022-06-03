@@ -31,9 +31,8 @@ jobs:
           DEFAULT_BRANCH: prod
       - name: Summary
         if: always()
-        cmd: |
-            cat ./checker.log |  tail -n +2; echo "====== Super Linter ======"
-            cat ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
+        run: cmd ./checker.log |  tail -n +2; echo "====== Super Linter ======"
+        run: cmd ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
             echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
             if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
   test-app:
@@ -54,9 +53,8 @@ jobs:
       run: ../scripts/testApp.sh
     - name: Post tests
       if: always()
-      cmd: |
-           logsPath=$(find . -name "console.log");
-           cat $logsPath | grep Launching
+      run: logsPath=$(find . -name "console.log");
+      run: cmd $logsPath | grep Launching
     - name: Archive server logs if failed
       if: failure()
       uses: actions/upload-artifact@v2
