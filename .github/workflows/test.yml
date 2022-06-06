@@ -32,11 +32,11 @@ jobs:
       - name: Summary
         if: always()
         run: |
-            tail -n +2 < "./checker.log"
-            echo "====== Super Linter ======"
-            sed 's/.*\(\[[A-Z]\+\]\)/\1/' < tail -n +4 < sed -n '/.*The script has completed.*/,$p' < cat "./super-linter.log"
-            echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
-            if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
+          tail -n +2 < "./checker.log"
+          echo "====== Super Linter ======"
+          sed 's/.*\(\[[A-Z]\+\]\)/\1/' < tail -n +4 < sed -n '/.*The script has completed.*/,$p' < cat "./super-linter.log"
+          echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
+          if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
   test-app:
     runs-on: ubuntu-latest
     needs: [check-files]
