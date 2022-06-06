@@ -34,9 +34,9 @@ jobs:
         run:
           tail -n +2 < "./checker.log";
           echo "====== Super Linter ======";
-          sed -n '/.*The script has completed.*/,$p' < cat "./super-linter.log" > ./s.log;
-          tail -n +4 < ./s.log > ./t.log;
-          sed 's/.*\(\[[A-Z]\+\]\)/\1/' < ./t.log;
+          sed -n '/.*The script has completed.*/,$p' < "./super-linter.log" > "./s.log";
+          tail -n +4 < "./s.log" > "./t.log";
+          sed 's/.*\(\[[A-Z]\+\]\)/\1/' < "./t.log";
           echo "====== Examine logs in Checker and Super-Linter steps for more details ======";
           if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
   test-app:
