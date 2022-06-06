@@ -31,7 +31,7 @@ jobs:
           DEFAULT_BRANCH: prod
       - name: Summary
         if: always()
-        run: |
+        run:
           tail -n +2 < "./checker.log"
           echo "====== Super Linter ======"
           sed 's/.*\(\[[A-Z]\+\]\)/\1/' < tail -n +4 < sed -n '/.*The script has completed.*/,$p' < cat "./super-linter.log"
@@ -55,9 +55,9 @@ jobs:
       run: ../scripts/testApp.sh
     - name: Post tests
       if: always()
-      run: |
-           logsPath=$(find . -name "console.log");
-           grep Launching < "$logsPath"
+      run:
+        logsPath=$(find . -name "console.log");
+        grep Launching < "$logsPath"
     - name: Archive server logs if failed
       if: failure()
       uses: actions/upload-artifact@v2
