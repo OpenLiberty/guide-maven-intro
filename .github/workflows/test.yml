@@ -31,7 +31,7 @@ jobs:
           DEFAULT_BRANCH: prod
       - name: Summary
         if: always()
-        run:
+        run: |
           tail -n +2 < "./checker.log";
           echo "====== Super Linter ======";
           sed -n '/.*The script has completed.*/,$p' < "./super-linter.log" > "./s.log";
@@ -57,7 +57,7 @@ jobs:
       run: ../scripts/testApp.sh
     - name: Post tests
       if: always()
-      run:
+      run: |
         logsPath=$(find . -name "console.log");
         grep Launching < "$logsPath"
     - name: Archive server logs if failed
