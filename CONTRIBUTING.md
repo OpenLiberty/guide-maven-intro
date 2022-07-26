@@ -43,7 +43,7 @@ If you are contributing changes as part of your job, you may also wish to have y
 
 Instructions for how to sign and submit these agreements are located at the top of each document.
 
-After we obtain the signed CLA, you are welcome to open a pull request against the `staging` branch, and the team will be notified for review. We ask you to folow these steps through the submission process:
+After we obtain the signed CLA, you are welcome to open a pull request against the `staging` branch, and the team will be notified for review. We ask you to follow these steps through the submission process:
 
 1. Open a pull request against the `staging` branch.
 2. A "CLA signed" label will be manually added by the team.
