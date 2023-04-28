@@ -48,7 +48,7 @@ public class EndpointIT {
         CloseableHttpClient client = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(siteURL);
         CloseableHttpResponse response = null;
-    
+
         // tag::link[]
         try {
             response = client.execute(httpGet);
