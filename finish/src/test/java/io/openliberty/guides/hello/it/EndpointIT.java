@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2017, 2019 IBM Corporation and others.
+ * Copyright (c) 2017, 2023 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,17 +11,25 @@
 // end::copyright[]
 package io.openliberty.guides.hello.it;
 
-// tag::import[]
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
+//tag::import[]
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.GetMethod;
-// end::import[]
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URI;
+
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+//end::import[]
 
 // tag::EndpointIT[]
 public class EndpointIT {
@@ -40,21 +48,33 @@ public class EndpointIT {
     @Test
     // end::Test[]
     public void testServlet() throws Exception {
-        HttpClient client = new HttpClient();
 
-        GetMethod method = new GetMethod(siteURL);
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        URI uri = new URIBuilder(siteURL).build();
+        HttpGet httpGet = new HttpGet(uri);
+        HttpClientContext context = HttpClientContext.create();
+        CloseableHttpResponse response = null;
+    
         // tag::link[]
         try {
-            int statusCode = client.executeMethod(method);
+            response = client.execute(httpGet, context);
 
+            int statusCode = response.getStatusLine().getStatusCode();
             assertEquals(HttpStatus.SC_OK, statusCode, "HTTP GET failed");
 
-            String response = method.getResponseBodyAsString(1000);
-
-            assertTrue(response.contains("Hello! How are you today?"),
-                "Unexpected response body");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                                    response.getEntity().getContent()));
+            String line;
+            StringBuffer buffer = new StringBuffer();
+            while ((line = reader.readLine()) != null) {
+            	buffer.append(line);
+            }
+            reader.close();
+            assertTrue(buffer.toString().contains("Hello! How are you today?"),
+                "Unexpected response body: " + buffer.toString());
         } finally {
-            method.releaseConnection();
+            response.close();
+            httpGet.releaseConnection();
         }
         // end::link[]
     }
