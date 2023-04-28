@@ -17,16 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URI;
 
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 //end::import[]
@@ -50,24 +46,22 @@ public class EndpointIT {
     public void testServlet() throws Exception {
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
-        URI uri = new URIBuilder(siteURL).build();
-        HttpGet httpGet = new HttpGet(uri);
-        HttpClientContext context = HttpClientContext.create();
+        HttpGet httpGet = new HttpGet(siteURL);
         CloseableHttpResponse response = null;
     
         // tag::link[]
         try {
-            response = client.execute(httpGet, context);
+            response = client.execute(httpGet);
 
             int statusCode = response.getStatusLine().getStatusCode();
             assertEquals(HttpStatus.SC_OK, statusCode, "HTTP GET failed");
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                    response.getEntity().getContent()));
+                                        response.getEntity().getContent()));
             String line;
             StringBuffer buffer = new StringBuffer();
             while ((line = reader.readLine()) != null) {
-            	buffer.append(line);
+                buffer.append(line);
             }
             reader.close();
             assertTrue(buffer.toString().contains("Hello! How are you today?"),
