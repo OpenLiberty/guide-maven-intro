@@ -262,7 +262,7 @@ In the [hotspot=import file=0]`import` statements of this test class, you'll not
 
 The Apache [hotspot=commons-httpclient file=1]`httpclient` and [hotspot=junit file=1]`junit-jupiter-engine` dependencies are needed to compile and run the integration test [hotspot=EndpointIT file=0]`EndpointIT` class. The scope for each of the dependencies is set to [hotspot=test1 hotspot=test2 file=1]`test` because the libraries are needed only during the Maven build and do not needed to be packaged with the application.
 
-Now, the created WAR file contains the web application, and development mode can run any integration test classes that it finds. Integration test classes are classes with names that end in `IT`.
+Now, the created WAR file contains the web application, and dev mode can run any integration test classes that it finds. Integration test classes are classes with names that end in `IT`.
 
 The directory structure of the project should now look like this:
 
