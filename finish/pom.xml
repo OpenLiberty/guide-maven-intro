@@ -37,12 +37,22 @@
     <!-- tag::dependencies[] -->
     <dependencies>
         <!-- Provided dependencies -->
+        <!- tag::jakarta.jakartaee-api[] -->
         <dependency>
+            <!- tag::groupID-api[] -->
             <groupId>jakarta.platform</groupId>
+            <!- end::groupID-api[] -->
+            <!- tag::artifactID-api[] -->
             <artifactId>jakarta.jakartaee-api</artifactId>
+            <!- end::artifactID-api[] -->
+            <!- tag::version-api[] -->
             <version>9.1.0</version>
+            <!- end::version-api[] -->
+            <!- tag::scope-api[] -->
             <scope>provided</scope>
+            <!- end::scope-api[] -->
         </dependency>
+        <!- end::jakarta.jakartaee-api[] -->
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
