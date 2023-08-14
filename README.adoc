@@ -191,7 +191,7 @@ The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=jakarta.jakart
 The [hotspot=build file=0]`build` section gives details of the two plugins that Maven uses to build this project.
 
 * The Maven plugin for generating a WAR file as one of the output files.
-* The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the Liberty instances.
+* The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the associated Liberty instances.
 
 In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in section, you can add a [hotspot=configuration file=0]`configuration` element to specify Open Liberty configuration details. For example, the [hotspot=serverName file=0]`serverName` field defines the name of the Open Liberty instance that Maven creates. You specified `guideServer` as the value for [hotspot=serverName file=0]`serverName`. If the [hotspot=serverName file=0]`serverName` field is not included, the default value is `defaultServer`.
 
