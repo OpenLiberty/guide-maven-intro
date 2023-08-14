@@ -36,7 +36,7 @@ Learn how to build and test a simple web application using Maven and Open Libert
 
 You will learn how to configure a simple web servlet application using https://maven.apache.org/what-is-maven.html[Maven^] and the https://github.com/OpenLiberty/ci.maven/blob/main/README.md[Liberty Maven plugin^]. When you compile and build the application code, Maven downloads and installs Open Liberty. If you run the application, Maven creates an Open Liberty instance and runs the application on it. The application displays a simple web page with a link that, when clicked, calls the servlet to return a simple response of `Hello! How are you today?`.
 
-One benefit of using a build tool like Maven is that you can define the details of the project and any dependencies it has, and Maven automatically downloads and installs the dependencies. Another benefit of using Maven is that it can run repeatable, automated tests on the application. You can, of course, test your application manually by starting a server and pointing a web browser at the application URL. However, automated tests are a much better approach because you can easily rerun the same tests each time the application is built. If the tests don't pass after you change the application, the build fails, and you know that you introduced a regression that requires a fix to your code. 
+One benefit of using a build tool like Maven is that you can define the details of the project and any dependencies it has, and Maven automatically downloads and installs the dependencies. Another benefit of using Maven is that it can run repeatable, automated tests on the application. You can, of course, test your application manually by starting a Liberty instance and pointing a web browser at the application URL. However, automated tests are a much better approach because you can easily rerun the same tests each time the application is built. If the tests don't pass after you change the application, the build fails, and you know that you introduced a regression that requires a fix to your code. 
 
 Choosing a build tool often comes down to personal or organizational preference, but you might choose to use Maven for several reasons. Maven defines its builds by using XML, which is probably familiar to you already. As a mature, commonly used build tool, Maven probably integrates with whichever IDE you prefer to use. Maven also has an extensive plug-in library that offers various ways to quickly customize your build. Maven can be a good choice if your team is already familiar with it. 
 
@@ -93,7 +93,7 @@ cd finish
 mvn liberty:run
 ```
 
-After you see the following message, your application server is ready.
+After you see the following message, your Liberty instance is ready.
 
 [role="no_copy"]
 ----
@@ -125,7 +125,7 @@ include::{common-includes}/twyb-end.adoc[]
 
 The simple web application that you will build using Maven and Open Liberty is provided for you in the `start` directory so that you can focus on learning about Maven. This application uses a standard Maven directory structure, eliminating the need to customize the `pom.xml` file so that Maven understands your project layout.
 
-All the application source code, including the Open Liberty instance configuration (`server.xml`), is in the `src/main/liberty/config` directory:
+All the application source code, including the Open Liberty `server.xml` configuration file, is in the `src/main/liberty/config` directory:
 
 [source, role="no_copy"]
 ----
@@ -178,7 +178,7 @@ The project coordinates describe the name and version of the application. The [h
 
 The first four properties in the properties section of the project, just define the encoding ([hotspot=encoding file=0]`UTF-8`) and version of Java ([hotspot=java-version file=0]`Java 8`) that Maven uses to compile the application source code.
 
-Open Liberty configuration properties provide you with a single place to specify values that are used in multiple places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in both the server configuration ([hotspot=httpEndpoint file=2]`server.xml`) file and will be used in the test class that you will add (`EndpointIT.java`) to the application. Because the [hotspot=default-http-port file=0]`default.http.port` value is specified in the [hotspot file=0]`pom.xml` file, you can easily change the port number that the server runs on without updating the application code in multiple places.
+Open Liberty configuration properties provide you with a single place to specify values that are used in multiple places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in both the Liberty [hotspot=httpEndpoint file=2]`server.xml` configuration file and will be used in the test class that you will add (`EndpointIT.java`) to the application. Because the [hotspot=default-http-port file=0]`default.http.port` value is specified in the [hotspot file=0]`pom.xml` file, you can easily change the port number that the Liberty instance runs on without updating the application code in multiple places.
 
 HelloServlet.java
 [source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']
@@ -186,12 +186,12 @@ HelloServlet.java
 include::finish/src/main/java/io/openliberty/guides/hello/HelloServlet.java[]
 ----
 
-The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=javax-servlet-api file=0]`javax.servlet-api` to compile. Maven will download this dependency from the Maven Central repository using the [hotspot=groupID-servlet-api file=0]`groupId`, [hotspot=artifactID-servlet-api file=0]`artifactId`, and [hotspot=version-servlet-api file=0]`version` details that you provide here. The dependency is set to [hotspot=scope-servlet-api file=0]`provided`, which means that the API is in the server runtime and doesn't need to be packaged by the application.
+The [hotspot file=1]`HelloServlet.java` class depends on [hotspot=jakarta.jakartaee-api file=0]`jakarta.jakartaee-api` to compile. Maven will download this dependency from the Maven Central repository using the [hotspot=groupID-api file=0]`groupId`, [hotspot=artifactID-api file=0]`artifactId`, and [hotspot=version-api file=0]`version` details that you provide here. The dependency is set to [hotspot=scope-api file=0]`provided`, which means that the API is in the Liberty runtime and doesn't need to be packaged by the application.
 
 The [hotspot=build file=0]`build` section gives details of the two plugins that Maven uses to build this project.
 
 * The Maven plugin for generating a WAR file as one of the output files.
-* The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the server instances.
+* The Liberty Maven plug-in, which allows you to install applications into Open Liberty and manage the Liberty instances.
 
 In the [hotspot=liberty-maven-plugin file=0]`liberty-maven-plugin` plug-in section, you can add a [hotspot=configuration file=0]`configuration` element to specify Open Liberty configuration details. For example, the [hotspot=serverName file=0]`serverName` field defines the name of the Open Liberty instance that Maven creates. You specified `guideServer` as the value for [hotspot=serverName file=0]`serverName`. If the [hotspot=serverName file=0]`serverName` field is not included, the default value is `defaultServer`.
 
@@ -228,7 +228,7 @@ endif::[]
 
 == Testing the web application
 
-One of the benefits of building an application with Maven is that Maven can be configured to run a set of tests. You can write tests for the individual units of code outside of a running application server (unit tests), or you can write them to call the application server directly (integration tests). In this example you will create a simple integration test that checks that the web page opens and that the correct response is returned when the link is clicked.
+One of the benefits of building an application with Maven is that Maven can be configured to run a set of tests. You can write tests for the individual units of code outside of a running Liberty instance (unit tests), or you can write them to call the Liberty instance directly (integration tests). In this example you will create a simple integration test that checks that the web page opens and that the correct response is returned when the link is clicked.
 
 [role="code_command hotspot", subs="quotes"]
 ----
