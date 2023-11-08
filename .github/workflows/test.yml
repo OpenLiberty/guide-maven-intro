@@ -23,7 +23,7 @@ jobs:
         run: bash ./tools/pr-checker/checker.sh ${{ github.repository }} ${{ github.event.pull_request.number }} | tee checker.log 
       - id: Lint-Code-Base
         if: always()
-        uses: github/super-linter@v3.17.0
+        uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,10 +32,13 @@ jobs:
       - name: Summary
         if: always()
         run: |
-            cat ./checker.log |  tail -n +2; echo "====== Super Linter ======"
-            cat ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
-            echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
-            if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
+          tail -n +2 < "./checker.log";
+          echo "====== Super Linter ======";
+          sed -n '/.*The script has completed.*/,$p' < "./super-linter.log" > "./s.log";
+          tail -n +4 < "./s.log" > "./t.log";
+          sed 's/.*\(\[[A-Z]\+\]\)/\1/' < "./t.log";
+          echo "====== Examine logs in Checker and Super-Linter steps for more details ======";
+          if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
   test-app:
     runs-on: ubuntu-latest
     needs: [check-files]
@@ -55,8 +58,8 @@ jobs:
     - name: Post tests
       if: always()
       run: |
-           logsPath=$(find . -name "console.log");
-           cat $logsPath | grep Launching
+        logsPath=$(find . -name "console.log");
+        grep Launching < "$logsPath"
     - name: Archive server logs if failed
       if: failure()
       uses: actions/upload-artifact@v2
