@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2023 IBM Corporation and others.
+// Copyright (c) 2017, 2024 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -15,7 +15,7 @@
 :page-essential-order: 3
 :page-description: Learn how to build and test a simple web application using Maven and Open Liberty
 :page-related-guides: ['maven-multimodules', 'gradle-intro']
-:page-tags: ['Maven']
+:page-tags: ['maven']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :page-seo-title: Building and testing a Java web application with Maven and Open Liberty
