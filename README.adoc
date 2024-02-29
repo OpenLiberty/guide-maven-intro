@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2023 IBM Corporation and others.
+// Copyright (c) 2017, 2024 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -15,7 +15,7 @@
 :page-essential-order: 3
 :page-description: Learn how to build and test a simple web application using Maven and Open Liberty
 :page-related-guides: ['maven-multimodules', 'gradle-intro']
-:page-tags: ['Maven']
+:page-tags: ['maven']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :page-seo-title: Building and testing a Java web application with Maven and Open Liberty
@@ -178,7 +178,7 @@ The project coordinates describe the name and version of the application. The [h
 
 The first four properties in the properties section of the project, just define the encoding ([hotspot=encoding file=0]`UTF-8`) and version of Java ([hotspot=java-version file=0]`Java 11`) that Maven uses to compile the application source code.
 
-Open Liberty configuration properties provide you with a single place to specify values that are used in multiple places throughout the application. For example, the [hotspot=default-http-port file=0]`default.http.port` value is used in both the Liberty [hotspot=httpEndpoint file=2]`server.xml` configuration file and will be used in the test class that you will add (`EndpointIT.java`) to the application. Because the [hotspot=default-http-port file=0]`default.http.port` value is specified in the [hotspot file=0]`pom.xml` file, you can easily change the port number that the Liberty instance runs on without updating the application code in multiple places.
+Open Liberty configuration properties provide you with a single place to specify values that are used in multiple places throughout the application. For example, the [hotspot=http.port file=0]`http.port` value is used in both the Liberty [hotspot=httpEndpoint file=2]`server.xml` configuration file and will be used in the test class that you will add (`EndpointIT.java`) to the application. Because the [hotspot=http.port file=0]`http.port` value is specified in the [hotspot file=0]`pom.xml` file, you can easily change the port number that the Liberty instance runs on without updating the application code in multiple places.
 
 HelloServlet.java
 [source, java, linenums, role='code_column hide_tags=comment,javadoc1,javadoc2']

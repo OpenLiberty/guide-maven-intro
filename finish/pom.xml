@@ -26,10 +26,10 @@
         <maven.compiler.target>11</maven.compiler.target>
         <!-- end::java-version[] -->
         <!-- Liberty configuration -->
-        <!-- tag::default-http-port[] -->
-        <liberty.var.default.http.port>9080</liberty.var.default.http.port>
-        <!-- end::default-http-port[] -->
-        <liberty.var.default.https.port>9443</liberty.var.default.https.port>
+        <!-- tag::http.port[] -->
+        <liberty.var.http.port>9080</liberty.var.http.port>
+        <!-- end::http.port[] -->
+        <liberty.var.https.port>9443</liberty.var.https.port>
         <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
     </properties>
     <!-- end::properties[] -->
@@ -56,7 +56,7 @@
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
-            <version>6.0</version>
+            <version>6.1</version>
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.9.2</version>
+            <version>5.10.1</version>
             <!-- tag::test2[] -->
             <scope>test</scope>
             <!-- end::test2[] -->
@@ -97,7 +97,7 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.8.2</version>
+                <version>3.10</version>
                 <!-- tag::configuration[] -->
                 <configuration>
                     <!-- tag::serverName[] -->
@@ -111,12 +111,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.2.5</version>
                 <configuration>
                     <!-- tag::system-property-variables[] -->
                     <systemPropertyVariables>
                         <!-- tag::http-port[] -->
-                        <http.port>${liberty.var.default.http.port}</http.port>
+                        <http.port>${liberty.var.http.port}</http.port>
                         <!-- end::http-port[] -->
                         <!-- tag::war-name[] -->
                         <war.name>${liberty.var.app.context.root}</war.name>
