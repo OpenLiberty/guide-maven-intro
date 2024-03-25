@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.1</version>
+            <version>5.10.2</version>
             <!-- tag::test2[] -->
             <scope>test</scope>
             <!-- end::test2[] -->
@@ -91,13 +91,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.2</version>
+                <version>3.4.0</version>
             </plugin>
             <!-- tag::liberty-maven-plugin[] -->
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.10</version>
+                <version>3.10.2</version>
                 <!-- tag::configuration[] -->
                 <configuration>
                     <!-- tag::serverName[] -->
