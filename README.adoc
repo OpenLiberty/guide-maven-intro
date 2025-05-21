@@ -50,16 +50,42 @@ You will create a Maven build definition file that's called a `pom.xml` file, wh
 
 ifndef::cloud-hosted[]
 If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^]. Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^] to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command to the `PATH` on your computer.
+Alternatively, Maven Wrapper can be used instead of installing Maven.
+
 endif::[]
 
-Run the following command to test that Maven is installed:
+Run the following command to test that Maven Wrapper is installed:
 
-[role="command"]
-----
-mvn -v
-----
+include::{common-includes}/os-tabs.adoc[]
 
-If Maven is installed properly, you see information about the Maven installation similar to the following example:
+[.tab_content.windows_section]
+--
+[role='command']
+```
+cd finish
+mvnw.cmd --version
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+cd finish
+./mvnw --version
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+cd finish
+./mvnw --version
+```
+--
+
+If Maven Wrapper is installed properly, you see information about the Maven installation similar to the following example:
 
 [source, role="no_copy"]
 ----
@@ -86,12 +112,34 @@ The `finish` directory in the root of this guide contains the finished applicati
 
 // tag::runCommand[]
 To try out the application, first go to the `finish` directory and run Maven with the `liberty:run` goal to build the application and deploy it to Open Liberty:
+include::{common-includes}/os-tabs.adoc[]
 
+[.tab_content.windows_section]
+--
 [role='command']
 ```
 cd finish
-mvn liberty:run
+mvnw.cmd liberty:run
 ```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+cd finish
+./mvnw liberty:run
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+cd finish
+./mvnw liberty:run
+```
+--
 
 After you see the following message, your Liberty instance is ready.
 
@@ -115,7 +163,7 @@ The servlet returns a simple response of ***Hello! How are you today?***.
 endif::[]
 
 [role='command']
-include::{common-includes}/twyb-end.adoc[]
+include::{common-includes}/twyb-end-mvnw.adoc[]
 
 // =================================================================================================
 // Creating a simple application
@@ -208,7 +256,7 @@ include::finish/src/main/liberty/config/server.xml[]
 == Running the application
 
 [role='command']
-include::{common-includes}/devmode-lmp33-start.adoc[]
+include::{common-includes}/devmode-mvnw-start.adoc[]
 
 ifndef::cloud-hosted[]
 Navigate your browser to the http://localhost:9080/ServletSample/servlet[^] URL to access the application. The servlet returns a simple response of `Hello! How are you today?`.
