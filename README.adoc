@@ -62,7 +62,6 @@ include::{common-includes}/os-tabs.adoc[]
 --
 [role='command']
 ```
-cd finish
 mvnw.cmd --version
 ```
 --
@@ -71,7 +70,6 @@ mvnw.cmd --version
 --
 [role='command']
 ```
-cd finish
 ./mvnw --version
 ```
 --
@@ -80,7 +78,6 @@ cd finish
 --
 [role='command']
 ```
-cd finish
 ./mvnw --version
 ```
 --
