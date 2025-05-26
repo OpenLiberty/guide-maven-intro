@@ -114,7 +114,6 @@ include::{common-includes}/os-tabs.adoc[]
 --
 [role='command']
 ```
-cd finish
 mvnw.cmd liberty:run
 ```
 --
@@ -123,7 +122,6 @@ mvnw.cmd liberty:run
 --
 [role='command']
 ```
-cd finish
 ./mvnw liberty:run
 ```
 --
@@ -132,7 +130,6 @@ cd finish
 --
 [role='command']
 ```
-cd finish
 ./mvnw liberty:run
 ```
 --
