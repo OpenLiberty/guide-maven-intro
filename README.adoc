@@ -68,7 +68,7 @@ include::{common-includes}/gitclone.adoc[]
 === Try what you'll build
 
 The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
-Run the following command to test that Maven Wrapper is installed:
+Run the following command to test that Maven Wrapper works:
 
 include::{common-includes}/os-tabs.adoc[]
 
