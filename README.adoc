@@ -49,8 +49,9 @@ ifndef::cloud-hosted[]
 
 == Installing Maven
 
-If Maven isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^]. Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^] to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command to the `PATH` on your computer.
-Alternatively, Maven Wrapper is provided and there is no need to install Maven.
+Maven Wrapper is provided in this guide. You have no need to install Maven.
+
+If you use Maven and it isn't already installed, https://maven.apache.org/download.cgi[download the binary zip or tar.gz file^]. Then, follow the https://maven.apache.org/install.html[installation instructions for your operating system^] to extract the `.zip` file and add the `bin` directory, which contains the `mvn` command to the `PATH` on your computer.
 
 endif::[]
 
