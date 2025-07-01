@@ -46,7 +46,7 @@
             <artifactId>jakarta.jakartaee-api</artifactId>
             <!-- end::artifactID-api[] -->
             <!-- tag::version-api[] -->
-            <version>10.0.0</version>
+            <version>11.0.0</version>
             <!-- end::version-api[] -->
             <!-- tag::scope-api[] -->
             <scope>provided</scope>
