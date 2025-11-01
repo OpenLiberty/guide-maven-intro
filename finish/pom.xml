@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.14.0</version>
+            <version>6.0.1</version>
             <!-- tag::test2[] -->
             <scope>test</scope>
             <!-- end::test2[] -->
