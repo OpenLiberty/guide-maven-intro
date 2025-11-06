@@ -22,8 +22,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- end::encoding[] -->
         <!-- tag::java-version[] -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <!-- end::java-version[] -->
         <!-- Liberty configuration -->
         <!-- tag::http.port[] -->
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.14.0</version>
+            <version>6.0.1</version>
             <!-- tag::test2[] -->
             <scope>test</scope>
             <!-- end::test2[] -->
