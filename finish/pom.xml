@@ -92,14 +92,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.5.0</version>
+
             </plugin>
             <!-- tag::liberty-maven-plugin[] -->
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.11.5</version>
+                <version>3.11.6-SNAPSHOT</version>
                 <!-- tag::configuration[] -->
                 <configuration>
+                    <jdkToolchain>
+                        <version>17</version>
+                    </jdkToolchain>
                     <!-- tag::serverName[] -->
                     <serverName>guideServer</serverName>
                     <!-- end::serverName[] -->
