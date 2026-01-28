@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2025 IBM Corporation and others.
+// Copyright (c) 2017, 2026 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -358,4 +358,91 @@ include::{common-includes}/devmode-quit-ctrlc.adoc[]
 
 You built and tested a web application project with an Open Liberty instance using Maven.
 
+== Why Use Maven Toolchains with Liberty?
+
+Historically, the `liberty-maven-plugin` used the same JDK that was running the Maven process. However, modern Java development often requires building or testing applications on a specific Java version (e.g., Java 8 or 11) while Maven itself might be running on a different version (e.g., Java 17 or 21).
+
+Starting with version **3.12.0**, the `liberty-maven-plugin` introduced support for **Maven Toolchains** to address these needs:
+
+* **Decoupling environments:** It allows the Liberty server to run on a JDK that is different from the one running Maven.
+* **Reproducibility:** It ensures that every developer on a team and every CI/CD pipeline uses the exact same JDK vendor and version, regardless of their local `JAVA_HOME` settings.
+* **Streamlined Testing:** It simplifies testing applications against multiple Java versions without needing to manually switch environment variables between runs.
+
+---
+
+== Supporting Maven Toolchains in Liberty
+
+The `liberty-maven-plugin` supports Maven Toolchains starting from version **3.12.0**.
+
+=== Step 1: Create a Global `toolchains.xml`
+Maven toolchains are managed globally. You must define where your JDKs are located on your local machine so Maven can find them.
+
+1. Navigate to your Maven configuration directory (usually `~/.m2/` or `%USERPROFILE%\.m2\`).
+2. Create a file named `toolchains.xml` if it does not already exist.
+3. Add your JDK paths as shown in the example below.
+
+For more details on this configuration, see the link:https://maven.apache.org/guides/mini/guide-using-toolchains.html[Official Maven Toolchains Documentation].
+
+**Example `toolchains.xml`:**
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<toolchains>
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>17</version>
+      <vendor>temurin</vendor>
+    </provides>
+    <configuration>
+      <jdkHome>/path/to/your/jdk-17</jdkHome>
+    </configuration>
+  </toolchain>
+</toolchains>
+----
+
+=== Step 2: Set the `jdkToolchain` in Liberty Maven Plugin
+To ensure the Liberty server specifically honors these settings during goals like `liberty:run` or `liberty:dev`, add the `jdkToolchain` parameter to your `liberty-maven-plugin` configuration.
+
+**Example `pom.xml` snippet:**
+[source,xml]
+----
+<plugin>
+    <groupId>io.openliberty.tools</groupId>
+    <artifactId>liberty-maven-plugin</artifactId>
+    <version>3.12.0</version> <configuration>
+        <jdkToolchain>
+            <version>17</version>
+            <vendor>temurin</vendor>
+        </jdkToolchain>
+    </configuration>
+</plugin>
+----
+
+=== Step 3: Verify the Configuration
+Now you can use a different version of Java as JAVA_HOME, and liberty will run using Java 17.
+Run your project using the following command to see the toolchain in action:
+
+[source,bash]
+----
+mvn liberty:run
+----
+
+To confirm that the correct Java version is being used, check the `messages.log` file located in the `target/liberty/wlp/usr/servers/defaultServer/logs/` directory.
+
+The header of the log file will indicate the `java.home` and `java.version` provided by the toolchain:
+
+**Sample `messages.log` output:**
+[source,text]
+----
+********************************************************************************
+product = Open Liberty 25.0.0.12 (wlp-1.0.108.cl251220251117-0302)
+wlp.install.dir = /.../target/liberty/wlp/
+java.home = /path/to/jdk/temurin-17.0.17/Contents/Home
+java.version = 17.0.17
+java.runtime = OpenJDK Runtime Environment (17.0.17+10)
+os = Mac OS X (15.6.1; aarch64) (en_US)
+process = 13271@local
+********************************************************************************
+----
 include::{common-includes}/attribution.adoc[subs="attributes"]
