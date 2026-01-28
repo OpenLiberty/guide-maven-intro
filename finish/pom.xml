@@ -98,12 +98,9 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.12.0-SNAPSHOT</version>
+                <version>3.12.0</version>
                 <!-- tag::configuration[] -->
                 <configuration>
-                    <jdkToolchain>
-                        <version>17</version>
-                    </jdkToolchain>
                     <!-- tag::serverName[] -->
                     <serverName>guideServer</serverName>
                     <!-- end::serverName[] -->
