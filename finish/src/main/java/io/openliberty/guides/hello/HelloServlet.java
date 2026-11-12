@@ -12,6 +12,7 @@
 package io.openliberty.guides.hello;
 
 import java.io.IOException;
+import java.io.Serial;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,6 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/servlet")
 public class HelloServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     // tag::javadoc1[]
