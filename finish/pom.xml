@@ -22,8 +22,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- end::encoding[] -->
         <!-- tag::java-version[] -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <!-- end::java-version[] -->
         <!-- Liberty configuration -->
         <!-- tag::http.port[] -->
@@ -46,7 +46,7 @@
             <artifactId>jakarta.jakartaee-api</artifactId>
             <!-- end::artifactID-api[] -->
             <!-- tag::version-api[] -->
-            <version>10.0.0</version>
+            <version>11.0.0</version>
             <!-- end::version-api[] -->
             <!-- tag::scope-api[] -->
             <scope>provided</scope>
@@ -91,13 +91,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.5.1</version>
             </plugin>
             <!-- tag::liberty-maven-plugin[] -->
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.11.5</version>
+                <version>3.12.5</version>
                 <!-- tag::configuration[] -->
                 <configuration>
                     <!-- tag::serverName[] -->
@@ -111,7 +111,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.4</version>
+                <version>3.5.6</version>
                 <configuration>
                     <!-- tag::system-property-variables[] -->
                     <systemPropertyVariables>
